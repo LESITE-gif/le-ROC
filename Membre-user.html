@@ -1,0 +1,1129 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Membres Le ROC</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+
+font-family:'Inter',sans-serif;
+
+background:
+radial-gradient(circle at top right,
+rgba(217,165,45,.12),
+transparent 20%),
+
+linear-gradient(to bottom,
+#04050b,
+#090d18);
+
+color:white;
+
+overflow-x:hidden;
+
+}
+
+/* NAVBAR */
+
+.navbar{
+
+position:sticky;
+top:0;
+z-index:999;
+
+display:flex;
+justify-content:space-between;
+align-items:center;
+
+padding:20px 40px;
+
+background:rgba(5,8,15,.85);
+
+backdrop-filter:blur(12px);
+
+border-bottom:1px solid rgba(255,255,255,.06);
+
+}
+
+.logo{
+
+display:flex;
+align-items:center;
+gap:14px;
+
+}
+
+.logo-icon{
+
+width:58px;
+height:58px;
+
+border-radius:18px;
+
+display:flex;
+align-items:center;
+justify-content:center;
+
+background:
+linear-gradient(135deg,
+rgba(217,165,45,.25),
+rgba(217,165,45,.05));
+
+font-size:2rem;
+
+color:#f5c25b;
+
+}
+
+.logo h1{
+
+font-size:2rem;
+
+}
+
+.logo span{
+
+font-size:.75rem;
+letter-spacing:2px;
+color:#f5c25b;
+
+}
+
+.nav-links{
+
+display:flex;
+align-items:center;
+gap:18px;
+
+flex-wrap:wrap;
+
+}
+
+.nav-links a{
+
+padding:14px 22px;
+
+border-radius:16px;
+
+background:rgba(255,255,255,.04);
+
+border:1px solid rgba(255,255,255,.05);
+
+display:flex;
+align-items:center;
+gap:10px;
+
+transition:.35s;
+
+text-decoration:none;
+color:white;
+
+}
+
+.nav-links a:hover{
+
+transform:translateY(-3px);
+
+background:rgba(255,255,255,.08);
+
+}
+
+.nav-links a.active{
+
+background:
+linear-gradient(135deg,#d9a52d,#a56f1b);
+
+color:#1f1202;
+
+font-weight:700;
+
+}
+
+/* MAIN */
+
+.main{
+
+padding:30px;
+
+}
+
+/* HERO */
+
+.hero{
+
+background:
+linear-gradient(to right,
+rgba(8,10,18,.92),
+rgba(8,10,18,.45)),
+
+url('https://images.unsplash.com/photo-1501386761578-eac5c94b800a?q=80&w=1600&auto=format&fit=crop') center/cover;
+
+border-radius:35px;
+
+padding:35px;
+
+display:flex;
+justify-content:space-between;
+align-items:center;
+
+gap:30px;
+
+margin-bottom:28px;
+
+border:1px solid rgba(255,255,255,.06);
+
+overflow:hidden;
+
+}
+
+.hero-left{
+
+display:flex;
+align-items:center;
+gap:25px;
+
+}
+
+.hero-icon{
+
+width:100px;
+height:100px;
+
+border-radius:30px;
+
+background:
+linear-gradient(135deg,
+rgba(217,165,45,.25),
+rgba(217,165,45,.08));
+
+display:flex;
+align-items:center;
+justify-content:center;
+
+font-size:3rem;
+
+color:#f5c25b;
+
+box-shadow:0 20px 40px rgba(217,165,45,.15);
+
+}
+
+.hero h2{
+
+font-size:3rem;
+margin-bottom:12px;
+
+}
+
+.hero p{
+
+color:#c6cada;
+font-size:1.08rem;
+
+}
+
+/* BACK BUTTON */
+
+.back-btn{
+
+margin-top:20px;
+
+display:inline-flex;
+align-items:center;
+gap:10px;
+
+padding:14px 22px;
+
+border-radius:16px;
+
+background:rgba(255,255,255,.05);
+
+border:1px solid rgba(255,255,255,.06);
+
+transition:.35s;
+
+cursor:pointer;
+
+}
+
+.back-btn:hover{
+
+transform:translateX(-4px);
+
+}
+
+/* FILTERS */
+
+.top-actions{
+
+display:flex;
+justify-content:space-between;
+align-items:center;
+
+gap:20px;
+
+flex-wrap:wrap;
+
+margin-bottom:25px;
+
+}
+
+.filters{
+
+display:flex;
+align-items:center;
+gap:14px;
+
+overflow-x:auto;
+
+padding-bottom:6px;
+
+}
+
+.filters::-webkit-scrollbar{
+height:5px;
+}
+
+.filters::-webkit-scrollbar-thumb{
+background:#333;
+border-radius:20px;
+}
+
+.filter-btn{
+
+padding:15px 22px;
+
+border-radius:18px;
+
+background:rgba(255,255,255,.05);
+
+border:1px solid rgba(255,255,255,.06);
+
+color:white;
+
+font-weight:600;
+
+white-space:nowrap;
+
+cursor:pointer;
+
+transition:.35s;
+
+}
+
+.filter-btn:hover{
+
+transform:translateY(-4px);
+
+}
+
+.filter-btn.active{
+
+background:
+linear-gradient(135deg,#d9a52d,#a56f1b);
+
+color:#1e1302;
+
+}
+
+/* SEARCH */
+
+.search-box{
+
+position:relative;
+
+width:340px;
+max-width:100%;
+
+}
+
+.search-box input{
+
+width:100%;
+
+padding:16px 18px 16px 50px;
+
+border-radius:18px;
+
+background:rgba(255,255,255,.04);
+
+border:1px solid rgba(255,255,255,.06);
+
+color:white;
+
+font-size:1rem;
+
+}
+
+.search-box i{
+
+position:absolute;
+left:18px;
+top:18px;
+
+color:#979cb0;
+
+}
+
+/* GRID */
+
+.members-grid{
+
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+
+gap:24px;
+
+}
+
+/* CARD */
+
+.member-card{
+
+background:
+linear-gradient(to bottom,
+#0f1320,
+#090d18);
+
+border-radius:30px;
+
+padding:28px;
+
+border:1px solid rgba(255,255,255,.05);
+
+position:relative;
+
+overflow:hidden;
+
+transition:.4s;
+
+animation:fadeUp .5s ease;
+
+box-shadow:0 15px 35px rgba(0,0,0,.25);
+
+}
+
+.member-card:hover{
+
+transform:translateY(-8px);
+
+box-shadow:0 25px 45px rgba(0,0,0,.35);
+
+}
+
+.music-note{
+
+position:absolute;
+top:20px;
+right:20px;
+
+font-size:1.4rem;
+
+color:#d9a52d;
+
+opacity:.9;
+
+}
+
+.member-photo{
+
+width:120px;
+height:120px;
+
+border-radius:50%;
+
+overflow:hidden;
+
+margin:auto;
+
+border:4px solid rgba(217,165,45,.35);
+
+box-shadow:
+0 0 20px rgba(217,165,45,.15),
+0 15px 30px rgba(0,0,0,.35);
+
+transition:.35s;
+
+}
+
+.member-photo:hover{
+
+transform:scale(1.05);
+
+}
+
+.member-photo img{
+
+width:100%;
+height:100%;
+
+object-fit:cover;
+
+display:block;
+
+}
+
+.member-name{
+
+text-align:center;
+
+margin-top:20px;
+
+font-size:1.7rem;
+font-weight:700;
+
+}
+
+.member-role{
+
+text-align:center;
+
+margin-top:8px;
+
+color:#f5c25b;
+
+font-weight:600;
+
+}
+
+.whatsapp-btn{
+
+margin-top:25px;
+
+width:100%;
+
+padding:14px;
+
+border-radius:16px;
+
+background:transparent;
+
+border:1px solid rgba(217,165,45,.35);
+
+color:#f5c25b;
+
+font-weight:700;
+
+display:flex;
+align-items:center;
+justify-content:center;
+gap:10px;
+
+transition:.35s;
+
+text-decoration:none;
+
+}
+
+.whatsapp-btn:hover{
+
+background:rgba(217,165,45,.08);
+
+transform:translateY(-3px);
+
+}
+
+/* FOOT */
+
+.footer{
+
+margin-top:35px;
+
+display:flex;
+justify-content:center;
+
+}
+
+.footer-box{
+
+padding:20px 28px;
+
+border-radius:24px;
+
+background:rgba(255,255,255,.04);
+
+border:1px solid rgba(255,255,255,.05);
+
+text-align:center;
+
+}
+
+.footer-box h3{
+
+margin-bottom:8px;
+
+}
+
+.footer-box p{
+
+color:#c2c6d8;
+
+}
+
+/* ANIMATIONS */
+
+@keyframes fadeUp{
+
+from{
+opacity:0;
+transform:translateY(30px);
+}
+
+to{
+opacity:1;
+transform:translateY(0);
+}
+
+}
+
+/* RESPONSIVE */
+
+@media(max-width:900px){
+
+.hero{
+
+flex-direction:column;
+align-items:flex-start;
+
+}
+
+.hero h2{
+
+font-size:2.3rem;
+
+}
+
+.navbar{
+
+padding:18px;
+
+flex-direction:column;
+gap:18px;
+
+}
+
+}
+
+@media(max-width:600px){
+
+.main{
+
+padding:18px;
+
+}
+
+.hero{
+
+padding:25px;
+
+}
+
+.hero-left{
+
+flex-direction:column;
+align-items:flex-start;
+
+}
+
+.hero-icon{
+
+width:80px;
+height:80px;
+
+font-size:2.2rem;
+
+}
+
+.member-photo{
+
+width:100px;
+height:100px;
+
+}
+
+.member-name{
+
+font-size:1.4rem;
+
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+
+<nav class="navbar">
+
+<div class="logo">
+
+<div class="logo-icon">
+
+<i class="fa-solid fa-music"></i>
+
+</div>
+
+<div>
+
+<h1>Le ROC</h1>
+
+<span>GROUPE MUSICAL</span>
+
+</div>
+
+</div>
+
+<div class="nav-links">
+
+<a href="index.html">
+
+<i class="fa-solid fa-house"></i>
+Accueil
+
+</a>
+
+<a href="evenements.html">
+
+<i class="fa-solid fa-music"></i>
+Événements
+
+</a>
+
+<a href="Membre-user.html" class="active">
+
+<i class="fa-solid fa-users"></i>
+Membres
+
+</a>
+
+<a href="contact.html">
+
+<i class="fa-regular fa-envelope"></i>
+Contact
+
+</a>
+
+</div>
+
+</nav>
+
+<!-- MAIN -->
+
+<main class="main">
+
+<section class="hero">
+
+<div>
+
+<div class="hero-left">
+
+<div class="hero-icon">
+
+<i class="fa-solid fa-users"></i>
+
+</div>
+
+<div>
+
+<h2>
+Membres Le ROC
+</h2>
+
+<p>
+Découvrez les membres et les différents pupitres du groupe.
+</p>
+
+<div class="back-btn" onclick="history.back()">
+
+<i class="fa-solid fa-arrow-left"></i>
+Retour
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- FILTERS -->
+
+<div class="top-actions">
+
+<div class="filters">
+
+<button class="filter-btn active" data-role="Tous">
+📂 Tous
+</button>
+
+<button class="filter-btn" data-role="Soprano">
+🎤 Soprano
+</button>
+
+<button class="filter-btn" data-role="Alto">
+🎶 Alto
+</button>
+
+<button class="filter-btn" data-role="Ténor">
+🎵 Ténor
+</button>
+
+<button class="filter-btn" data-role="Basse">
+🎼 Basse
+</button>
+
+<button class="filter-btn" data-role="Musiciens">
+🎹 Musiciens
+</button>
+
+<button class="filter-btn" data-role="Sono">
+🔊 Sono
+</button>
+
+</div>
+
+<div class="search-box">
+
+<i class="fa-solid fa-magnifying-glass"></i>
+
+<input
+type="text"
+id="searchInput"
+placeholder="Rechercher un membre..."
+>
+
+</div>
+
+</div>
+
+<!-- MEMBERS -->
+
+<div class="members-grid" id="membersGrid"></div>
+
+<!-- FOOTER -->
+
+<div class="footer">
+
+<div class="footer-box">
+
+<h3 id="memberCount">
+Total membres : 0
+</h3>
+
+<p>
+Un cœur, une voix, pour la gloire de Dieu. 💛
+</p>
+
+</div>
+
+</div>
+
+</main>
+
+<script type="module">
+
+/* FIREBASE */
+
+import { initializeApp }
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
+import {
+
+getFirestore,
+collection,
+query,
+orderBy,
+onSnapshot
+
+}
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+/* CONFIG */
+
+const firebaseConfig = {
+
+apiKey: "AIzaSyAHyKVYhNuAuK_yFFtGYmbk2gMIRLV-eKs",
+
+authDomain: "leroc-bae84.firebaseapp.com",
+
+projectId: "leroc-bae84",
+
+storageBucket: "leroc-bae84.appspot.com",
+
+messagingSenderId: "603437145590",
+
+appId: "1:603437145590:web:b914e95570402f3fd1fbd7"
+
+};
+
+/* INIT */
+
+const app = initializeApp(firebaseConfig);
+
+const db = getFirestore(app);
+
+/* ELEMENTS */
+
+const membersGrid =
+document.getElementById('membersGrid');
+
+const searchInput =
+document.getElementById('searchInput');
+
+const filterBtns =
+document.querySelectorAll('.filter-btn');
+
+const memberCount =
+document.getElementById('memberCount');
+
+/* DATA */
+
+let allMembers = [];
+
+let currentFilter = 'Tous';
+
+/*
+IMPORTANT :
+ON ECOUTE DIRECTEMENT LA COLLECTION "membres"
+
+Donc :
+- si admin ajoute → apparaît ici
+- si admin supprime → disparaît ici
+- si admin modifie → mise à jour ici
+
+SYNCHRO TEMPS RÉEL
+*/
+
+const q = query(
+
+collection(db,'membres'),
+orderBy('timestamp','desc')
+
+);
+
+onSnapshot(q,(snapshot)=>{
+
+allMembers = [];
+
+snapshot.forEach((doc)=>{
+
+allMembers.push({
+
+id:doc.id,
+...doc.data()
+
+});
+
+});
+
+applyFilters();
+
+});
+
+/* RENDER */
+
+function renderMembers(data){
+
+membersGrid.innerHTML = '';
+
+memberCount.innerHTML =
+`Total membres : ${data.length}`;
+
+if(data.length === 0){
+
+membersGrid.innerHTML = `
+
+<div style="
+padding:40px;
+border-radius:24px;
+background:rgba(255,255,255,.04);
+border:1px solid rgba(255,255,255,.06);
+text-align:center;
+grid-column:1/-1;
+">
+
+Aucun membre trouvé.
+
+</div>
+
+`;
+
+return;
+
+}
+
+data.forEach((member)=>{
+
+const phoneClean =
+(member.telephone || '')
+.replace(/\s+/g,'');
+
+const card =
+document.createElement('div');
+
+card.className = 'member-card';
+
+card.innerHTML = `
+
+<div class="music-note">
+🎵
+</div>
+
+<div class="member-photo">
+
+<img src="${
+member.photo ||
+'https://randomuser.me/api/portraits/men/32.jpg'
+}">
+
+</div>
+
+<div class="member-name">
+
+${member.nom || 'Membre'}
+
+</div>
+
+<div class="member-role">
+
+${member.pupitre || ''}
+
+</div>
+
+<a
+href="https://wa.me/${phoneClean}"
+target="_blank"
+class="whatsapp-btn"
+>
+
+<i class="fa-brands fa-whatsapp"></i>
+
+WhatsApp
+
+</a>
+
+`;
+
+membersGrid.appendChild(card);
+
+});
+
+}
+
+/* FILTERS */
+
+filterBtns.forEach((btn)=>{
+
+btn.addEventListener('click',()=>{
+
+filterBtns.forEach((b)=>{
+
+b.classList.remove('active');
+
+});
+
+btn.classList.add('active');
+
+currentFilter =
+btn.dataset.role;
+
+applyFilters();
+
+});
+
+});
+
+/* SEARCH */
+
+searchInput.addEventListener('input',()=>{
+
+applyFilters();
+
+});
+
+/* APPLY FILTERS */
+
+function applyFilters(){
+
+const search =
+searchInput.value.toLowerCase();
+
+let filtered =
+[...allMembers];
+
+if(currentFilter !== 'Tous'){
+
+filtered =
+filtered.filter((m)=>{
+
+return(
+
+m.pupitre &&
+m.pupitre
+.toLowerCase()
+.includes(currentFilter.toLowerCase())
+
+);
+
+});
+
+}
+
+filtered =
+filtered.filter((m)=>{
+
+return(
+
+m.nom &&
+m.nom
+.toLowerCase()
+.includes(search)
+
+)
+
+||
+
+(
+
+m.pupitre &&
+m.pupitre
+.toLowerCase()
+.includes(search)
+
+);
+
+});
+
+renderMembers(filtered);
+
+}
+
+</script>
+
+</body>
+</html>

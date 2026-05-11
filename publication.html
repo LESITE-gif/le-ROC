@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <title>Le ROC - Publications</title>
+
+  <!-- GOOGLE FONTS -->
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Cinzel:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <!-- ICONS -->
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
+
+  <style>
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+    }
+
+    :root{
+
+      --bg:#07111f;
+      --card:#0d1b34;
+      --card2:#091425;
+
+      --gold:#E5B53B;
+      --gold2:#ffd56b;
+
+      --white:#ffffff;
+
+      --border:rgba(229,181,59,.18);
+
+      --text:#dbe6f5;
+
+    }
+
+    body{
+
+      font-family:'Inter',sans-serif;
+
+      background:
+      linear-gradient(to bottom,#020817,#07111f);
+
+      color:var(--white);
+
+      overflow-x:hidden;
+
+    }
+
+    a{
+      text-decoration:none;
+      color:inherit;
+    }
+
+    button{
+      border:none;
+      cursor:pointer;
+      font-family:'Inter',sans-serif;
+    }
+
+    /* TOPBAR */
+
+    .topbar{
+
+      position:sticky;
+      top:0;
+      z-index:999;
+
+      background:rgba(2,8,23,.88);
+
+      backdrop-filter:blur(12px);
+
+      border-bottom:1px solid rgba(255,255,255,.05);
+
+      padding:18px 25px;
+
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+
+      flex-wrap:wrap;
+
+      gap:15px;
+
+    }
+
+    .logo{
+
+      display:flex;
+      align-items:center;
+      gap:14px;
+
+    }
+
+    .logo i{
+
+      font-size:2.6rem;
+      color:var(--gold2);
+
+    }
+
+    .logo h1{
+
+      font-size:2rem;
+      font-family:'Cinzel',serif;
+
+    }
+
+    .back-btn{
+
+      padding:14px 22px;
+
+      border-radius:16px;
+
+      background:rgba(229,181,59,.08);
+
+      border:1px solid var(--border);
+
+      display:flex;
+      align-items:center;
+      gap:10px;
+
+      transition:.35s;
+
+    }
+
+    .back-btn:hover{
+
+      transform:translateY(-3px);
+
+      background:rgba(229,181,59,.16);
+
+    }
+
+    /* HERO */
+
+    .hero{
+
+      padding:70px 20px 45px;
+
+      text-align:center;
+
+    }
+
+    .hero h2{
+
+      font-size:4rem;
+
+      font-family:'Cinzel',serif;
+
+      color:var(--gold2);
+
+      margin-bottom:18px;
+
+    }
+
+    .hero p{
+
+      max-width:900px;
+
+      margin:auto;
+
+      line-height:2;
+
+      color:#d4ddec;
+
+      font-size:1.05rem;
+
+    }
+
+    .live-badge{
+
+      margin:35px auto 0;
+
+      width:fit-content;
+
+      padding:14px 24px;
+
+      border-radius:50px;
+
+      background:rgba(229,181,59,.08);
+
+      border:1px solid var(--border);
+
+      display:flex;
+      align-items:center;
+      gap:12px;
+
+      color:var(--gold2);
+
+      font-weight:700;
+
+    }
+
+    .live-dot{
+
+      width:12px;
+      height:12px;
+
+      border-radius:50%;
+
+      background:#4cff8f;
+
+      box-shadow:0 0 14px #4cff8f;
+
+      animation:pulse 1.3s infinite;
+
+    }
+
+    @keyframes pulse{
+
+      0%{
+        transform:scale(1);
+      }
+
+      50%{
+        transform:scale(1.15);
+      }
+
+      100%{
+        transform:scale(1);
+      }
+
+    }
+
+    /* CONTAINER */
+
+    .container{
+
+      width:92%;
+      max-width:1400px;
+
+      margin:auto;
+
+      padding-bottom:60px;
+
+    }
+
+    /* GRID */
+
+    .notifications-grid{
+
+      display:flex;
+      flex-direction:column;
+
+      gap:25px;
+
+    }
+
+    /* CARD */
+
+    .notification-card{
+
+      background:
+      linear-gradient(to bottom,var(--card),var(--card2));
+
+      border:1px solid var(--border);
+
+      border-radius:28px;
+
+      overflow:hidden;
+
+      transition:.35s;
+
+      animation:fadeUp .5s ease;
+
+    }
+
+    .notification-card:hover{
+
+      transform:translateY(-5px);
+
+      box-shadow:0 0 35px rgba(229,181,59,.12);
+
+    }
+
+    .card-header{
+
+      padding:24px 28px;
+
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+
+      gap:20px;
+
+      flex-wrap:wrap;
+
+      border-bottom:1px solid rgba(255,255,255,.05);
+
+    }
+
+    .title-zone{
+
+      display:flex;
+      align-items:center;
+      gap:14px;
+
+    }
+
+    .title-zone i{
+
+      color:var(--gold2);
+
+      font-size:1.3rem;
+
+    }
+
+    .title-zone h3{
+
+      font-size:1.4rem;
+
+      font-weight:700;
+
+    }
+
+    .type-badge{
+
+      padding:10px 16px;
+
+      border-radius:50px;
+
+      background:rgba(229,181,59,.12);
+
+      color:var(--gold2);
+
+      font-size:.85rem;
+
+      font-weight:700;
+
+    }
+
+    .card-body{
+
+      padding:28px;
+
+    }
+
+    .message{
+
+      line-height:2;
+
+      color:var(--text);
+
+      margin-bottom:24px;
+
+      white-space:pre-wrap;
+
+    }
+
+    .card-footer{
+
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+
+      gap:20px;
+
+      flex-wrap:wrap;
+
+    }
+
+    .date{
+
+      display:flex;
+      align-items:center;
+      gap:10px;
+
+      color:#b8c4d9;
+
+      font-size:.95rem;
+
+    }
+
+    .open-btn{
+
+      padding:14px 24px;
+
+      border-radius:14px;
+
+      background:
+      linear-gradient(135deg,var(--gold),var(--gold2));
+
+      color:#111827;
+
+      font-weight:700;
+
+      display:flex;
+      align-items:center;
+      gap:10px;
+
+      transition:.35s;
+
+    }
+
+    .open-btn:hover{
+
+      transform:translateY(-3px);
+
+    }
+
+    /* EMPTY */
+
+    .empty-box{
+
+      background:
+      linear-gradient(to bottom,var(--card),var(--card2));
+
+      border:1px solid var(--border);
+
+      border-radius:30px;
+
+      padding:80px 30px;
+
+      text-align:center;
+
+      animation:fadeUp .5s ease;
+
+    }
+
+    .empty-box i{
+
+      font-size:4rem;
+
+      color:var(--gold2);
+
+      margin-bottom:24px;
+
+    }
+
+    .empty-box h3{
+
+      font-size:2rem;
+
+      font-family:'Cinzel',serif;
+
+      margin-bottom:16px;
+
+    }
+
+    .empty-box p{
+
+      color:#d4ddec;
+
+      line-height:2;
+
+    }
+
+    /* ANIMATIONS */
+
+    @keyframes fadeUp{
+
+      from{
+        opacity:0;
+        transform:translateY(30px);
+      }
+
+      to{
+        opacity:1;
+        transform:translateY(0);
+      }
+
+    }
+
+    /* RESPONSIVE */
+
+    @media(max-width:900px){
+
+      .hero h2{
+
+        font-size:2.7rem;
+
+      }
+
+    }
+
+    @media(max-width:650px){
+
+      .topbar{
+
+        padding:18px;
+
+      }
+
+      .hero{
+
+        padding:50px 18px 35px;
+
+      }
+
+      .hero h2{
+
+        font-size:2.1rem;
+
+      }
+
+      .card-header,
+      .card-body{
+
+        padding:20px;
+
+      }
+
+      .title-zone h3{
+
+        font-size:1.1rem;
+
+      }
+
+      .card-footer{
+
+        flex-direction:column;
+        align-items:flex-start;
+
+      }
+
+      .open-btn{
+
+        width:100%;
+        justify-content:center;
+
+      }
+
+    }
+
+  </style>
+
+</head>
+
+<body>
+
+  <!-- TOPBAR -->
+
+  <div class="topbar">
+
+    <div class="logo">
+
+      <i class="fa-solid fa-bell"></i>
+
+      <h1>
+        Le ROC
+      </h1>
+
+    </div>
+
+    <a href="Accueil.html" class="back-btn">
+
+      <i class="fa-solid fa-arrow-left"></i>
+
+      Retour accueil
+
+    </a>
+
+  </div>
+
+  <!-- HERO -->
+
+  <section class="hero">
+
+    <h2>
+      Publications & Notifications
+    </h2>
+
+    <p>
+      Toutes les nouvelles publications, annonces et notifications
+      envoyées par les administrateurs apparaissent automatiquement ici
+      en temps réel grâce à Firebase Firestore.
+    </p>
+
+    <div class="live-badge">
+
+      <div class="live-dot"></div>
+
+      Synchronisation temps réel active
+
+    </div>
+
+  </section>
+
+  <!-- CONTENT -->
+
+  <div class="container">
+
+    <div
+      class="notifications-grid"
+      id="notificationsContainer"
+    ></div>
+
+  </div>
+
+  <!-- FIREBASE -->
+
+  <script type="module">
+
+    import {
+      initializeApp
+    }
+    from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
+    import {
+
+      getFirestore,
+      collection,
+      query,
+      orderBy,
+      onSnapshot
+
+    }
+    from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+    // CONFIG
+
+    const firebaseConfig = {
+
+      apiKey: "AIzaSyAHyKVYhNuAuK_yFFtGYmbk2gMIRLV-eKs",
+      authDomain: "leroc-bae84.firebaseapp.com",
+      databaseURL: "https://leroc-bae84-default-rtdb.firebaseio.com",
+      projectId: "leroc-bae84",
+      storageBucket: "leroc-bae84.firebasestorage.app",
+      messagingSenderId: "603437145590",
+      appId: "1:603437145590:web:b914e95570402f3fd1fbd7",
+      measurementId: "G-8J3X3YS119"
+
+    };
+
+    // INIT
+
+    const app = initializeApp(firebaseConfig);
+
+    const db = getFirestore(app);
+
+    // CONTAINER
+
+    const notificationsContainer =
+    document.getElementById('notificationsContainer');
+
+    // QUERY
+
+    const notificationsQuery = query(
+
+      collection(db,'notifications'),
+      orderBy('createdAt','desc')
+
+    );
+
+    // REALTIME
+
+    onSnapshot(notificationsQuery,(snapshot)=>{
+
+      notificationsContainer.innerHTML = '';
+
+      // EMPTY
+
+      if(snapshot.empty){
+
+        notificationsContainer.innerHTML = `
+
+          <div class="empty-box">
+
+            <i class="fa-regular fa-bell-slash"></i>
+
+            <h3>
+              Aucune notification
+            </h3>
+
+            <p>
+              Les nouvelles publications apparaîtront ici automatiquement.
+            </p>
+
+          </div>
+
+        `;
+
+        return;
+
+      }
+
+      // LOOP
+
+      snapshot.forEach((doc)=>{
+
+        const notif = doc.data();
+
+        // DATE
+
+        let dateText = 'Maintenant';
+
+        if(notif.createdAt){
+
+          const date =
+          notif.createdAt.toDate();
+
+          dateText =
+          date.toLocaleString('fr-FR',{
+
+            dateStyle:'medium',
+            timeStyle:'short'
+
+          });
+
+        }
+
+        // ICON
+
+        let icon = 'fa-solid fa-bell';
+
+        if(notif.type === 'event'){
+
+          icon =
+          'fa-regular fa-calendar';
+
+        }
+
+        if(notif.type === 'presence'){
+
+          icon =
+          'fa-regular fa-circle-check';
+
+        }
+
+        if(notif.type === 'announcement'){
+
+          icon =
+          'fa-solid fa-bullhorn';
+
+        }
+
+        // LINK
+
+        let link = '#';
+
+        if(notif.type === 'event'){
+
+          link =
+          `event.html?id=${notif.targetId}`;
+
+        }
+
+        else if(notif.type === 'presence'){
+
+          link =
+          `presence.html?id=${notif.targetId}`;
+
+        }
+
+        else if(notif.type === 'announcement'){
+
+          link =
+          `annonce.html?id=${notif.targetId}`;
+
+        }
+
+        // CARD
+
+        const card =
+        document.createElement('div');
+
+        card.classList.add('notification-card');
+
+        card.innerHTML = `
+
+          <div class="card-header">
+
+            <div class="title-zone">
+
+              <i class="${icon}"></i>
+
+              <h3>
+                ${notif.title || 'Nouvelle notification'}
+              </h3>
+
+            </div>
+
+            <div class="type-badge">
+
+              ${notif.type || 'notification'}
+
+            </div>
+
+          </div>
+
+          <div class="card-body">
+
+            <div class="message">
+
+              ${notif.message || ''}
+
+            </div>
+
+            <div class="card-footer">
+
+              <div class="date">
+
+                <i class="fa-regular fa-clock"></i>
+
+                ${dateText}
+
+              </div>
+
+              <a
+                href="${link}"
+                class="open-btn"
+              >
+
+                <i class="fa-solid fa-arrow-up-right-from-square"></i>
+
+                Ouvrir
+
+              </a>
+
+            </div>
+
+          </div>
+
+        `;
+
+        notificationsContainer.appendChild(card);
+
+      });
+
+    });
+
+  </script>
+
+</body>
+</html>

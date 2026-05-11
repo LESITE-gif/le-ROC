@@ -1,0 +1,981 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <title>history_presence.html</title>
+
+  <!-- GOOGLE FONTS -->
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Cinzel:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <!-- ICONS -->
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
+
+  <style>
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+    }
+
+    :root{
+
+      --bg:#f6f3ef;
+
+      --white:#ffffff;
+
+      --purple:#6540aa;
+      --purple2:#8a63d8;
+
+      --gold:#d89c1f;
+      --gold2:#f1c15a;
+
+      --text:#2d2940;
+
+      --border:#ebe3f5;
+
+    }
+
+    body{
+
+      font-family:'Inter',sans-serif;
+
+      background:
+      radial-gradient(circle at top right,
+      rgba(138,99,216,.12),
+      transparent 20%),
+
+      linear-gradient(to bottom,#faf8f4,#f4f0ea);
+
+      color:var(--text);
+
+      overflow-x:hidden;
+
+    }
+
+    a{
+      text-decoration:none;
+      color:inherit;
+    }
+
+    .container{
+
+      width:92%;
+      max-width:1450px;
+
+      margin:auto;
+
+    }
+
+    /* HERO */
+
+    .hero{
+
+      position:relative;
+
+      overflow:hidden;
+
+      padding:35px 0 55px;
+
+      background:
+      linear-gradient(to right,
+      rgba(255,255,255,.96),
+      rgba(255,255,255,.72)),
+
+      url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1600&auto=format&fit=crop') center/cover;
+
+      border-radius:0 0 40px 40px;
+
+      margin-bottom:40px;
+
+    }
+
+    .hero::before{
+
+      content:'';
+
+      position:absolute;
+      inset:0;
+
+      background:
+      radial-gradient(circle at top right,
+      rgba(138,99,216,.18),
+      transparent 30%);
+
+    }
+
+    /* TOPBAR */
+
+    .topbar{
+
+      position:relative;
+      z-index:2;
+
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+
+      gap:20px;
+      flex-wrap:wrap;
+
+      margin-bottom:55px;
+
+    }
+
+    .logo{
+
+      display:flex;
+      align-items:center;
+      gap:16px;
+
+    }
+
+    .logo i{
+
+      font-size:3.2rem;
+      color:var(--gold);
+
+    }
+
+    .logo h1{
+
+      font-size:3rem;
+      font-family:'Cinzel',serif;
+
+      line-height:1;
+
+    }
+
+    .logo span{
+
+      display:block;
+
+      margin-top:8px;
+
+      color:#6d687d;
+
+      letter-spacing:1px;
+
+      font-size:.95rem;
+
+    }
+
+    .back-btn{
+
+      background:
+      linear-gradient(135deg,var(--purple),var(--purple2));
+
+      color:white;
+
+      padding:16px 24px;
+
+      border-radius:18px;
+
+      display:flex;
+      align-items:center;
+      gap:12px;
+
+      font-weight:700;
+
+      box-shadow:0 12px 25px rgba(101,64,170,.25);
+
+      transition:.35s;
+
+    }
+
+    .back-btn:hover{
+
+      transform:translateY(-4px);
+
+    }
+
+    /* HERO CONTENT */
+
+    .hero-content{
+
+      position:relative;
+      z-index:2;
+
+      display:grid;
+      grid-template-columns:1fr 1fr;
+
+      gap:40px;
+
+      align-items:center;
+
+    }
+
+    .hero-left h2{
+
+      font-size:4.5rem;
+
+      font-family:'Cinzel',serif;
+
+      line-height:1.1;
+
+      margin-bottom:25px;
+
+      color:#322a56;
+
+    }
+
+    .hero-left p{
+
+      font-size:1.25rem;
+
+      line-height:1.9;
+
+      color:#625d74;
+
+      margin-bottom:35px;
+
+    }
+
+    .hero-box{
+
+      background:white;
+
+      border:1px solid rgba(0,0,0,.05);
+
+      border-radius:24px;
+
+      padding:24px;
+
+      display:flex;
+      align-items:center;
+      gap:18px;
+
+      max-width:580px;
+
+      box-shadow:0 10px 25px rgba(0,0,0,.04);
+
+    }
+
+    .hero-box-icon{
+
+      width:75px;
+      height:75px;
+
+      border-radius:22px;
+
+      background:
+      linear-gradient(135deg,var(--purple),var(--purple2));
+
+      color:white;
+
+      display:flex;
+      align-items:center;
+      justify-content:center;
+
+      font-size:2rem;
+
+      flex-shrink:0;
+
+      box-shadow:0 12px 25px rgba(101,64,170,.25);
+
+    }
+
+    .hero-box h3{
+
+      margin-bottom:10px;
+
+      font-size:1.3rem;
+
+    }
+
+    .hero-box p{
+
+      margin:0;
+
+      font-size:1rem;
+
+    }
+
+    .hero-right{
+
+      display:flex;
+      justify-content:center;
+
+    }
+
+    .hero-right img{
+
+      width:100%;
+      max-width:620px;
+
+      border-radius:28px;
+
+      box-shadow:0 25px 45px rgba(0,0,0,.15);
+
+      animation:floatImage 5s ease-in-out infinite;
+
+    }
+
+    @keyframes floatImage{
+
+      0%{
+        transform:translateY(0);
+      }
+
+      50%{
+        transform:translateY(-12px);
+      }
+
+      100%{
+        transform:translateY(0);
+      }
+
+    }
+
+    /* HISTORIQUE */
+
+    .history-container{
+
+      display:flex;
+      flex-direction:column;
+
+      gap:35px;
+
+      margin-bottom:50px;
+
+    }
+
+    .history-card{
+
+      background:white;
+
+      border-radius:32px;
+
+      border:1px solid var(--border);
+
+      overflow:hidden;
+
+      box-shadow:0 12px 28px rgba(0,0,0,.05);
+
+      display:grid;
+      grid-template-columns:120px 1fr;
+
+      animation:fadeUp .6s ease;
+
+    }
+
+    .history-side{
+
+      background:
+      linear-gradient(to bottom,
+      rgba(101,64,170,.92),
+      rgba(101,64,170,.45)),
+
+      url('https://images.unsplash.com/photo-1529156069898-49953e39b3ac?q=80&w=1200&auto=format&fit=crop') center/cover;
+
+      display:flex;
+      justify-content:center;
+      align-items:flex-start;
+
+      padding-top:35px;
+
+    }
+
+    .history-icon{
+
+      width:72px;
+      height:72px;
+
+      border-radius:22px;
+
+      background:white;
+
+      color:var(--purple);
+
+      display:flex;
+      align-items:center;
+      justify-content:center;
+
+      font-size:2rem;
+
+      box-shadow:0 15px 30px rgba(0,0,0,.18);
+
+    }
+
+    .history-content{
+
+      padding:35px;
+
+    }
+
+    .history-top{
+
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+
+      gap:20px;
+
+      flex-wrap:wrap;
+
+      margin-bottom:25px;
+
+    }
+
+    .history-title h2{
+
+      font-size:2.7rem;
+
+      font-family:'Cinzel',serif;
+
+      color:#59349a;
+
+      margin-bottom:15px;
+
+    }
+
+    .history-date{
+
+      width:fit-content;
+
+      background:rgba(101,64,170,.1);
+
+      color:#5d37a0;
+
+      padding:12px 18px;
+
+      border-radius:16px;
+
+      display:flex;
+      align-items:center;
+      gap:12px;
+
+      font-weight:700;
+
+    }
+
+    .history-badge{
+
+      background:
+      linear-gradient(135deg,var(--gold),var(--gold2));
+
+      color:white;
+
+      padding:12px 18px;
+
+      border-radius:16px;
+
+      display:flex;
+      align-items:center;
+      gap:10px;
+
+      font-weight:700;
+
+    }
+
+    .history-body{
+
+      border:1px solid #ede5f8;
+
+      border-radius:24px;
+
+      padding:25px;
+
+      background:#fcfbfe;
+
+      line-height:2;
+
+      white-space:pre-line;
+
+      min-height:220px;
+      max-height:380px;
+
+      overflow-y:auto;
+
+      font-size:1.08rem;
+
+    }
+
+    .history-body::-webkit-scrollbar{
+
+      width:8px;
+
+    }
+
+    .history-body::-webkit-scrollbar-thumb{
+
+      background:#b697e3;
+
+      border-radius:20px;
+
+    }
+
+    .history-footer{
+
+      margin-top:20px;
+
+      display:flex;
+      justify-content:flex-end;
+      align-items:center;
+      gap:10px;
+
+      color:#7a748b;
+
+      font-size:.95rem;
+
+    }
+
+    /* EMPTY */
+
+    .empty-state{
+
+      background:white;
+
+      border-radius:32px;
+
+      border:1px solid var(--border);
+
+      padding:90px 40px;
+
+      text-align:center;
+
+      box-shadow:0 10px 25px rgba(0,0,0,.04);
+
+      animation:fadeUp .5s ease;
+
+    }
+
+    .empty-state i{
+
+      font-size:5rem;
+
+      color:var(--purple);
+
+      margin-bottom:25px;
+
+    }
+
+    .empty-state h2{
+
+      font-size:2.5rem;
+
+      margin-bottom:20px;
+
+      font-family:'Cinzel',serif;
+
+    }
+
+    .empty-state p{
+
+      color:#716c82;
+
+      line-height:1.9;
+
+      font-size:1.15rem;
+
+    }
+
+    /* FOOTER */
+
+    .footer{
+
+      text-align:center;
+
+      padding:20px 0 60px;
+
+      color:#736d83;
+
+    }
+
+    /* ANIMATION */
+
+    @keyframes fadeUp{
+
+      from{
+        opacity:0;
+        transform:translateY(30px);
+      }
+
+      to{
+        opacity:1;
+        transform:translateY(0);
+      }
+
+    }
+
+    /* RESPONSIVE */
+
+    @media(max-width:1200px){
+
+      .hero-content{
+
+        grid-template-columns:1fr;
+
+      }
+
+      .hero-left h2{
+
+        font-size:3.5rem;
+
+      }
+
+    }
+
+    @media(max-width:850px){
+
+      .history-card{
+
+        grid-template-columns:1fr;
+
+      }
+
+      .history-side{
+
+        min-height:140px;
+
+      }
+
+      .history-content{
+
+        padding:25px;
+
+      }
+
+      .history-title h2{
+
+        font-size:2rem;
+
+      }
+
+    }
+
+    @media(max-width:600px){
+
+      .hero-left h2{
+
+        font-size:2.6rem;
+
+      }
+
+      .topbar{
+
+        flex-direction:column;
+        align-items:flex-start;
+
+      }
+
+      .history-top{
+
+        flex-direction:column;
+        align-items:flex-start;
+
+      }
+
+      .history-body{
+
+        font-size:1rem;
+
+      }
+
+    }
+
+  </style>
+
+</head>
+
+<body>
+
+  <!-- HERO -->
+
+  <header class="hero">
+
+    <div class="container">
+
+      <!-- TOPBAR -->
+
+      <div class="topbar">
+
+        <div class="logo">
+
+          <i class="fa-solid fa-clipboard-check"></i>
+
+          <div>
+
+            <h1>le ROC</h1>
+
+            <span>
+              HISTORIQUE DES PRÉSENCES
+            </span>
+
+          </div>
+
+        </div>
+
+        <!-- RETOUR -->
+
+        <a href="Liste_presence.html" class="back-btn">
+
+          <i class="fa-solid fa-arrow-left"></i>
+          Retour Liste présence
+
+        </a>
+
+      </div>
+
+      <!-- HERO CONTENT -->
+
+      <div class="hero-content">
+
+        <div class="hero-left">
+
+          <h2>
+            Historique des listes de présence
+          </h2>
+
+          <p>
+            Retrouvez ici toutes les listes de présence publiées
+            avec leurs dates respectives.
+          </p>
+
+          <div class="hero-box">
+
+            <div class="hero-box-icon">
+
+              <i class="fa-solid fa-users"></i>
+
+            </div>
+
+            <div>
+
+              <h3>
+                Gestion des présences le ROC
+              </h3>
+
+              <p>
+                Toutes les listes publiées sont automatiquement
+                archivées dans cet historique.
+              </p>
+
+            </div>
+
+          </div>
+
+        </div>
+
+        <div class="hero-right">
+
+          <img
+            src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1400&auto=format&fit=crop"
+            alt="Historique présence"
+          />
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </header>
+
+  <!-- MAIN -->
+
+  <main class="container">
+
+    <!-- HISTORY -->
+
+    <div class="history-container" id="historyContainer">
+
+      <!-- DYNAMIC -->
+
+    </div>
+
+    <!-- FOOTER -->
+
+    <div class="footer">
+
+      © 2026 le ROC- Tous droits réservés.
+
+    </div>
+
+  </main>
+
+  <!-- FIREBASE -->
+
+  <script type="module">
+
+    // FIREBASE
+
+    import { initializeApp }
+    from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
+    import {
+
+      getFirestore,
+      collection,
+      query,
+      orderBy,
+      onSnapshot
+
+    } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+    import { getAnalytics }
+    from "https://www.gstatic.com/firebasejs/10.12.2/firebase-analytics.js";
+
+    // CONFIG
+
+    const firebaseConfig = {
+
+      apiKey: "AIzaSyAHyKVYhNuAuK_yFFtGYmbk2gMIRLV-eKs",
+      authDomain: "leroc-bae84.firebaseapp.com",
+      databaseURL: "https://leroc-bae84-default-rtdb.firebaseio.com",
+      projectId: "leroc-bae84",
+      storageBucket: "leroc-bae84.firebasestorage.app",
+      messagingSenderId: "603437145590",
+      appId: "1:603437145590:web:b914e95570402f3fd1fbd7",
+      measurementId: "G-8J3X3YS119"
+
+    };
+
+    // INIT
+
+    const app = initializeApp(firebaseConfig);
+
+    const analytics = getAnalytics(app);
+
+    const db = getFirestore(app);
+
+    // CONTAINER
+
+    const historyContainer =
+    document.getElementById('historyContainer');
+
+    // QUERY
+
+    const presenceQuery = query(
+
+      collection(db,'listes_presence'),
+      orderBy('timestamp','desc')
+
+    );
+
+    // REALTIME
+
+    onSnapshot(presenceQuery,(snapshot)=>{
+
+      historyContainer.innerHTML = '';
+
+      // EMPTY
+
+      if(snapshot.empty){
+
+        historyContainer.innerHTML = `
+
+          <div class="empty-state">
+
+            <i class="fa-solid fa-clipboard-list"></i>
+
+            <h2>
+              Aucun historique disponible
+            </h2>
+
+            <p>
+              Les listes de présence publiées
+              apparaîtront automatiquement ici.
+            </p>
+
+          </div>
+
+        `;
+
+        return;
+
+      }
+
+      // LOOP
+
+      snapshot.forEach((doc)=>{
+
+        const data = doc.data();
+
+        const card =
+        document.createElement('div');
+
+        card.className = 'history-card';
+
+        card.innerHTML = `
+
+          <!-- SIDE -->
+
+          <div class="history-side">
+
+            <div class="history-icon">
+
+              <i class="fa-solid fa-clipboard-check"></i>
+
+            </div>
+
+          </div>
+
+          <!-- CONTENT -->
+
+          <div class="history-content">
+
+            <div class="history-top">
+
+              <div class="history-title">
+
+                <h2>
+                  Liste de présence
+                </h2>
+
+                <div class="history-date">
+
+                  <i class="fa-regular fa-calendar"></i>
+
+                  ${data.date || 'Date indisponible'}
+
+                </div>
+
+              </div>
+
+              <div class="history-badge">
+
+                <i class="fa-solid fa-users"></i>
+
+                Historique
+
+              </div>
+
+            </div>
+
+            <div class="history-body">
+
+              ${data.contenu || 'Aucune donnée disponible.'}
+
+            </div>
+
+            <div class="history-footer">
+
+              <i class="fa-regular fa-clock"></i>
+
+              Liste enregistrée automatiquement
+
+            </div>
+
+          </div>
+
+        `;
+
+        historyContainer.appendChild(card);
+
+      });
+
+    });
+
+  </script>
+
+</body>
+</html>

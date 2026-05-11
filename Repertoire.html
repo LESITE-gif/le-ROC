@@ -1,0 +1,1772 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <title>Le ROC - Répertoire</title>
+
+  <!-- GOOGLE FONTS -->
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Cinzel:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <!-- ICONS -->
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
+
+  <style>
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+    }
+
+    :root{
+
+      --bg:#f5f3ef;
+      --white:#ffffff;
+
+      --dark:#151728;
+      --dark2:#1c2038;
+
+      --gold:#d9a52d;
+      --gold2:#f4c45c;
+
+      --purple:#5b2d90;
+      --purple2:#6d3db3;
+
+      --text:#2b2940;
+
+      --border:#e6ddf2;
+
+    }
+
+    html{
+      scroll-behavior:smooth;
+    }
+
+    body{
+
+      font-family:'Inter',sans-serif;
+      background:var(--bg);
+      color:var(--text);
+
+      overflow-x:hidden;
+
+    }
+
+    a{
+      text-decoration:none;
+      color:inherit;
+    }
+
+    button{
+      border:none;
+      cursor:pointer;
+      font-family:'Inter',sans-serif;
+    }
+
+    textarea,
+    input{
+      font-family:'Inter',sans-serif;
+      outline:none;
+    }
+
+    .app{
+
+      display:grid;
+      grid-template-columns:280px 1fr;
+      min-height:100vh;
+
+    }
+
+    /* SIDEBAR */
+
+    .sidebar{
+
+      background:
+      linear-gradient(to bottom,#17192d,#1f2140);
+
+      color:white;
+
+      padding:28px 22px;
+
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+
+      position:sticky;
+      top:0;
+      height:100vh;
+
+      overflow:auto;
+
+    }
+
+    .logo{
+
+      display:flex;
+      align-items:center;
+      gap:14px;
+
+      margin-bottom:45px;
+
+    }
+
+    .logo i{
+
+      font-size:3rem;
+      color:var(--gold2);
+
+    }
+
+    .logo h2{
+
+      font-size:2.7rem;
+      font-family:'Cinzel',serif;
+
+      line-height:1;
+
+    }
+
+    .logo span{
+
+      display:block;
+      color:var(--gold2);
+      font-size:.95rem;
+      margin-top:8px;
+      letter-spacing:2px;
+
+    }
+
+    .menu{
+
+      display:flex;
+      flex-direction:column;
+      gap:14px;
+
+    }
+
+    .menu a{
+
+      display:flex;
+      align-items:center;
+      gap:15px;
+
+      padding:18px 18px;
+
+      border-radius:18px;
+
+      transition:.35s;
+
+      font-size:1.05rem;
+
+    }
+
+    .menu a i{
+
+      width:22px;
+      text-align:center;
+
+    }
+
+    .menu a:hover{
+
+      background:rgba(255,255,255,.08);
+      transform:translateX(4px);
+
+    }
+
+    .menu a.active{
+
+      background:
+      linear-gradient(135deg,var(--gold),#a56f1b);
+
+      color:white;
+
+      box-shadow:0 10px 25px rgba(217,165,45,.3);
+
+    }
+
+    .sidebar-verse{
+
+      margin-top:50px;
+
+      border:1px solid rgba(255,255,255,.08);
+
+      border-radius:24px;
+
+      overflow:hidden;
+
+      position:relative;
+
+      background:
+      linear-gradient(to top, rgba(0,0,0,.45), rgba(0,0,0,.55)),
+      url('https://images.unsplash.com/photo-1504052434569-70ad5836ab65?q=80&w=1200&auto=format&fit=crop') center/cover;
+
+      min-height:240px;
+
+      display:flex;
+      align-items:center;
+      justify-content:center;
+
+      text-align:center;
+
+      padding:25px;
+
+    }
+
+    .sidebar-verse-content{
+
+      position:relative;
+      z-index:2;
+
+      line-height:1.9;
+
+    }
+
+    .sidebar-verse i{
+
+      color:var(--gold2);
+      margin-top:18px;
+
+    }
+
+    /* MAIN */
+
+    .main{
+
+      padding:0 35px 40px;
+
+    }
+
+    /* HEADER */
+
+    .top-header{
+
+      background:
+      linear-gradient(to right, rgba(255,255,255,.92), rgba(255,255,255,.78)),
+      url('https://images.unsplash.com/photo-1511379938547-c1f69419868d?q=80&w=1600&auto=format&fit=crop') right center/cover;
+
+      border-radius:0 0 35px 35px;
+
+      padding:40px 45px;
+
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+
+      margin-bottom:30px;
+
+      overflow:hidden;
+
+      position:relative;
+
+    }
+
+    .top-header::before{
+
+      content:'';
+
+      position:absolute;
+      inset:0;
+
+      background:
+      linear-gradient(to right, rgba(255,255,255,.98), rgba(255,255,255,.65));
+
+    }
+
+    .header-left{
+
+      position:relative;
+      z-index:2;
+
+    }
+
+    .header-left h1{
+
+      font-size:4rem;
+      font-family:'Cinzel',serif;
+
+      margin-bottom:12px;
+
+      color:#26223f;
+
+    }
+
+    .header-left p{
+
+      font-size:1.2rem;
+      color:#59566d;
+
+      line-height:1.8;
+
+    }
+
+    .header-right{
+
+      position:relative;
+      z-index:2;
+
+      font-size:7rem;
+      color:rgba(217,165,45,.45);
+
+      display:flex;
+      gap:25px;
+
+    }
+
+    /* ACTIONS */
+
+    .top-actions{
+
+      display:flex;
+      gap:18px;
+      flex-wrap:wrap;
+
+      align-items:center;
+
+    }
+
+    .add-btn{
+
+      background:
+      linear-gradient(135deg,var(--purple),var(--purple2));
+
+      color:white;
+
+      padding:18px 28px;
+
+      border-radius:18px;
+
+      display:flex;
+      align-items:center;
+      gap:14px;
+
+      font-size:1.05rem;
+      font-weight:700;
+
+      transition:.4s;
+
+      box-shadow:0 12px 25px rgba(91,45,144,.28);
+
+    }
+
+    .history-btn{
+
+      background:
+      linear-gradient(135deg,var(--gold),#ba7f13);
+
+      color:white;
+
+      padding:18px 26px;
+
+      border-radius:18px;
+
+      display:flex;
+      align-items:center;
+      gap:12px;
+
+      font-size:1rem;
+      font-weight:700;
+
+      transition:.35s;
+
+      box-shadow:0 10px 25px rgba(217,165,45,.25);
+
+    }
+
+    .add-btn:hover,
+    .history-btn:hover{
+
+      transform:translateY(-5px);
+
+    }
+
+    /* OPTIONS */
+
+    .options{
+
+      display:none;
+
+      margin-top:25px;
+
+      grid-template-columns:repeat(2,1fr);
+      gap:20px;
+
+      animation:fadeUp .5s ease;
+
+    }
+
+    .option-btn{
+
+      background:white;
+
+      border:1px solid var(--border);
+
+      padding:22px;
+
+      border-radius:18px;
+
+      display:flex;
+      align-items:center;
+      gap:14px;
+
+      font-size:1.15rem;
+      font-weight:700;
+
+      transition:.35s;
+
+      color:#4f2f7f;
+
+    }
+
+    .option-btn:hover{
+
+      transform:translateY(-5px);
+
+      box-shadow:0 12px 25px rgba(91,45,144,.12);
+
+    }
+
+    /* CONTENT GRID */
+
+    .content-grid{
+
+      margin-top:25px;
+
+      display:grid;
+      grid-template-columns:1fr 340px;
+      gap:30px;
+
+    }
+
+    /* FORMS */
+
+    .forms{
+
+      display:flex;
+      flex-direction:column;
+      gap:25px;
+
+    }
+
+    .form-card{
+
+      background:white;
+
+      border-radius:24px;
+
+      border:1px solid var(--border);
+
+      overflow:hidden;
+
+      display:none;
+
+      animation:slideUp .55s ease;
+
+      box-shadow:0 8px 22px rgba(0,0,0,.04);
+
+    }
+
+    .form-header{
+
+      padding:24px 28px;
+
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+
+      border-bottom:1px solid #ece8f4;
+
+      font-size:1.35rem;
+      font-weight:700;
+
+    }
+
+    .week-header{
+
+      background:#f4eefb;
+      color:#5b2d90;
+
+    }
+
+    .month-header{
+
+      background:#fff8ea;
+      color:#ba8110;
+
+    }
+
+    .form-header-left{
+
+      display:flex;
+      align-items:center;
+      gap:15px;
+
+    }
+
+    .form-body{
+
+      padding:28px;
+
+    }
+
+    .field{
+
+      margin-bottom:25px;
+
+    }
+
+    .field label{
+
+      display:block;
+
+      margin-bottom:12px;
+
+      font-weight:600;
+
+    }
+
+    .date-box{
+
+      border:1px solid #e8e2f2;
+
+      border-radius:16px;
+
+      padding:20px;
+
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+
+      background:#faf8fd;
+
+      gap:15px;
+
+    }
+
+    .date-main{
+
+      font-size:1.2rem;
+      font-weight:700;
+
+      margin-bottom:5px;
+
+    }
+
+    .date-sub{
+
+      color:#77708c;
+
+    }
+
+    textarea{
+
+      width:100%;
+      min-height:180px;
+
+      border-radius:18px;
+
+      border:1px solid #e7e0f0;
+
+      padding:20px;
+
+      resize:vertical;
+
+      background:#faf9fd;
+
+      font-size:1rem;
+
+      line-height:1.9;
+
+    }
+
+    textarea:focus{
+
+      border-color:#8f60ca;
+
+      box-shadow:0 0 0 4px rgba(111,61,179,.08);
+
+    }
+
+    .submit-btn{
+
+      margin-left:auto;
+
+      display:flex;
+      align-items:center;
+      gap:12px;
+
+      padding:18px 28px;
+
+      border-radius:16px;
+
+      color:white;
+
+      font-size:1rem;
+      font-weight:700;
+
+      transition:.35s;
+
+    }
+
+    .submit-btn:hover{
+
+      transform:translateY(-4px);
+
+    }
+
+    .submit-week{
+
+      background:
+      linear-gradient(135deg,var(--purple),var(--purple2));
+
+      box-shadow:0 10px 25px rgba(91,45,144,.28);
+
+    }
+
+    .submit-month{
+
+      background:
+      linear-gradient(135deg,#cf951f,#e5b53b);
+
+      box-shadow:0 10px 25px rgba(217,165,45,.25);
+
+    }
+
+    /* RIGHT SIDE */
+
+    .right-column{
+
+      display:flex;
+      flex-direction:column;
+      gap:25px;
+
+    }
+
+    .info-card{
+
+      background:white;
+
+      border-radius:24px;
+
+      border:1px solid #ece7f5;
+
+      padding:35px 28px;
+
+      box-shadow:0 8px 22px rgba(0,0,0,.04);
+
+    }
+
+    .info-card.center{
+
+      text-align:center;
+
+    }
+
+    .info-card-icon{
+
+      width:100px;
+      height:100px;
+
+      border-radius:24px;
+
+      margin:auto;
+      margin-bottom:25px;
+
+      background:
+      linear-gradient(135deg,var(--purple),#8d62d9);
+
+      display:flex;
+      align-items:center;
+      justify-content:center;
+
+      color:white;
+
+      font-size:3rem;
+
+      box-shadow:0 15px 35px rgba(91,45,144,.25);
+
+    }
+
+    .info-card h3{
+
+      font-size:2rem;
+      font-family:'Cinzel',serif;
+
+      margin-bottom:18px;
+
+    }
+
+    .info-card p{
+
+      line-height:2;
+      color:#655f77;
+
+    }
+
+    .divider{
+
+      width:120px;
+      height:3px;
+
+      border-radius:10px;
+
+      background:
+      linear-gradient(to right,var(--gold),transparent);
+
+      margin:24px auto 0;
+
+    }
+
+    /* RECENTS */
+
+    #recentContainer{
+
+      display:flex;
+      flex-direction:column;
+      gap:22px;
+
+    }
+
+    .recent-item{
+
+      padding:20px;
+
+      border:1px solid #efeaf5;
+
+      border-radius:18px;
+
+      animation:fadeUp .5s ease;
+
+      transition:.4s;
+
+      background:#fff;
+
+      position:relative;
+
+    }
+
+    .recent-item:hover{
+
+      transform:translateY(-5px);
+
+      box-shadow:0 10px 22px rgba(0,0,0,.06);
+
+    }
+
+    .recent-top{
+
+      display:flex;
+      align-items:center;
+      gap:12px;
+
+      margin-bottom:10px;
+
+      font-weight:700;
+
+    }
+
+    .dot{
+
+      width:14px;
+      height:14px;
+
+      border-radius:50%;
+
+    }
+
+    .dot.week{
+      background:#7a45c6;
+    }
+
+    .dot.month{
+      background:#d7a128;
+    }
+
+    .recent-date{
+
+      line-height:1.8;
+      color:#4b455f;
+
+      margin-bottom:10px;
+
+    }
+
+    .recent-time{
+
+      color:#8b859e;
+
+      font-size:.95rem;
+
+    }
+
+    .delete-btn{
+
+      margin-top:16px;
+
+      width:100%;
+
+      border:none;
+
+      background:
+      linear-gradient(135deg,#ff5e5e,#c73131);
+
+      color:white;
+
+      padding:14px;
+
+      border-radius:14px;
+
+      font-weight:700;
+
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+
+      transition:.35s;
+
+    }
+
+    .delete-btn:hover{
+
+      transform:translateY(-3px);
+
+      box-shadow:0 10px 22px rgba(199,49,49,.2);
+
+    }
+
+    .fade-delete{
+
+      animation:fadeDelete .55s forwards;
+
+    }
+
+    /* FOOTER */
+
+    .footer{
+
+      margin-top:40px;
+
+      text-align:center;
+
+      color:#7f7a8e;
+
+      line-height:1.8;
+
+    }
+
+    /* ANIMATIONS */
+
+    @keyframes slideUp{
+
+      from{
+        opacity:0;
+        transform:translateY(40px);
+      }
+
+      to{
+        opacity:1;
+        transform:translateY(0);
+      }
+
+    }
+
+    @keyframes fadeUp{
+
+      from{
+        opacity:0;
+        transform:translateY(20px);
+      }
+
+      to{
+        opacity:1;
+        transform:translateY(0);
+      }
+
+    }
+
+    @keyframes fadeDelete{
+
+      from{
+        opacity:1;
+        transform:scale(1);
+      }
+
+      to{
+        opacity:0;
+        transform:scale(.9);
+        max-height:0;
+        margin:0;
+        padding:0;
+      }
+
+    }
+
+    /* RESPONSIVE */
+
+    @media(max-width:1250px){
+
+      .content-grid{
+
+        grid-template-columns:1fr;
+
+      }
+
+    }
+
+    @media(max-width:950px){
+
+      .app{
+
+        grid-template-columns:1fr;
+
+      }
+
+      .sidebar{
+
+        position:relative;
+        height:auto;
+
+      }
+
+      .top-header{
+
+        flex-direction:column;
+        align-items:flex-start;
+        gap:25px;
+
+      }
+
+      .options{
+
+        grid-template-columns:1fr;
+
+      }
+
+      .header-right{
+
+        font-size:4rem;
+
+      }
+
+    }
+
+    @media(max-width:700px){
+
+      .header-left h1{
+
+        font-size:2.6rem;
+
+      }
+
+      .main{
+
+        padding:0 18px 30px;
+
+      }
+
+      .form-body{
+
+        padding:20px;
+
+      }
+
+      .date-box{
+
+        flex-direction:column;
+        align-items:flex-start;
+        gap:18px;
+
+      }
+
+      .top-actions{
+
+        flex-direction:column;
+        align-items:stretch;
+
+      }
+
+      .add-btn,
+      .history-btn{
+
+        width:100%;
+        justify-content:center;
+
+      }
+
+    }
+
+  </style>
+
+</head>
+
+<body>
+
+  <div class="app">
+
+    <!-- SIDEBAR -->
+
+    <aside class="sidebar">
+
+      <div>
+
+        <div class="logo">
+
+          <i class="fa-solid fa-music"></i>
+
+          <div>
+
+            <h2>Le ROC</h2>
+            <span>ADMIN</span>
+
+          </div>
+
+        </div>
+
+        <div class="menu">
+
+          <a href="admin.html">
+            <i class="fa-solid fa-house"></i>
+            ADMIN
+          </a>
+
+          <a href="Membre.html">
+            <i class="fa-solid fa-users"></i>
+            Membres
+          </a>
+
+          <a href="Repertoire.html" class="active">
+            <i class="fa-solid fa-music"></i>
+            Répertoire
+          </a>
+
+          <a href="evenements.html">
+            <i class="fa-regular fa-calendar"></i>
+            Événements
+          </a>
+
+          <a href="#">
+            <i class="fa-solid fa-bullhorn"></i>
+            Annonces
+          </a>
+
+          <a href="#">
+            <i class="fa-regular fa-image"></i>
+            Galerie
+          </a>
+
+          <a href="#">
+            <i class="fa-solid fa-gear"></i>
+            Paramètres
+          </a>
+
+        </div>
+
+      </div>
+
+      <div class="sidebar-verse">
+
+        <div class="sidebar-verse-content">
+
+          <p>
+            Que tout ce qui respire
+            loue l’Éternel !
+          </p>
+
+          <br>
+
+          <span>
+            — Psaumes 150:6
+          </span>
+
+          <i class="fa-solid fa-music"></i>
+
+        </div>
+
+      </div>
+
+    </aside>
+
+    <!-- MAIN -->
+
+    <main class="main">
+
+      <!-- HEADER -->
+
+      <div class="top-header">
+
+        <div class="header-left">
+
+          <h1>
+            Répertoire
+          </h1>
+
+          <p>
+            Gérez les répertoires de la semaine et du mois<br>
+            dans l’espace musical premium Le ROC.
+          </p>
+
+        </div>
+
+        <div class="header-right">
+
+          <i class="fa-solid fa-music"></i>
+          <i class="fa-solid fa-book-open"></i>
+          <i class="fa-solid fa-microphone"></i>
+
+        </div>
+
+      </div>
+
+      <!-- ACTIONS -->
+
+      <div class="top-actions">
+
+        <button class="add-btn" id="showOptionsBtn">
+
+          <i class="fa-solid fa-plus"></i>
+          Ajouter un répertoire
+
+        </button>
+
+        <a href="historique-repertoire.html" class="history-btn">
+
+          <i class="fa-regular fa-clock"></i>
+          Historique
+
+        </a>
+
+      </div>
+
+      <!-- OPTIONS -->
+
+      <div class="options" id="optionsBox">
+
+        <button class="option-btn" id="weekBtn">
+
+          <i class="fa-regular fa-calendar"></i>
+          Répertoire de la semaine
+
+        </button>
+
+        <button class="option-btn" id="monthBtn">
+
+          <i class="fa-regular fa-calendar-days"></i>
+          Répertoire du mois
+
+        </button>
+
+      </div>
+
+      <!-- CONTENT -->
+
+      <div class="content-grid">
+
+        <!-- LEFT -->
+
+        <div class="forms">
+
+          <!-- WEEK -->
+
+          <div class="form-card" id="weekCard">
+
+            <div class="form-header week-header">
+
+              <div class="form-header-left">
+
+                <i class="fa-regular fa-calendar"></i>
+                Répertoire de la semaine
+
+              </div>
+
+              <i class="fa-solid fa-angle-down"></i>
+
+            </div>
+
+            <div class="form-body">
+
+              <div class="field">
+
+                <label>
+                  Date de la semaine
+                </label>
+
+                <div class="date-box">
+
+                  <div>
+
+                    <div class="date-main" id="weekDateMain"></div>
+
+                    <div class="date-sub" id="weekDateSub"></div>
+
+                  </div>
+
+                  <i class="fa-regular fa-calendar"></i>
+
+                </div>
+
+              </div>
+
+              <div class="field">
+
+                <label>
+                  Collez ici votre répertoire de la semaine
+                </label>
+
+                <textarea
+                  id="weekContent"
+                  placeholder="Collez ici votre répertoire de la semaine..."
+                ></textarea>
+
+              </div>
+
+              <button class="submit-btn submit-week" id="sendWeekBtn">
+
+                <i class="fa-solid fa-paper-plane"></i>
+                Envoyer au répertoire utilisateur
+
+              </button>
+
+            </div>
+
+          </div>
+
+          <!-- MONTH -->
+
+          <div class="form-card" id="monthCard">
+
+            <div class="form-header month-header">
+
+              <div class="form-header-left">
+
+                <i class="fa-regular fa-calendar-days"></i>
+                Répertoire du mois
+
+              </div>
+
+              <i class="fa-solid fa-angle-down"></i>
+
+            </div>
+
+            <div class="form-body">
+
+              <div class="field">
+
+                <label>
+                  Date du mois
+                </label>
+
+                <div class="date-box">
+
+                  <div>
+
+                    <div class="date-main" id="monthDateMain"></div>
+
+                  </div>
+
+                  <i class="fa-regular fa-calendar"></i>
+
+                </div>
+
+              </div>
+
+              <div class="field">
+
+                <label>
+                  Collez ici votre répertoire du mois
+                </label>
+
+                <textarea
+                  id="monthContent"
+                  placeholder="Collez ici votre répertoire du mois..."
+                ></textarea>
+
+              </div>
+
+              <button class="submit-btn submit-month" id="sendMonthBtn">
+
+                <i class="fa-solid fa-paper-plane"></i>
+                Envoyer au répertoire utilisateur
+
+              </button>
+
+            </div>
+
+          </div>
+
+        </div>
+
+        <!-- RIGHT -->
+
+        <div class="right-column">
+
+          <!-- INFO -->
+
+          <div class="info-card center">
+
+            <div class="info-card-icon">
+
+              <i class="fa-solid fa-music"></i>
+
+            </div>
+
+            <h3>
+              Répertoire Le ROC
+            </h3>
+
+            <p>
+              Ajoutez et gérez les répertoires
+              de la semaine et du mois.
+              Ils seront automatiquement
+              affichés sur la plateforme utilisateur.
+            </p>
+
+            <div class="divider"></div>
+
+          </div>
+
+          <!-- RECENTS -->
+
+          <div
+            class="info-card"
+            id="recentCard"
+            style="display:none;"
+          >
+
+            <h3 style="margin-bottom:25px;">
+              Répertoires récents
+            </h3>
+
+            <div id="recentContainer"></div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- FOOTER -->
+
+      <div class="footer">
+
+        © 2026 Le ROC - Tous droits réservés.<br>
+        Plateforme musicale intelligente et premium.
+
+      </div>
+
+    </main>
+
+  </div>
+
+  <!-- FIREBASE -->
+
+  <script type="module">
+
+    // FIREBASE
+
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
+    import {
+
+      getFirestore,
+      collection,
+      addDoc,
+      query,
+      orderBy,
+      limit,
+      onSnapshot,
+      serverTimestamp,
+      deleteDoc,
+      doc
+
+    } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+    import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-analytics.js";
+
+    // CONFIG
+
+    const firebaseConfig = {
+
+      apiKey: "AIzaSyAHyKVYhNuAuK_yFFtGYmbk2gMIRLV-eKs",
+      authDomain: "leroc-bae84.firebaseapp.com",
+      databaseURL: "https://leroc-bae84-default-rtdb.firebaseio.com",
+      projectId: "leroc-bae84",
+      storageBucket: "leroc-bae84.firebasestorage.app",
+      messagingSenderId: "603437145590",
+      appId: "1:603437145590:web:b914e95570402f3fd1fbd7",
+      measurementId: "G-8J3X3YS119"
+
+    };
+
+    // INIT
+
+    const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
+    const db = getFirestore(app);
+
+    // ELEMENTS
+
+    const showOptionsBtn =
+    document.getElementById('showOptionsBtn');
+
+    const optionsBox =
+    document.getElementById('optionsBox');
+
+    const weekBtn =
+    document.getElementById('weekBtn');
+
+    const monthBtn =
+    document.getElementById('monthBtn');
+
+    const weekCard =
+    document.getElementById('weekCard');
+
+    const monthCard =
+    document.getElementById('monthCard');
+
+    const sendWeekBtn =
+    document.getElementById('sendWeekBtn');
+
+    const sendMonthBtn =
+    document.getElementById('sendMonthBtn');
+
+    const recentContainer =
+    document.getElementById('recentContainer');
+
+    const recentCard =
+    document.getElementById('recentCard');
+
+    // DATES
+
+    const months = [
+
+      "Janvier",
+      "Février",
+      "Mars",
+      "Avril",
+      "Mai",
+      "Juin",
+      "Juillet",
+      "Août",
+      "Septembre",
+      "Octobre",
+      "Novembre",
+      "Décembre"
+
+    ];
+
+    const days = [
+
+      "Dimanche",
+      "Lundi",
+      "Mardi",
+      "Mercredi",
+      "Jeudi",
+      "Vendredi",
+      "Samedi"
+
+    ];
+
+    const now = new Date();
+
+    const dayName = days[now.getDay()];
+    const monthName = months[now.getMonth()];
+
+    const fullDate =
+    `${dayName} ${now.getDate()} ${monthName} ${now.getFullYear()}`;
+
+    const currentTime =
+    now.toLocaleTimeString('fr-FR', {
+
+      hour:'2-digit',
+      minute:'2-digit'
+
+    });
+
+    // WEEK
+
+    document.getElementById('weekDateMain').innerHTML =
+    fullDate;
+
+    document.getElementById('weekDateSub').innerHTML =
+    `Semaine du ${now.getDate()} ${monthName} ${now.getFullYear()}`;
+
+    // MONTH
+
+    document.getElementById('monthDateMain').innerHTML =
+    `${monthName} ${now.getFullYear()}`;
+
+    // SHOW OPTIONS
+
+    showOptionsBtn.addEventListener('click',()=>{
+
+      optionsBox.style.display = 'grid';
+
+    });
+
+    // SHOW WEEK
+
+    weekBtn.addEventListener('click',()=>{
+
+      weekCard.style.display = 'block';
+
+      weekCard.scrollIntoView({
+
+        behavior:'smooth',
+        block:'center'
+
+      });
+
+    });
+
+    // SHOW MONTH
+
+    monthBtn.addEventListener('click',()=>{
+
+      monthCard.style.display = 'block';
+
+      monthCard.scrollIntoView({
+
+        behavior:'smooth',
+        block:'center'
+
+      });
+
+    });
+
+    // SEND WEEK
+
+    sendWeekBtn.addEventListener('click',async()=>{
+
+      const contenu =
+      document.getElementById('weekContent').value.trim();
+
+      if(contenu === ''){
+
+        alert('Veuillez ajouter un répertoire.');
+        return;
+
+      }
+
+      const repertoireData = {
+
+        type:'semaine',
+        date:fullDate,
+        contenu,
+        heure:currentTime,
+        timestamp:serverTimestamp()
+
+      };
+
+      // SAVE MAIN
+
+      await addDoc(
+
+        collection(db,'repertoires'),
+        repertoireData
+
+      );
+
+      // SAVE HISTORY
+
+      await addDoc(
+
+        collection(db,'historique_repertoires'),
+        repertoireData
+
+      );
+
+      // ACTIVITY
+
+      await addDoc(collection(db,'activities'),{
+
+        type:'music',
+        title:'Nouveau répertoire semaine',
+        description:`Répertoire ajouté pour ${fullDate}`,
+        date:serverTimestamp()
+
+      });
+
+      document.getElementById('weekContent').value = '';
+
+      alert('Répertoire semaine envoyé avec succès.');
+
+    });
+
+    // SEND MONTH
+
+    sendMonthBtn.addEventListener('click',async()=>{
+
+      const contenu =
+      document.getElementById('monthContent').value.trim();
+
+      if(contenu === ''){
+
+        alert('Veuillez ajouter un répertoire.');
+        return;
+
+      }
+
+      const repertoireData = {
+
+        type:'mois',
+        date:`${monthName} ${now.getFullYear()}`,
+        contenu,
+        heure:currentTime,
+        timestamp:serverTimestamp()
+
+      };
+
+      // SAVE MAIN
+
+      await addDoc(
+
+        collection(db,'repertoires'),
+        repertoireData
+
+      );
+
+      // SAVE HISTORY
+
+      await addDoc(
+
+        collection(db,'historique_repertoires'),
+        repertoireData
+
+      );
+
+      // ACTIVITY
+
+      await addDoc(collection(db,'activities'),{
+
+        type:'music',
+        title:'Nouveau répertoire mois',
+        description:`Répertoire du mois ajouté`,
+        date:serverTimestamp()
+
+      });
+
+      document.getElementById('monthContent').value = '';
+
+      alert('Répertoire mois envoyé avec succès.');
+
+    });
+
+    // RECENTS
+
+    const repertoireQuery = query(
+
+      collection(db,'repertoires'),
+      orderBy('timestamp','desc'),
+      limit(20)
+
+    );
+
+    onSnapshot(repertoireQuery,(snapshot)=>{
+
+      recentContainer.innerHTML = '';
+
+      if(snapshot.empty){
+
+        recentCard.style.display = 'none';
+        return;
+
+      }
+
+      recentCard.style.display = 'block';
+
+      snapshot.forEach((documentData)=>{
+
+        const rep = documentData.data();
+
+        const div =
+        document.createElement('div');
+
+        div.classList.add('recent-item');
+
+        div.innerHTML = `
+
+          <div class="recent-top">
+
+            <div class="dot ${rep.type === 'semaine'
+              ? 'week'
+              : 'month'}"></div>
+
+            ${rep.type === 'semaine'
+              ? 'Répertoire semaine'
+              : 'Répertoire mois'}
+
+          </div>
+
+          <div class="recent-date">
+
+            ${rep.date}
+
+          </div>
+
+          <div class="recent-time">
+
+            Publié à ${rep.heure || '--:--'}
+
+          </div>
+
+          <button
+            class="delete-btn"
+            data-id="${documentData.id}"
+          >
+
+            <i class="fa-solid fa-trash"></i>
+
+            Supprimer ce répertoire
+
+          </button>
+
+        `;
+
+        recentContainer.appendChild(div);
+
+      });
+
+      // DELETE
+
+      const deleteButtons =
+      document.querySelectorAll('.delete-btn');
+
+      deleteButtons.forEach((button)=>{
+
+        button.addEventListener('click',async()=>{
+
+          const id =
+          button.dataset.id;
+
+          const parent =
+          button.closest('.recent-item');
+
+          parent.classList.add('fade-delete');
+
+          setTimeout(async()=>{
+
+            await deleteDoc(
+              doc(db,'repertoires',id)
+            );
+
+          },500);
+
+        });
+
+      });
+
+    });
+
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,1466 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Liste_presence - Le ROC</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+
+font-family:'Inter',sans-serif;
+
+background:
+radial-gradient(circle at top right,
+rgba(217,165,45,.12),
+transparent 20%),
+
+linear-gradient(to bottom,
+#04050b,
+#090d18);
+
+color:white;
+
+overflow-x:hidden;
+
+}
+
+/* NAVBAR */
+
+.navbar{
+
+display:flex;
+justify-content:space-between;
+align-items:center;
+
+padding:20px 35px;
+
+background:rgba(5,8,15,.88);
+
+backdrop-filter:blur(12px);
+
+border-bottom:1px solid rgba(255,255,255,.06);
+
+position:sticky;
+top:0;
+z-index:999;
+
+}
+
+.logo{
+
+display:flex;
+align-items:center;
+gap:14px;
+
+}
+
+.logo-icon{
+
+width:58px;
+height:58px;
+
+border-radius:18px;
+
+display:flex;
+align-items:center;
+justify-content:center;
+
+background:
+linear-gradient(135deg,
+rgba(217,165,45,.25),
+rgba(217,165,45,.05));
+
+font-size:2rem;
+
+color:#f5c25b;
+
+}
+
+.logo h1{
+
+font-size:2rem;
+
+}
+
+.logo span{
+
+font-size:.75rem;
+letter-spacing:2px;
+color:#f5c25b;
+
+}
+
+.nav-links{
+
+display:flex;
+align-items:center;
+gap:16px;
+
+flex-wrap:wrap;
+
+}
+
+.nav-links a{
+
+text-decoration:none;
+color:white;
+
+padding:14px 22px;
+
+border-radius:16px;
+
+background:rgba(255,255,255,.04);
+
+border:1px solid rgba(255,255,255,.05);
+
+display:flex;
+align-items:center;
+gap:10px;
+
+transition:.35s;
+
+}
+
+.nav-links a:hover{
+
+transform:translateY(-3px);
+
+background:rgba(255,255,255,.08);
+
+}
+
+.nav-links a.active{
+
+background:
+linear-gradient(135deg,#d9a52d,#a56f1b);
+
+color:#1d1302;
+
+font-weight:700;
+
+}
+
+/* MAIN */
+
+.main{
+
+padding:30px;
+
+}
+
+/* HERO */
+
+.hero{
+
+background:
+linear-gradient(to right,
+rgba(8,10,18,.92),
+rgba(8,10,18,.45)),
+
+url('https://images.unsplash.com/photo-1501386761578-eac5c94b800a?q=80&w=1600&auto=format&fit=crop') center/cover;
+
+border-radius:35px;
+
+padding:35px;
+
+display:flex;
+justify-content:space-between;
+align-items:center;
+
+gap:30px;
+
+margin-bottom:28px;
+
+border:1px solid rgba(255,255,255,.06);
+
+overflow:hidden;
+
+}
+
+.hero-left{
+
+display:flex;
+align-items:center;
+gap:25px;
+
+}
+
+.hero-icon{
+
+width:100px;
+height:100px;
+
+border-radius:30px;
+
+background:
+linear-gradient(135deg,
+rgba(217,165,45,.25),
+rgba(217,165,45,.08));
+
+display:flex;
+align-items:center;
+justify-content:center;
+
+font-size:3rem;
+
+color:#f5c25b;
+
+box-shadow:0 20px 40px rgba(217,165,45,.15);
+
+}
+
+.hero h2{
+
+font-size:3rem;
+margin-bottom:12px;
+
+}
+
+.hero p{
+
+color:#c6cada;
+font-size:1.08rem;
+
+}
+
+/* TOP BAR */
+
+.top-controls{
+
+display:grid;
+grid-template-columns:220px 1fr 320px;
+gap:20px;
+
+margin-bottom:28px;
+
+}
+
+.control-card{
+
+background:rgba(255,255,255,.04);
+
+border:1px solid rgba(255,255,255,.06);
+
+border-radius:24px;
+
+padding:20px;
+
+display:flex;
+align-items:center;
+justify-content:center;
+gap:15px;
+
+transition:.35s;
+
+}
+
+.control-card:hover{
+
+transform:translateY(-4px);
+
+}
+
+.control-btn{
+
+cursor:pointer;
+
+font-size:1.1rem;
+font-weight:700;
+
+}
+
+.gold{
+
+background:
+linear-gradient(135deg,#d9a52d,#b67a17);
+
+color:#1f1202;
+
+}
+
+.date-box{
+
+justify-content:space-between;
+
+}
+
+.date-left{
+
+display:flex;
+align-items:center;
+gap:14px;
+
+}
+
+.date-change{
+
+padding:12px 18px;
+
+border-radius:14px;
+
+background:rgba(217,165,45,.08);
+
+border:1px solid rgba(217,165,45,.25);
+
+color:#f5c25b;
+
+cursor:pointer;
+
+}
+
+/* FILTERS */
+
+.filters{
+
+display:flex;
+align-items:center;
+gap:14px;
+
+overflow-x:auto;
+
+padding-bottom:8px;
+
+margin-bottom:28px;
+
+}
+
+.filters::-webkit-scrollbar{
+height:5px;
+}
+
+.filters::-webkit-scrollbar-thumb{
+background:#333;
+border-radius:20px;
+}
+
+.filter-btn{
+
+padding:15px 22px;
+
+border-radius:18px;
+
+background:rgba(255,255,255,.05);
+
+border:1px solid rgba(255,255,255,.06);
+
+color:white;
+
+font-weight:600;
+
+white-space:nowrap;
+
+cursor:pointer;
+
+transition:.35s;
+
+}
+
+.filter-btn:hover{
+
+transform:translateY(-4px);
+
+}
+
+.filter-btn.active{
+
+background:
+linear-gradient(135deg,#d9a52d,#a56f1b);
+
+color:#1d1302;
+
+}
+
+/* GRID */
+
+.presence-grid{
+
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+
+gap:22px;
+
+margin-bottom:28px;
+
+}
+
+/* CARD */
+
+.pupitre-card{
+
+background:
+linear-gradient(to bottom,
+#0f1320,
+#090d18);
+
+border-radius:28px;
+
+padding:25px;
+
+border:1px solid rgba(255,255,255,.05);
+
+box-shadow:0 15px 35px rgba(0,0,0,.25);
+
+animation:fadeUp .5s ease;
+
+}
+
+.pupitre-title{
+
+font-size:1.5rem;
+font-weight:700;
+
+margin-bottom:22px;
+
+display:flex;
+align-items:center;
+gap:12px;
+
+}
+
+.member-item{
+
+display:flex;
+align-items:center;
+gap:14px;
+
+margin-bottom:18px;
+
+font-size:1.05rem;
+
+}
+
+.member-item input{
+
+width:22px;
+height:22px;
+
+accent-color:#d9a52d;
+
+cursor:pointer;
+
+}
+
+/* STATS */
+
+.stats{
+
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+
+gap:22px;
+
+margin-bottom:28px;
+
+}
+
+.stat-box{
+
+background:rgba(255,255,255,.04);
+
+border:1px solid rgba(255,255,255,.06);
+
+border-radius:26px;
+
+padding:28px;
+
+display:flex;
+align-items:center;
+justify-content:center;
+gap:20px;
+
+}
+
+.stat-box i{
+
+font-size:2.3rem;
+
+color:#f5c25b;
+
+}
+
+.stat-box h3{
+
+font-size:2.2rem;
+
+margin-top:6px;
+
+}
+
+.present{
+color:#72d66a;
+}
+
+.absent{
+color:#ff5d5d;
+}
+
+/* ACTIONS */
+
+.bottom-actions{
+
+display:grid;
+grid-template-columns:1fr 1fr 1fr;
+gap:22px;
+
+margin-bottom:25px;
+
+}
+
+.action-btn{
+
+padding:22px;
+
+border-radius:24px;
+
+display:flex;
+align-items:center;
+justify-content:center;
+gap:14px;
+
+font-size:1.1rem;
+font-weight:700;
+
+cursor:pointer;
+
+transition:.35s;
+
+border:1px solid rgba(255,255,255,.06);
+
+text-decoration:none;
+
+}
+
+.action-btn:hover{
+
+transform:translateY(-4px);
+
+}
+
+.save-btn{
+
+background:
+linear-gradient(135deg,#d9a52d,#a56f1b);
+
+color:#1e1302;
+
+}
+
+.history-btn{
+
+background:rgba(255,255,255,.04);
+
+color:#f5c25b;
+
+}
+
+.delete-list-btn{
+
+background:
+linear-gradient(135deg,#7c2323,#c84545);
+
+color:white;
+
+}
+
+/* ALERT */
+
+.alert{
+
+background:rgba(255,255,255,.04);
+
+border:1px solid rgba(255,255,255,.06);
+
+border-left:5px solid #d9a52d;
+
+padding:22px;
+
+border-radius:22px;
+
+margin-bottom:25px;
+
+display:none;
+
+animation:fadeUp .4s ease;
+
+}
+
+.alert.show{
+
+display:block;
+
+}
+
+/* INFO */
+
+.info-box{
+
+background:
+linear-gradient(to right,
+rgba(255,255,255,.04),
+rgba(255,255,255,.02));
+
+border:1px solid rgba(255,255,255,.06);
+
+border-radius:28px;
+
+padding:28px;
+
+display:flex;
+align-items:flex-start;
+gap:18px;
+
+color:#d4d7e4;
+
+}
+
+/* DATE INPUT */
+
+#dateInput{
+display:none;
+}
+
+/* ANIMATION */
+
+@keyframes fadeUp{
+
+from{
+opacity:0;
+transform:translateY(25px);
+}
+
+to{
+opacity:1;
+transform:translateY(0);
+}
+
+}
+
+/* RESPONSIVE */
+
+@media(max-width:1100px){
+
+.top-controls{
+
+grid-template-columns:1fr;
+
+}
+
+.bottom-actions{
+
+grid-template-columns:1fr;
+
+}
+
+}
+
+@media(max-width:800px){
+
+.navbar{
+
+flex-direction:column;
+gap:18px;
+
+padding:20px;
+
+}
+
+.hero{
+
+flex-direction:column;
+align-items:flex-start;
+
+}
+
+.hero h2{
+
+font-size:2.3rem;
+
+}
+
+}
+
+@media(max-width:600px){
+
+.main{
+
+padding:18px;
+
+}
+
+.hero{
+
+padding:25px;
+
+}
+
+.hero-left{
+
+flex-direction:column;
+align-items:flex-start;
+
+}
+
+.hero-icon{
+
+width:80px;
+height:80px;
+
+font-size:2.2rem;
+
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<nav class="navbar">
+
+<div class="logo">
+
+<div class="logo-icon">
+
+<i class="fa-solid fa-music"></i>
+
+</div>
+
+<div>
+
+<h1>Le ROC</h1>
+
+<span>GROUPE MUSICAL</span>
+
+</div>
+
+</div>
+
+<div class="nav-links">
+
+<a href="index.html">
+
+<i class="fa-solid fa-house"></i>
+Accueil
+
+</a>
+
+<a href="evenements.html">
+
+<i class="fa-solid fa-music"></i>
+Événements
+
+</a>
+
+<a href="Membre-user.html">
+
+<i class="fa-solid fa-users"></i>
+Membres
+
+</a>
+
+<a href="Liste_presence.html" class="active">
+
+<i class="fa-solid fa-clipboard-check"></i>
+Liste de présence
+
+</a>
+
+<a href="contact.html">
+
+<i class="fa-regular fa-envelope"></i>
+Contact
+
+</a>
+
+</div>
+
+</nav>
+
+<main class="main">
+
+<section class="hero">
+
+<div class="hero-left">
+
+<div class="hero-icon">
+
+<i class="fa-solid fa-clipboard-check"></i>
+
+</div>
+
+<div>
+
+<h2>
+Liste de présence
+</h2>
+
+<p>
+Gérez les présences des membres du groupe Le ROC.
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+<div class="top-controls">
+
+<a href="admin.html" class="control-card control-btn" style="text-decoration:none;color:white;">
+
+<i class="fa-solid fa-arrow-left"></i>
+Retour
+
+</a>
+
+<div class="control-card date-box">
+
+<div class="date-left">
+
+<i class="fa-regular fa-calendar"></i>
+
+<div>
+
+<div style="color:#cfd3e4;font-size:.95rem;">
+Date :
+</div>
+
+<div id="currentDate">
+Lundi 12 Mai 2026
+</div>
+
+</div>
+
+</div>
+
+<div class="date-change" id="changeDateBtn">
+
+<i class="fa-regular fa-calendar"></i>
+Changer la date
+
+</div>
+
+<input type="date" id="dateInput">
+
+</div>
+
+<div class="control-card control-btn gold" id="createListBtn">
+
+<i class="fa-solid fa-plus"></i>
+Faire une liste
+
+</div>
+
+</div>
+
+<div class="filters">
+
+<button class="filter-btn active" data-role="Tous">
+📂 Tous
+</button>
+
+<button class="filter-btn" data-role="Soprano">
+🎤 Soprano
+</button>
+
+<button class="filter-btn" data-role="Alto">
+🎶 Alto
+</button>
+
+<button class="filter-btn" data-role="Ténor">
+🎵 Ténor
+</button>
+
+<button class="filter-btn" data-role="Basse">
+🎼 Basse
+</button>
+
+<button class="filter-btn" data-role="Musiciens">
+🎹 Musiciens
+</button>
+
+<button class="filter-btn" data-role="Sono">
+🔊 Sono
+</button>
+
+</div>
+
+<div class="presence-grid" id="presenceGrid"></div>
+
+<div class="stats">
+
+<div class="stat-box">
+
+<i class="fa-solid fa-users"></i>
+
+<div>
+
+<div>Total membres</div>
+
+<h3 id="totalMembers">
+0
+</h3>
+
+</div>
+
+</div>
+
+<div class="stat-box">
+
+<i class="fa-solid fa-circle-check present"></i>
+
+<div>
+
+<div>Présents</div>
+
+<h3 class="present" id="presentCount">
+0
+</h3>
+
+</div>
+
+</div>
+
+<div class="stat-box">
+
+<i class="fa-solid fa-circle-xmark absent"></i>
+
+<div>
+
+<div>Absents</div>
+
+<h3 class="absent" id="absentCount">
+0
+</h3>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="bottom-actions">
+
+<div class="action-btn save-btn" id="savePresenceBtn">
+
+<i class="fa-solid fa-floppy-disk"></i>
+Enregistrer la présence
+
+</div>
+
+<a href="history_liste.html" class="action-btn history-btn">
+
+<i class="fa-solid fa-clock-rotate-left"></i>
+Voir l’historique des listes
+
+</a>
+
+<div class="action-btn delete-list-btn" id="deleteListBtn">
+
+<i class="fa-solid fa-trash"></i>
+Supprimer la liste
+
+</div>
+
+</div>
+
+<div class="alert" id="successAlert">
+
+<h3>
+✅ Présence enregistrée avec succès
+</h3>
+
+<p id="alertText">
+
+La liste a été enregistrée.
+
+</p>
+
+</div>
+
+<div class="info-box">
+
+<i class="fa-solid fa-circle-info" style="color:#f5c25b;font-size:2rem;"></i>
+
+<div>
+
+Les présences sont automatiquement enregistrées dans Firebase en temps réel.<br><br>
+
+Vous pouvez consulter l'historique pour voir toutes les anciennes listes enregistrées.
+
+</div>
+
+</div>
+
+</main>
+
+<script type="module">
+
+import { initializeApp }
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
+import {
+
+getFirestore,
+collection,
+query,
+orderBy,
+onSnapshot,
+addDoc,
+serverTimestamp,
+deleteDoc,
+doc,
+getDocs
+
+}
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+const firebaseConfig = {
+
+apiKey: "AIzaSyAHyKVYhNuAuK_yFFtGYmbk2gMIRLV-eKs",
+
+authDomain: "leroc-bae84.firebaseapp.com",
+
+projectId: "leroc-bae84",
+
+storageBucket: "leroc-bae84.appspot.com",
+
+messagingSenderId: "603437145590",
+
+appId: "1:603437145590:web:b914e95570402f3fd1fbd7"
+
+};
+
+const app = initializeApp(firebaseConfig);
+
+const db = getFirestore(app);
+
+const presenceGrid =
+document.getElementById('presenceGrid');
+
+const totalMembers =
+document.getElementById('totalMembers');
+
+const presentCount =
+document.getElementById('presentCount');
+
+const absentCount =
+document.getElementById('absentCount');
+
+const savePresenceBtn =
+document.getElementById('savePresenceBtn');
+
+const successAlert =
+document.getElementById('successAlert');
+
+const alertText =
+document.getElementById('alertText');
+
+const filterBtns =
+document.querySelectorAll('.filter-btn');
+
+const currentDateText =
+document.getElementById('currentDate');
+
+const dateInput =
+document.getElementById('dateInput');
+
+const changeDateBtn =
+document.getElementById('changeDateBtn');
+
+const createListBtn =
+document.getElementById('createListBtn');
+
+const deleteListBtn =
+document.getElementById('deleteListBtn');
+
+let allMembers = [];
+
+let currentFilter = 'Tous';
+
+let checkedMembers = {};
+
+function generateDate(date = new Date()){
+
+return date.toLocaleDateString('fr-FR',{
+
+weekday:'long',
+year:'numeric',
+month:'long',
+day:'numeric'
+
+});
+
+}
+
+currentDateText.innerText =
+generateDate();
+
+changeDateBtn.addEventListener('click',()=>{
+
+dateInput.click();
+
+});
+
+dateInput.addEventListener('change',(e)=>{
+
+const selectedDate =
+new Date(e.target.value);
+
+currentDateText.innerText =
+generateDate(selectedDate);
+
+});
+
+const q = query(
+
+collection(db,'membres'),
+orderBy('timestamp','desc')
+
+);
+
+onSnapshot(q,(snapshot)=>{
+
+allMembers = [];
+
+snapshot.forEach((doc)=>{
+
+allMembers.push({
+
+id:doc.id,
+...doc.data()
+
+});
+
+});
+
+renderMembers();
+
+});
+
+createListBtn.addEventListener('click',()=>{
+
+presenceGrid.style.animation =
+'fadeUp .5s ease';
+
+renderMembers();
+
+});
+
+filterBtns.forEach((btn)=>{
+
+btn.addEventListener('click',()=>{
+
+filterBtns.forEach((b)=>{
+
+b.classList.remove('active');
+
+});
+
+btn.classList.add('active');
+
+currentFilter =
+btn.dataset.role;
+
+renderMembers();
+
+});
+
+});
+
+function renderMembers(){
+
+presenceGrid.innerHTML = '';
+
+let filtered =
+[...allMembers];
+
+if(currentFilter !== 'Tous'){
+
+filtered =
+filtered.filter((m)=>{
+
+return(
+
+m.pupitre &&
+m.pupitre
+.toLowerCase()
+.includes(currentFilter.toLowerCase())
+
+);
+
+});
+
+}
+
+const grouped = {};
+
+filtered.forEach((member)=>{
+
+const role =
+member.pupitre || 'Autres';
+
+if(!grouped[role]){
+
+grouped[role] = [];
+
+}
+
+grouped[role].push(member);
+
+});
+
+Object.keys(grouped).forEach((role)=>{
+
+const card =
+document.createElement('div');
+
+card.className =
+'pupitre-card';
+
+card.innerHTML = `
+
+<div class="pupitre-title">
+
+${getIcon(role)}
+
+${role.toUpperCase()}
+
+</div>
+
+`;
+
+grouped[role].forEach((member)=>{
+
+const checked =
+checkedMembers[member.id]
+? 'checked'
+: '';
+
+const item =
+document.createElement('label');
+
+item.className =
+'member-item';
+
+item.innerHTML = `
+
+<input
+type="checkbox"
+data-id="${member.id}"
+${checked}
+>
+
+<span>
+${member.nom}
+</span>
+
+`;
+
+item.querySelector('input')
+
+.addEventListener('change',(e)=>{
+
+checkedMembers[member.id] =
+e.target.checked;
+
+updateStats();
+
+});
+
+card.appendChild(item);
+
+});
+
+presenceGrid.appendChild(card);
+
+});
+
+updateStats();
+
+}
+
+function getIcon(role){
+
+if(role.includes('Soprano')) return '🎤';
+if(role.includes('Alto')) return '🎶';
+if(role.includes('Ténor')) return '🎵';
+if(role.includes('Basse')) return '🎼';
+if(role.includes('Musiciens')) return '🎹';
+if(role.includes('Sono')) return '🔊';
+
+return '📂';
+
+}
+
+function updateStats(){
+
+const total =
+allMembers.length;
+
+const presents =
+Object.values(checkedMembers)
+.filter(v=>v).length;
+
+const absents =
+total - presents;
+
+totalMembers.innerText =
+total;
+
+presentCount.innerText =
+presents;
+
+absentCount.innerText =
+absents;
+
+}
+
+savePresenceBtn.addEventListener('click',async()=>{
+
+const presents = [];
+
+const absents = [];
+
+const pupitres = {};
+
+allMembers.forEach((member)=>{
+
+const isPresent =
+checkedMembers[member.id];
+
+if(isPresent){
+
+presents.push(member.nom);
+
+}else{
+
+absents.push(member.nom);
+
+}
+
+const role =
+(member.pupitre || 'Autres')
+.toLowerCase();
+
+if(!pupitres[role]){
+
+pupitres[role] = [];
+
+}
+
+if(isPresent){
+
+pupitres[role].push(member.nom);
+
+}
+
+});
+
+await addDoc(
+
+collection(db,'presences'),
+
+{
+
+date:
+currentDateText.innerText,
+
+presents,
+absents,
+pupitres,
+
+timestamp:
+serverTimestamp()
+
+}
+
+);
+
+alertText.innerHTML = `
+La liste du
+<b>${currentDateText.innerText}</b>
+a été enregistrée et envoyée vers Liste_presence_user.html.
+`;
+
+successAlert.classList.add('show');
+
+setTimeout(()=>{
+
+successAlert.classList.remove('show');
+
+},4000);
+
+});
+
+/* DELETE LIST */
+
+deleteListBtn.addEventListener('click', async ()=>{
+
+const confirmation =
+confirm('Voulez-vous supprimer cette liste ?');
+
+if(!confirmation) return;
+
+const snapshot =
+await getDocs(collection(db,'presences'));
+
+snapshot.forEach(async(item)=>{
+
+await deleteDoc(
+
+doc(db,'presences',item.id)
+
+);
+
+});
+
+checkedMembers = {};
+
+document.querySelectorAll(
+'input[type="checkbox"]'
+).forEach((checkbox)=>{
+
+checkbox.checked = false;
+
+});
+
+updateStats();
+
+alertText.innerHTML = `
+La liste de présence a été supprimée.
+`;
+
+successAlert.classList.add('show');
+
+setTimeout(()=>{
+
+successAlert.classList.remove('show');
+
+},4000);
+
+});
+
+</script>
+
+</body>
+</html>

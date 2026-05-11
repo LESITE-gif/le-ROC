@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Le ROC - Planning Utilisateur</title>
+
+  <!-- GOOGLE FONTS -->
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Cinzel:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <!-- ICONS -->
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
+
+  <style>
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+    }
+
+    :root{
+
+      --bg:#07111f;
+      --card:#0c1a31;
+
+      --gold:#E5B53B;
+      --gold2:#f8cc5d;
+
+      --text:#ffffff;
+
+      --border:rgba(229,181,59,.2);
+
+    }
+
+    body{
+
+      font-family:'Inter',sans-serif;
+
+      background:
+      linear-gradient(to bottom,#020817,#07111f);
+
+      color:var(--text);
+
+      overflow-x:hidden;
+
+    }
+
+    a{
+      text-decoration:none;
+      color:inherit;
+    }
+
+    img{
+      display:block;
+      width:100%;
+    }
+
+    /* TOPBAR */
+
+    .topbar{
+
+      position:sticky;
+      top:0;
+
+      z-index:999;
+
+      background:rgba(3,10,25,.92);
+
+      backdrop-filter:blur(12px);
+
+      border-bottom:1px solid rgba(255,255,255,.05);
+
+      padding:18px 25px;
+
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+
+      flex-wrap:wrap;
+      gap:15px;
+
+    }
+
+    .logo{
+
+      display:flex;
+      align-items:center;
+      gap:14px;
+
+    }
+
+    .logo i{
+
+      color:var(--gold2);
+
+      font-size:2.5rem;
+
+    }
+
+    .logo h1{
+
+      font-family:'Cinzel',serif;
+
+      font-size:2rem;
+
+    }
+
+    .back-btn{
+
+      padding:14px 22px;
+
+      border-radius:14px;
+
+      background:rgba(229,181,59,.12);
+
+      border:1px solid var(--border);
+
+      display:flex;
+      align-items:center;
+      gap:10px;
+
+      transition:.35s;
+
+    }
+
+    .back-btn:hover{
+
+      transform:translateY(-3px);
+
+      background:rgba(229,181,59,.2);
+
+    }
+
+    /* HERO */
+
+    .hero{
+
+      padding:60px 25px 40px;
+
+      text-align:center;
+
+    }
+
+    .hero h2{
+
+      font-size:3.5rem;
+
+      font-family:'Cinzel',serif;
+
+      margin-bottom:18px;
+
+      color:var(--gold2);
+
+    }
+
+    .hero p{
+
+      max-width:850px;
+
+      margin:auto;
+
+      line-height:2;
+
+      color:#d7dfef;
+
+    }
+
+    /* CONTAINER */
+
+    .container{
+
+      width:92%;
+      max-width:1400px;
+
+      margin:auto;
+
+      padding-bottom:50px;
+
+    }
+
+    /* GRID */
+
+    .planning-grid{
+
+      display:grid;
+
+      grid-template-columns:
+      repeat(auto-fit,minmax(340px,1fr));
+
+      gap:28px;
+
+    }
+
+    /* CARD */
+
+    .planning-card{
+
+      background:
+      linear-gradient(to bottom,#0a1830,#081425);
+
+      border:1px solid var(--border);
+
+      border-radius:28px;
+
+      overflow:hidden;
+
+      transition:.4s;
+
+      animation:fadeUp .5s ease;
+
+    }
+
+    .planning-card:hover{
+
+      transform:translateY(-5px);
+
+      box-shadow:0 0 35px rgba(229,181,59,.12);
+
+    }
+
+    .planning-image{
+
+      width:100%;
+      height:260px;
+
+      object-fit:cover;
+
+    }
+
+    .planning-body{
+
+      padding:25px;
+
+    }
+
+    .planning-title{
+
+      font-size:1.5rem;
+
+      font-weight:700;
+
+      margin-bottom:20px;
+
+      color:var(--gold2);
+
+    }
+
+    .planning-info{
+
+      display:flex;
+      align-items:center;
+      gap:12px;
+
+      margin-bottom:14px;
+
+      color:#d8e0ec;
+
+    }
+
+    .planning-info i{
+
+      color:var(--gold2);
+
+    }
+
+    .planning-desc{
+
+      margin-top:20px;
+
+      line-height:2;
+
+      color:#dbe3f2;
+
+      white-space:pre-wrap;
+
+    }
+
+    /* EMPTY */
+
+    .empty-box{
+
+      padding:70px 30px;
+
+      text-align:center;
+
+      background:
+      linear-gradient(to bottom,#0a1830,#081425);
+
+      border-radius:28px;
+
+      border:1px solid var(--border);
+
+    }
+
+    .empty-box i{
+
+      font-size:4rem;
+
+      color:var(--gold2);
+
+      margin-bottom:25px;
+
+    }
+
+    .empty-box h3{
+
+      font-size:2rem;
+
+      margin-bottom:15px;
+
+      font-family:'Cinzel',serif;
+
+    }
+
+    .empty-box p{
+
+      color:#c6d0e0;
+
+      line-height:1.9;
+
+    }
+
+    /* ANIMATION */
+
+    @keyframes fadeUp{
+
+      from{
+
+        opacity:0;
+        transform:translateY(25px);
+
+      }
+
+      to{
+
+        opacity:1;
+        transform:translateY(0);
+
+      }
+
+    }
+
+    /* RESPONSIVE */
+
+    @media(max-width:900px){
+
+      .hero h2{
+
+        font-size:2.5rem;
+
+      }
+
+      .planning-image{
+
+        height:220px;
+
+      }
+
+    }
+
+    @media(max-width:650px){
+
+      .topbar{
+
+        padding:18px;
+
+      }
+
+      .hero{
+
+        padding:45px 18px 30px;
+
+      }
+
+      .hero h2{
+
+        font-size:2rem;
+
+      }
+
+      .planning-body{
+
+        padding:18px;
+
+      }
+
+      .planning-image{
+
+        height:200px;
+
+      }
+
+      .planning-title{
+
+        font-size:1.2rem;
+
+      }
+
+    }
+
+  </style>
+
+</head>
+
+<body>
+
+  <!-- TOPBAR -->
+
+  <div class="topbar">
+
+    <div class="logo">
+
+      <i class="fa-regular fa-calendar"></i>
+
+      <h1>
+        Planning
+      </h1>
+
+    </div>
+
+    <!-- RETOUR -->
+
+    <a href="evenements.html" class="back-btn">
+
+      <i class="fa-solid fa-arrow-left"></i>
+
+      Retour événements
+
+    </a>
+
+  </div>
+
+  <!-- HERO -->
+
+  <section class="hero">
+
+    <h2>
+      Plannings
+    </h2>
+
+    <p>
+
+      Consultez tous les plannings publiés par les administrateurs :
+      réunions, rassemblements, activités hebdomadaires et programmes internes.
+
+    </p>
+
+  </section>
+
+  <!-- CONTENT -->
+
+  <div class="container">
+
+    <div
+      class="planning-grid"
+      id="planningContainer"
+    ></div>
+
+  </div>
+
+  <!-- FIREBASE -->
+
+  <script type="module">
+
+    import {
+      initializeApp
+    }
+    from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
+    import {
+
+      getFirestore,
+      collection,
+      query,
+      orderBy,
+      onSnapshot
+
+    }
+    from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+    // CONFIG
+
+    const firebaseConfig = {
+
+      apiKey: "AIzaSyAHyKVYhNuAuK_yFFtGYmbk2gMIRLV-eKs",
+      authDomain: "leroc-bae84.firebaseapp.com",
+      databaseURL: "https://leroc-bae84-default-rtdb.firebaseio.com",
+      projectId: "leroc-bae84",
+      storageBucket: "leroc-bae84.firebasestorage.app",
+      messagingSenderId: "603437145590",
+      appId: "1:603437145590:web:b914e95570402f3fd1fbd7",
+      measurementId: "G-8J3X3YS119"
+
+    };
+
+    // INIT
+
+    const app =
+    initializeApp(firebaseConfig);
+
+    const db =
+    getFirestore(app);
+
+    // ELEMENT
+
+    const planningContainer =
+    document.getElementById('planningContainer');
+
+    // QUERY
+
+    const planningQuery = query(
+
+      collection(db,'plannings'),
+      orderBy('createdAt','desc')
+
+    );
+
+    // REALTIME
+
+    onSnapshot(planningQuery,(snapshot)=>{
+
+      planningContainer.innerHTML = '';
+
+      // EMPTY
+
+      if(snapshot.empty){
+
+        planningContainer.innerHTML = `
+
+          <div class="empty-box">
+
+            <i class="fa-regular fa-calendar"></i>
+
+            <h3>
+              Aucun planning disponible
+            </h3>
+
+            <p>
+              Les nouveaux plannings apparaîtront ici automatiquement.
+            </p>
+
+          </div>
+
+        `;
+
+        return;
+
+      }
+
+      // LOOP
+
+      snapshot.forEach((docData)=>{
+
+        const planning =
+        docData.data();
+
+        const card =
+        document.createElement('div');
+
+        card.classList.add('planning-card');
+
+        card.innerHTML = `
+
+          <img
+            src="${planning.imageUrl}"
+            class="planning-image"
+          >
+
+          <div class="planning-body">
+
+            <div class="planning-title">
+
+              ${planning.title}
+
+            </div>
+
+            <div class="planning-info">
+
+              <i class="fa-regular fa-calendar"></i>
+
+              ${planning.date}
+
+            </div>
+
+            <div class="planning-info">
+
+              <i class="fa-regular fa-clock"></i>
+
+              ${planning.time}
+
+            </div>
+
+            <div class="planning-desc">
+
+              ${planning.description}
+
+            </div>
+
+          </div>
+
+        `;
+
+        planningContainer.appendChild(card);
+
+      });
+
+    });
+
+  </script>
+
+</body>
+</html>

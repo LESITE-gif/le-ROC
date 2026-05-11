@@ -1,0 +1,1561 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <title>Membres - Le ROC</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Cinzel:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
+
+  <style>
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+    }
+
+    :root{
+
+      --bg:#070911;
+      --card:#11141f;
+      --card2:#171b2b;
+
+      --gold:#d9a52d;
+      --gold2:#f5c25b;
+
+      --purple:#6e42b4;
+      --purple2:#8b63d9;
+
+      --text:#ffffff;
+      --text2:#a9acc3;
+
+      --border:rgba(255,255,255,.07);
+
+    }
+
+    body{
+
+      font-family:'Inter',sans-serif;
+
+      background:
+      radial-gradient(circle at top right,
+      rgba(110,66,180,.15),
+      transparent 20%),
+
+      linear-gradient(to bottom,
+      #05070d,
+      #0b0f1a);
+
+      color:var(--text);
+
+      overflow-x:hidden;
+
+    }
+
+    a{
+      text-decoration:none;
+      color:inherit;
+    }
+
+    button{
+      border:none;
+      cursor:pointer;
+      font-family:'Inter',sans-serif;
+    }
+
+    input,
+    select{
+      outline:none;
+      border:none;
+      font-family:'Inter',sans-serif;
+    }
+
+    .app{
+
+      display:grid;
+      grid-template-columns:270px 1fr;
+
+      min-height:100vh;
+
+    }
+
+    .sidebar{
+
+      background:
+      linear-gradient(to bottom,
+      #070910,
+      #0d1120);
+
+      border-right:1px solid var(--border);
+
+      padding:28px 22px;
+
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+
+      position:sticky;
+      top:0;
+
+      height:100vh;
+
+    }
+
+    .logo{
+
+      display:flex;
+      align-items:center;
+      gap:15px;
+
+      margin-bottom:40px;
+
+    }
+
+    .logo-icon{
+
+      width:75px;
+      height:75px;
+
+      border-radius:24px;
+
+      background:
+      linear-gradient(135deg,
+      rgba(217,165,45,.2),
+      rgba(217,165,45,.05));
+
+      display:flex;
+      align-items:center;
+      justify-content:center;
+
+      font-size:2.6rem;
+
+      color:var(--gold);
+
+      border:1px solid rgba(217,165,45,.15);
+
+      box-shadow:0 10px 25px rgba(217,165,45,.15);
+
+    }
+
+    .logo h1{
+
+      font-size:2.4rem;
+      font-family:'Cinzel',serif;
+
+    }
+
+    .logo span{
+
+      color:var(--gold2);
+
+      letter-spacing:2px;
+
+      font-size:.8rem;
+
+    }
+
+    .menu{
+
+      display:flex;
+      flex-direction:column;
+      gap:14px;
+
+    }
+
+    .menu a{
+
+      padding:18px 18px;
+
+      border-radius:18px;
+
+      display:flex;
+      align-items:center;
+      gap:15px;
+
+      color:#d8d9e2;
+
+      transition:.35s;
+
+      font-size:1rem;
+
+    }
+
+    .menu a:hover{
+
+      background:rgba(255,255,255,.05);
+
+      transform:translateX(5px);
+
+    }
+
+    .menu a.active{
+
+      background:
+      linear-gradient(135deg,
+      rgba(217,165,45,.25),
+      rgba(217,165,45,.1));
+
+      border:1px solid rgba(217,165,45,.25);
+
+      color:white;
+
+      box-shadow:0 10px 25px rgba(217,165,45,.15);
+
+    }
+
+    .sidebar-bottom{
+
+      margin-top:40px;
+
+      border-radius:30px;
+
+      overflow:hidden;
+
+      min-height:280px;
+
+      background:
+      linear-gradient(to top,
+      rgba(0,0,0,.75),
+      rgba(0,0,0,.25)),
+
+      url('https://images.unsplash.com/photo-1516280440614-37939bbacd81?q=80&w=1200&auto=format&fit=crop') center/cover;
+
+      border:1px solid rgba(255,255,255,.06);
+
+      display:flex;
+      align-items:flex-end;
+
+      padding:24px;
+
+    }
+
+    .sidebar-bottom h3{
+
+      font-size:1.2rem;
+      line-height:1.8;
+
+    }
+
+    .main{
+
+      padding:28px;
+
+    }
+
+    .topbar{
+
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+
+      gap:18px;
+
+      margin-bottom:25px;
+
+    }
+
+    .back-btn{
+
+      padding:15px 22px;
+
+      border-radius:18px;
+
+      background:
+      linear-gradient(135deg,var(--gold),#b97b17);
+
+      color:#201200;
+
+      font-weight:800;
+
+      display:flex;
+      align-items:center;
+      gap:12px;
+
+      box-shadow:0 12px 25px rgba(217,165,45,.22);
+
+      transition:.35s;
+
+    }
+
+    .back-btn:hover{
+
+      transform:translateY(-4px);
+
+    }
+
+    .hero{
+
+      background:
+      linear-gradient(to right,
+      rgba(15,17,28,.92),
+      rgba(15,17,28,.55)),
+
+      url('https://images.unsplash.com/photo-1504052434569-70ad5836ab65?q=80&w=1600&auto=format&fit=crop') center/cover;
+
+      border-radius:35px;
+
+      padding:35px;
+
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+
+      gap:30px;
+
+      margin-bottom:30px;
+
+      border:1px solid rgba(255,255,255,.06);
+
+      overflow:hidden;
+
+    }
+
+    .hero-left{
+
+      display:flex;
+      align-items:center;
+      gap:25px;
+
+    }
+
+    .hero-icon{
+
+      width:110px;
+      height:110px;
+
+      border-radius:35px;
+
+      background:
+      linear-gradient(135deg,
+      rgba(217,165,45,.28),
+      rgba(217,165,45,.08));
+
+      display:flex;
+      align-items:center;
+      justify-content:center;
+
+      color:var(--gold2);
+
+      font-size:3rem;
+
+      box-shadow:0 20px 40px rgba(217,165,45,.15);
+
+    }
+
+    .hero h2{
+
+      font-size:3rem;
+
+      margin-bottom:12px;
+
+    }
+
+    .hero p{
+
+      color:#b9bdd1;
+
+      font-size:1.1rem;
+
+    }
+
+    .filters{
+
+      display:flex;
+      align-items:center;
+      gap:14px;
+
+      overflow-x:auto;
+
+      padding-bottom:8px;
+
+      margin-bottom:25px;
+
+    }
+
+    .filter-btn{
+
+      padding:16px 24px;
+
+      border-radius:18px;
+
+      background:rgba(255,255,255,.05);
+
+      border:1px solid rgba(255,255,255,.06);
+
+      color:white;
+
+      display:flex;
+      align-items:center;
+      gap:12px;
+
+      transition:.35s;
+
+      white-space:nowrap;
+
+      font-weight:600;
+
+    }
+
+    .filter-btn.active{
+
+      background:
+      linear-gradient(135deg,var(--gold),#a56f1b);
+
+      color:#1d1302;
+
+    }
+
+    .actions{
+
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+
+      gap:20px;
+
+      flex-wrap:wrap;
+
+      margin-bottom:25px;
+
+    }
+
+    .search-box{
+
+      width:320px;
+      max-width:100%;
+
+      position:relative;
+
+    }
+
+    .search-box input{
+
+      width:100%;
+
+      padding:16px 18px 16px 50px;
+
+      border-radius:18px;
+
+      background:rgba(255,255,255,.04);
+
+      border:1px solid rgba(255,255,255,.06);
+
+      color:white;
+
+      font-size:1rem;
+
+    }
+
+    .search-box i{
+
+      position:absolute;
+      left:18px;
+      top:18px;
+
+      color:#969ab0;
+
+    }
+
+    .add-member-btn{
+
+      padding:18px 28px;
+
+      border-radius:20px;
+
+      background:
+      linear-gradient(135deg,var(--gold),#b97b17);
+
+      color:#201200;
+
+      font-weight:800;
+
+      display:flex;
+      align-items:center;
+      gap:14px;
+
+      box-shadow:0 12px 25px rgba(217,165,45,.22);
+
+      transition:.35s;
+
+    }
+
+    .members-grid{
+
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+
+      gap:24px;
+
+      margin-bottom:35px;
+
+    }
+
+    .member-card{
+
+      background:
+      linear-gradient(to bottom,
+      #111523,
+      #0d111d);
+
+      border-radius:28px;
+
+      border:1px solid rgba(255,255,255,.06);
+
+      overflow:hidden;
+
+      position:relative;
+
+      padding:25px;
+
+      transition:.4s;
+
+      animation:fadeUp .6s ease;
+
+      box-shadow:0 15px 35px rgba(0,0,0,.25);
+
+    }
+
+    .member-top{
+
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-start;
+
+      margin-bottom:20px;
+
+    }
+
+    .member-photo{
+
+      width:110px;
+      height:110px;
+
+      border-radius:50%;
+
+      overflow:hidden;
+
+      border:4px solid rgba(217,165,45,.35);
+
+    }
+
+    .member-photo img{
+
+      width:100%;
+      height:100%;
+
+      object-fit:cover;
+
+      display:block;
+
+    }
+
+    .member-name{
+
+      font-size:1.5rem;
+      font-weight:700;
+
+      margin-bottom:8px;
+
+    }
+
+    .member-role{
+
+      color:var(--gold2);
+
+      font-weight:600;
+
+      margin-bottom:15px;
+
+    }
+
+    .member-phone{
+
+      color:#b4b8cb;
+
+      margin-bottom:22px;
+
+      display:flex;
+      align-items:center;
+      gap:10px;
+
+      font-size:.95rem;
+
+    }
+
+    .card-buttons{
+
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+
+    }
+
+    .card-btn{
+
+      width:100%;
+
+      padding:14px;
+
+      border-radius:16px;
+
+      font-weight:700;
+
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:12px;
+
+      transition:.35s;
+
+      font-size:.95rem;
+
+    }
+
+    .whatsapp-btn{
+
+      background:
+      linear-gradient(135deg,#1faa59,#1ed760);
+
+      color:white;
+
+    }
+
+    .send-btn{
+
+      background:
+      linear-gradient(135deg,var(--purple),var(--purple2));
+
+      color:white;
+
+    }
+
+    .delete-btn{
+
+      background:
+      linear-gradient(135deg,#7c2323,#c84545);
+
+      color:white;
+
+    }
+
+    .form-section{
+
+      background:
+      linear-gradient(to bottom,
+      #111523,
+      #0d111d);
+
+      border-radius:35px;
+
+      border:1px solid rgba(255,255,255,.06);
+
+      padding:35px;
+
+      box-shadow:0 20px 40px rgba(0,0,0,.25);
+
+    }
+
+    .form-title{
+
+      display:flex;
+      align-items:center;
+      gap:14px;
+
+      margin-bottom:30px;
+
+      font-size:2rem;
+      font-weight:700;
+
+    }
+
+    .form-grid{
+
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+
+      gap:20px;
+
+    }
+
+    .field label{
+
+      display:block;
+
+      margin-bottom:12px;
+
+      color:#d9dbea;
+
+      font-weight:600;
+
+    }
+
+    .field input,
+    .field select{
+
+      width:100%;
+
+      padding:18px;
+
+      border-radius:18px;
+
+      background:rgba(255,255,255,.04);
+
+      border:1px solid rgba(255,255,255,.06);
+
+      color:white;
+
+      font-size:1rem;
+
+    }
+
+    .upload-box{
+
+      height:64px;
+
+      border-radius:18px;
+
+      border:2px dashed rgba(255,255,255,.12);
+
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:12px;
+
+      color:#b8bdd1;
+
+      cursor:pointer;
+
+      transition:.35s;
+
+      overflow:hidden;
+
+      position:relative;
+
+    }
+
+    .upload-box input{
+
+      position:absolute;
+      inset:0;
+
+      opacity:0;
+
+      cursor:pointer;
+
+    }
+
+    .preview-image{
+
+      width:100%;
+      height:100%;
+
+      object-fit:cover;
+
+      border-radius:16px;
+
+    }
+
+    .save-btn{
+
+      margin-top:30px;
+
+      margin-left:auto;
+
+      padding:18px 32px;
+
+      border-radius:20px;
+
+      background:
+      linear-gradient(135deg,var(--gold),#b97b17);
+
+      color:#201200;
+
+      font-weight:800;
+
+      display:flex;
+      align-items:center;
+      gap:14px;
+
+    }
+
+    @media(max-width:1200px){
+
+      .app{
+        grid-template-columns:1fr;
+      }
+
+      .sidebar{
+        position:relative;
+        height:auto;
+      }
+
+    }
+
+    @media(max-width:850px){
+
+      .hero{
+        flex-direction:column;
+        align-items:flex-start;
+      }
+
+      .hero h2{
+        font-size:2.2rem;
+      }
+
+    }
+
+    @media(max-width:600px){
+
+      .main{
+        padding:18px;
+      }
+
+      .hero{
+        padding:25px;
+      }
+
+      .hero-left{
+        flex-direction:column;
+        align-items:flex-start;
+      }
+
+    }
+
+    @keyframes fadeUp{
+
+      from{
+        opacity:0;
+        transform:translateY(25px);
+      }
+
+      to{
+        opacity:1;
+        transform:translateY(0);
+      }
+
+    }
+
+  </style>
+
+</head>
+
+<body>
+
+  <div class="app">
+
+    <aside class="sidebar">
+
+      <div>
+
+        <div class="logo">
+
+          <div class="logo-icon">
+
+            <i class="fa-solid fa-music"></i>
+
+          </div>
+
+          <div>
+
+            <h1>Le ROC</h1>
+
+            <span>GROUPE MUSICAL</span>
+
+          </div>
+
+        </div>
+
+        <div class="menu">
+
+          <a href="admin.html">
+
+            <i class="fa-solid fa-table-columns"></i>
+            Tableau de bord
+
+          </a>
+
+          <a href="#" class="active">
+
+            <i class="fa-solid fa-users"></i>
+            Membres
+
+          </a>
+
+          <a href="Repertoire.html">
+
+            <i class="fa-solid fa-book-open"></i>
+            Répertoire
+
+          </a>
+
+          <a href="evenements.html">
+
+            <i class="fa-regular fa-calendar"></i>
+            Événements
+
+          </a>
+
+          <a href="#">
+
+            <i class="fa-solid fa-gear"></i>
+            Paramètres
+
+          </a>
+
+        </div>
+
+      </div>
+
+      <div class="sidebar-bottom">
+
+        <div>
+
+          <h3>
+            Que chaque note
+            glorifie Dieu.
+          </h3>
+
+        </div>
+
+      </div>
+
+    </aside>
+
+    <main class="main">
+
+      <div class="topbar">
+
+        <a href="admin.html" class="back-btn">
+
+          <i class="fa-solid fa-arrow-left"></i>
+          Retour
+
+        </a>
+
+      </div>
+
+      <section class="hero">
+
+        <div class="hero-left">
+
+          <div class="hero-icon">
+
+            <i class="fa-solid fa-users"></i>
+
+          </div>
+
+          <div>
+
+            <h2>
+              Gestion des membres
+            </h2>
+
+            <p>
+              Ajoutez et gérez les membres du groupe Le ROC.
+            </p>
+
+          </div>
+
+        </div>
+
+      </section>
+
+      <div class="filters">
+
+        <button class="filter-btn active">
+          🎤 Soprano
+        </button>
+
+        <button class="filter-btn">
+          🎶 Alto
+        </button>
+
+        <button class="filter-btn">
+          🎵 Ténor
+        </button>
+
+        <button class="filter-btn">
+          🎼 Basse
+        </button>
+
+        <button class="filter-btn">
+          🎹 Musiciens
+        </button>
+
+        <button class="filter-btn">
+          🔊 Sono
+        </button>
+
+      </div>
+
+      <div class="actions">
+
+        <button class="add-member-btn">
+
+          <i class="fa-solid fa-plus"></i>
+          Définir les membres du groupe
+
+        </button>
+
+        <div class="search-box">
+
+          <i class="fa-solid fa-magnifying-glass"></i>
+
+          <input
+            type="text"
+            placeholder="Rechercher un membre..."
+          >
+
+        </div>
+
+      </div>
+
+      <div class="members-grid"></div>
+
+      <section class="form-section">
+
+        <div class="form-title">
+
+          <i class="fa-solid fa-circle-plus"></i>
+
+          Ajouter un nouveau membre
+
+        </div>
+
+        <div class="form-grid">
+
+          <div class="field">
+
+            <label>
+              Nom complet
+            </label>
+
+            <input
+              type="text"
+              placeholder="Entrer le nom complet"
+            >
+
+          </div>
+
+          <div class="field">
+
+            <label>
+              Téléphone
+            </label>
+
+            <input
+              type="text"
+              placeholder="Entrer le numéro"
+            >
+
+          </div>
+
+          <div class="field">
+
+            <label>
+              Pupitre / Zone
+            </label>
+
+            <select>
+
+              <option>
+                Choisir le pupitre
+              </option>
+
+              <option>
+                Soprano
+              </option>
+
+              <option>
+                Alto
+              </option>
+
+              <option>
+                Ténor
+              </option>
+
+              <option>
+                Basse
+              </option>
+
+              <option>
+                Musiciens
+              </option>
+
+              <option>
+                Sono
+              </option>
+
+            </select>
+
+          </div>
+
+          <div class="field">
+
+            <label>
+              Photo du membre
+            </label>
+
+            <div class="upload-box" id="uploadBox">
+
+              <i class="fa-solid fa-camera"></i>
+
+              Ajouter une photo
+
+              <input
+                type="file"
+                id="photoInput"
+                accept="image/*"
+              >
+
+            </div>
+
+          </div>
+
+        </div>
+
+        <button class="save-btn">
+
+          <i class="fa-solid fa-floppy-disk"></i>
+          Enregistrer le membre
+
+        </button>
+
+      </section>
+
+    </main>
+
+  </div>
+
+<script type="module">
+
+import { initializeApp }
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
+import {
+
+  getFirestore,
+  collection,
+  addDoc,
+  deleteDoc,
+  doc,
+  onSnapshot,
+  query,
+  orderBy,
+  serverTimestamp
+
+}
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+const firebaseConfig = {
+
+  apiKey: "AIzaSyAHyKVYhNuAuK_yFFtGYmbk2gMIRLV-eKs",
+
+  authDomain: "leroc-bae84.firebaseapp.com",
+
+  projectId: "leroc-bae84",
+
+  storageBucket: "leroc-bae84.appspot.com",
+
+  messagingSenderId: "603437145590",
+
+  appId: "1:603437145590:web:b914e95570402f3fd1fbd7"
+
+};
+
+const app = initializeApp(firebaseConfig);
+
+const db = getFirestore(app);
+
+const membersGrid =
+document.querySelector('.members-grid');
+
+const saveBtn =
+document.querySelector('.save-btn');
+
+const addMemberBtn =
+document.querySelector('.add-member-btn');
+
+const formSection =
+document.querySelector('.form-section');
+
+const searchInput =
+document.querySelector('.search-box input');
+
+const filterBtns =
+document.querySelectorAll('.filter-btn');
+
+const nameInput =
+document.querySelectorAll('.field input')[0];
+
+const phoneInput =
+document.querySelectorAll('.field input')[1];
+
+const roleSelect =
+document.querySelector('select');
+
+const uploadBox =
+document.getElementById('uploadBox');
+
+let photoInput =
+document.getElementById('photoInput');
+
+let imageBase64 = '';
+
+function setupImagePreview(){
+
+  photoInput =
+  document.getElementById('photoInput');
+
+  photoInput.addEventListener('change',(e)=>{
+
+    const file =
+    e.target.files[0];
+
+    if(!file) return;
+
+    const reader =
+    new FileReader();
+
+    reader.onload = function(event){
+
+      imageBase64 =
+      event.target.result;
+
+      uploadBox.innerHTML = `
+
+        <img
+          src="${imageBase64}"
+          class="preview-image"
+        >
+
+        <input
+          type="file"
+          id="photoInput"
+          accept="image/*"
+        >
+
+      `;
+
+      setupImagePreview();
+
+    };
+
+    reader.readAsDataURL(file);
+
+  });
+
+}
+
+setupImagePreview();
+
+formSection.style.display = 'none';
+
+addMemberBtn.addEventListener('click',()=>{
+
+  if(formSection.style.display === 'none'){
+
+    formSection.style.display = 'block';
+
+    formSection.style.animation =
+    'fadeUp .5s ease';
+
+  }else{
+
+    formSection.style.display = 'none';
+
+  }
+
+});
+
+saveBtn.addEventListener('click', async ()=>{
+
+  const nom =
+  nameInput.value.trim();
+
+  const telephone =
+  phoneInput.value.trim();
+
+  const pupitre =
+  roleSelect.value;
+
+  if(
+
+    !nom ||
+    !telephone ||
+    pupitre === 'Choisir le pupitre'
+
+  ){
+
+    alert('Veuillez remplir tous les champs.');
+
+    return;
+
+  }
+
+  await addDoc(
+
+    collection(db,'membres'),
+
+    {
+
+      nom,
+      telephone,
+      pupitre,
+      photo:imageBase64 || '',
+      timestamp:serverTimestamp()
+
+    }
+
+  );
+
+  nameInput.value = '';
+  phoneInput.value = '';
+
+  roleSelect.selectedIndex = 0;
+
+  imageBase64 = '';
+
+  uploadBox.innerHTML = `
+
+    <i class="fa-solid fa-camera"></i>
+
+    Ajouter une photo
+
+    <input
+      type="file"
+      id="photoInput"
+      accept="image/*"
+    >
+
+  `;
+
+  setupImagePreview();
+
+});
+
+let allMembers = [];
+
+const q = query(
+
+  collection(db,'membres'),
+  orderBy('timestamp','desc')
+
+);
+
+onSnapshot(q,(snapshot)=>{
+
+  allMembers = [];
+
+  snapshot.forEach((docSnap)=>{
+
+    allMembers.push({
+
+      id:docSnap.id,
+      ...docSnap.data()
+
+    });
+
+  });
+
+  renderMembers(allMembers);
+
+});
+
+function renderMembers(data){
+
+  membersGrid.innerHTML = '';
+
+  data.forEach((member)=>{
+
+    const phoneClean =
+    member.telephone.replace(/\s+/g,'');
+
+    const card =
+    document.createElement('div');
+
+    card.className = 'member-card';
+
+    card.innerHTML = `
+
+      <div class="member-top">
+
+        <div class="member-photo">
+
+          <img src="${
+            member.photo ||
+            'https://randomuser.me/api/portraits/men/32.jpg'
+          }">
+
+        </div>
+
+      </div>
+
+      <div class="member-name">
+
+        ${member.nom}
+
+      </div>
+
+      <div class="member-role">
+
+        ${member.pupitre}
+
+      </div>
+
+      <div class="member-phone">
+
+        <i class="fa-solid fa-phone"></i>
+
+        ${member.telephone}
+
+      </div>
+
+      <div class="card-buttons">
+
+        <a
+          href="https://wa.me/${phoneClean}"
+          target="_blank"
+          class="card-btn whatsapp-btn"
+        >
+
+          <i class="fa-brands fa-whatsapp"></i>
+
+          WhatsApp
+
+        </a>
+
+        <button class="card-btn send-btn">
+
+          <i class="fa-solid fa-paper-plane"></i>
+
+          Envoyer aux utilisateurs
+
+        </button>
+
+        <button class="card-btn delete-btn">
+
+          <i class="fa-solid fa-trash"></i>
+
+          Supprimer
+
+        </button>
+
+      </div>
+
+    `;
+
+    card.querySelector('.send-btn')
+
+    .addEventListener('click', async ()=>{
+
+      await addDoc(
+
+        collection(db,'membres-users'),
+
+        {
+
+          ...member,
+          timestamp:serverTimestamp()
+
+        }
+
+      );
+
+      alert('Membre envoyé aux utilisateurs.');
+
+    });
+
+    card.querySelector('.delete-btn')
+
+    .addEventListener('click', async ()=>{
+
+      await deleteDoc(
+
+        doc(db,'membres',member.id)
+
+      );
+
+    });
+
+    membersGrid.appendChild(card);
+
+  });
+
+}
+
+filterBtns.forEach((btn)=>{
+
+  btn.addEventListener('click',()=>{
+
+    filterBtns.forEach((b)=>{
+
+      b.classList.remove('active');
+
+    });
+
+    btn.classList.add('active');
+
+    const role =
+    btn.textContent
+    .replace('🎤','')
+    .replace('🎶','')
+    .replace('🎵','')
+    .replace('🎼','')
+    .replace('🎹','')
+    .replace('🔊','')
+    .trim();
+
+    const filtered =
+    allMembers.filter((m)=>{
+
+      return m.pupitre
+      .toLowerCase()
+      .includes(role.toLowerCase());
+
+    });
+
+    renderMembers(filtered);
+
+  });
+
+});
+
+searchInput.addEventListener('input',(e)=>{
+
+  const value =
+  e.target.value.toLowerCase();
+
+  const filtered =
+  allMembers.filter((m)=>{
+
+    return(
+
+      m.nom.toLowerCase()
+      .includes(value)
+
+      ||
+
+      m.pupitre.toLowerCase()
+      .includes(value)
+
+    );
+
+  });
+
+  renderMembers(filtered);
+
+});
+
+</script>
+
+</body>
+</html>

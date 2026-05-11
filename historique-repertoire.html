@@ -1,0 +1,963 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Le ROC - Historique Répertoire</title>
+
+  <!-- GOOGLE FONTS -->
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Cinzel:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <!-- ICONS -->
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
+
+  <style>
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+    }
+
+    :root{
+
+      --bg:#f6f3ef;
+      --white:#ffffff;
+
+      --dark:#16192c;
+      --dark2:#212540;
+
+      --gold:#d7a128;
+      --gold2:#f2c458;
+
+      --purple:#5b2d90;
+      --purple2:#7343ba;
+
+      --text:#2b2940;
+
+      --border:#ece5f5;
+
+    }
+
+    body{
+
+      font-family:'Inter',sans-serif;
+      background:var(--bg);
+      color:var(--text);
+
+      overflow-x:hidden;
+
+    }
+
+    a{
+      text-decoration:none;
+      color:inherit;
+    }
+
+    button{
+      border:none;
+      cursor:pointer;
+      font-family:'Inter',sans-serif;
+    }
+
+    .app{
+
+      display:grid;
+      grid-template-columns:280px 1fr;
+
+      min-height:100vh;
+
+    }
+
+    /* SIDEBAR */
+
+    .sidebar{
+
+      background:
+      linear-gradient(to bottom,#17192d,#1f2140);
+
+      color:white;
+
+      padding:28px 22px;
+
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+
+      position:sticky;
+      top:0;
+
+      height:100vh;
+
+    }
+
+    .logo{
+
+      display:flex;
+      align-items:center;
+      gap:15px;
+
+      margin-bottom:45px;
+
+    }
+
+    .logo i{
+
+      font-size:3rem;
+      color:var(--gold2);
+
+    }
+
+    .logo h2{
+
+      font-size:2.7rem;
+      font-family:'Cinzel',serif;
+
+    }
+
+    .logo span{
+
+      display:block;
+      color:var(--gold2);
+
+      margin-top:6px;
+
+      letter-spacing:2px;
+      font-size:.9rem;
+
+    }
+
+    .menu{
+
+      display:flex;
+      flex-direction:column;
+      gap:14px;
+
+    }
+
+    .menu a{
+
+      display:flex;
+      align-items:center;
+      gap:15px;
+
+      padding:18px;
+
+      border-radius:18px;
+
+      transition:.35s;
+
+    }
+
+    .menu a:hover{
+
+      background:rgba(255,255,255,.08);
+
+      transform:translateX(4px);
+
+    }
+
+    .menu a.active{
+
+      background:
+      linear-gradient(135deg,var(--gold),#b98014);
+
+      box-shadow:0 10px 25px rgba(215,161,40,.25);
+
+    }
+
+    /* MAIN */
+
+    .main{
+
+      padding:0 35px 40px;
+
+    }
+
+    /* HEADER */
+
+    .header{
+
+      background:
+      linear-gradient(to right, rgba(255,255,255,.95), rgba(255,255,255,.75)),
+      url('https://images.unsplash.com/photo-1511379938547-c1f69419868d?q=80&w=1600&auto=format&fit=crop') center/cover;
+
+      border-radius:0 0 35px 35px;
+
+      padding:40px 45px;
+
+      margin-bottom:35px;
+
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+
+      position:relative;
+
+      overflow:hidden;
+
+    }
+
+    .header::before{
+
+      content:'';
+
+      position:absolute;
+      inset:0;
+
+      background:
+      linear-gradient(to right, rgba(255,255,255,.98), rgba(255,255,255,.65));
+
+    }
+
+    .header-left{
+
+      position:relative;
+      z-index:2;
+
+    }
+
+    .header-left h1{
+
+      font-size:4rem;
+      font-family:'Cinzel',serif;
+
+      margin-bottom:14px;
+
+      color:#282442;
+
+    }
+
+    .header-left p{
+
+      font-size:1.15rem;
+
+      color:#5d5870;
+
+      line-height:1.8;
+
+    }
+
+    .header-right{
+
+      position:relative;
+      z-index:2;
+
+      display:flex;
+      gap:25px;
+
+      font-size:6rem;
+
+      color:rgba(215,161,40,.45);
+
+    }
+
+    /* TOP ACTIONS */
+
+    .top-actions{
+
+      display:flex;
+      gap:18px;
+
+      flex-wrap:wrap;
+
+      margin-bottom:35px;
+
+    }
+
+    .action-btn{
+
+      display:flex;
+      align-items:center;
+      gap:12px;
+
+      padding:18px 28px;
+
+      border-radius:18px;
+
+      font-weight:700;
+
+      transition:.35s;
+
+      color:white;
+
+    }
+
+    .back-btn{
+
+      background:
+      linear-gradient(135deg,var(--purple),var(--purple2));
+
+      box-shadow:0 10px 25px rgba(91,45,144,.2);
+
+    }
+
+    .delete-history-btn{
+
+      background:
+      linear-gradient(135deg,#d93a3a,#b82020);
+
+      box-shadow:0 10px 25px rgba(217,58,58,.22);
+
+    }
+
+    .action-btn:hover{
+
+      transform:translateY(-4px);
+
+    }
+
+    /* HISTORY GRID */
+
+    .history-grid{
+
+      display:grid;
+
+      grid-template-columns:repeat(auto-fit,minmax(340px,1fr));
+
+      gap:28px;
+
+    }
+
+    /* CARD */
+
+    .history-card{
+
+      background:white;
+
+      border-radius:28px;
+
+      border:1px solid var(--border);
+
+      overflow:hidden;
+
+      box-shadow:0 10px 25px rgba(0,0,0,.04);
+
+      animation:fadeUp .6s ease;
+
+      transition:.4s;
+
+      display:flex;
+      flex-direction:column;
+
+    }
+
+    .history-card:hover{
+
+      transform:translateY(-6px);
+
+      box-shadow:0 18px 35px rgba(0,0,0,.08);
+
+    }
+
+    .card-top{
+
+      padding:24px 28px;
+
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+
+      border-bottom:1px solid #f0ebf8;
+
+    }
+
+    .week-top{
+
+      background:#f4eefb;
+      color:#5b2d90;
+
+    }
+
+    .month-top{
+
+      background:#fff8ea;
+      color:#ba8110;
+
+    }
+
+    .card-title{
+
+      display:flex;
+      align-items:center;
+      gap:12px;
+
+      font-size:1.2rem;
+      font-weight:700;
+
+    }
+
+    .type-badge{
+
+      padding:10px 18px;
+
+      border-radius:50px;
+
+      color:white;
+
+      font-size:.9rem;
+      font-weight:700;
+
+    }
+
+    .week-badge{
+
+      background:
+      linear-gradient(135deg,#6f3cb8,#8d62d9);
+
+    }
+
+    .month-badge{
+
+      background:
+      linear-gradient(135deg,#d7a128,#f0be4e);
+
+    }
+
+    .card-body{
+
+      padding:28px;
+
+    }
+
+    .card-date{
+
+      margin-bottom:18px;
+
+      font-weight:700;
+
+      font-size:1.05rem;
+
+      display:flex;
+      align-items:center;
+      gap:10px;
+
+    }
+
+    .card-time{
+
+      margin-bottom:22px;
+
+      color:#7b758e;
+
+      display:flex;
+      align-items:center;
+      gap:10px;
+
+    }
+
+    .content-box{
+
+      background:#faf8fd;
+
+      border:1px solid #ece5f6;
+
+      border-radius:18px;
+
+      padding:20px;
+
+      max-height:320px;
+
+      overflow-y:auto;
+
+      line-height:2;
+
+      white-space:pre-wrap;
+
+    }
+
+    /* EMPTY */
+
+    .empty-box{
+
+      background:white;
+
+      border-radius:28px;
+
+      padding:70px 40px;
+
+      text-align:center;
+
+      border:1px solid var(--border);
+
+      box-shadow:0 10px 25px rgba(0,0,0,.04);
+
+      animation:fadeUp .5s ease;
+
+    }
+
+    .empty-box i{
+
+      font-size:4rem;
+
+      color:#cdb4f1;
+
+      margin-bottom:25px;
+
+    }
+
+    .empty-box h2{
+
+      margin-bottom:18px;
+
+      font-family:'Cinzel',serif;
+
+      color:#473a67;
+
+    }
+
+    .empty-box p{
+
+      color:#7f7891;
+
+      line-height:2;
+
+    }
+
+    /* FOOTER */
+
+    .footer{
+
+      margin-top:45px;
+
+      text-align:center;
+
+      color:#7d788b;
+
+      line-height:1.8;
+
+    }
+
+    @keyframes fadeUp{
+
+      from{
+
+        opacity:0;
+        transform:translateY(25px);
+
+      }
+
+      to{
+
+        opacity:1;
+        transform:translateY(0);
+
+      }
+
+    }
+
+    @media(max-width:1100px){
+
+      .app{
+
+        grid-template-columns:1fr;
+
+      }
+
+      .sidebar{
+
+        position:relative;
+        height:auto;
+
+      }
+
+    }
+
+    @media(max-width:850px){
+
+      .header{
+
+        flex-direction:column;
+        align-items:flex-start;
+
+        gap:25px;
+
+      }
+
+      .header-right{
+
+        font-size:4rem;
+
+      }
+
+    }
+
+    @media(max-width:650px){
+
+      .main{
+
+        padding:0 18px 30px;
+
+      }
+
+      .header{
+
+        padding:35px 25px;
+
+      }
+
+      .header-left h1{
+
+        font-size:2.7rem;
+
+      }
+
+      .history-grid{
+
+        grid-template-columns:1fr;
+
+      }
+
+      .top-actions{
+
+        flex-direction:column;
+
+      }
+
+      .action-btn{
+
+        width:100%;
+        justify-content:center;
+
+      }
+
+    }
+
+  </style>
+
+</head>
+
+<body>
+
+  <div class="app">
+
+    <!-- SIDEBAR -->
+
+    <aside class="sidebar">
+
+      <div>
+
+        <div class="logo">
+
+          <i class="fa-solid fa-music"></i>
+
+          <div>
+
+            <h2>Le ROC</h2>
+            <span>HISTORIQUE</span>
+
+          </div>
+
+        </div>
+
+        <div class="menu">
+
+          <a href="admin.html">
+            <i class="fa-solid fa-house"></i>
+            Tableau de bord
+          </a>
+
+          <a href="officier-membres.html">
+            <i class="fa-solid fa-users"></i>
+            Membres
+          </a>
+
+          <a href="Repertoire.html" class="active">
+            <i class="fa-solid fa-music"></i>
+            Répertoire
+          </a>
+
+          <a href="evenements.html">
+            <i class="fa-regular fa-calendar"></i>
+            Événements
+          </a>
+
+        </div>
+
+      </div>
+
+    </aside>
+
+    <!-- MAIN -->
+
+    <main class="main">
+
+      <div class="header">
+
+        <div class="header-left">
+
+          <h1>
+            Historique
+          </h1>
+
+          <p>
+            Tous les répertoires envoyés depuis Repertoire.html
+            apparaissent ici automatiquement grâce à Firebase.
+          </p>
+
+        </div>
+
+        <div class="header-right">
+
+          <i class="fa-solid fa-clock-rotate-left"></i>
+          <i class="fa-solid fa-book-open"></i>
+
+        </div>
+
+      </div>
+
+      <div class="top-actions">
+
+        <a href="Repertoire.html" class="action-btn back-btn">
+
+          <i class="fa-solid fa-arrow-left"></i>
+          Retour 
+
+        </a>
+
+        <button
+          class="action-btn delete-history-btn"
+          id="deleteHistoryBtn"
+        >
+
+          <i class="fa-solid fa-trash"></i>
+          Supprimer l’historique
+
+        </button>
+
+      </div>
+
+      <!-- HISTORY -->
+
+      <div id="historyContainer" class="history-grid"></div>
+
+      <!-- FOOTER -->
+
+      <div class="footer">
+
+        © 2026 Le ROC - Historique intelligent synchronisé avec Firebase.
+
+      </div>
+
+    </main>
+
+  </div>
+
+  <!-- FIREBASE -->
+
+  <script type="module">
+
+    import { initializeApp }
+    from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
+    import {
+
+      getFirestore,
+      collection,
+      query,
+      orderBy,
+      onSnapshot,
+      deleteDoc,
+      getDocs,
+      doc
+
+    }
+    from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+    import { getAnalytics }
+    from "https://www.gstatic.com/firebasejs/10.12.2/firebase-analytics.js";
+
+    // CONFIG
+
+    const firebaseConfig = {
+
+      apiKey: "AIzaSyAHyKVYhNuAuK_yFFtGYmbk2gMIRLV-eKs",
+      authDomain: "leroc-bae84.firebaseapp.com",
+      databaseURL: "https://leroc-bae84-default-rtdb.firebaseio.com",
+      projectId: "leroc-bae84",
+      storageBucket: "leroc-bae84.firebasestorage.app",
+      messagingSenderId: "603437145590",
+      appId: "1:603437145590:web:b914e95570402f3fd1fbd7",
+      measurementId: "G-8J3X3YS119"
+
+    };
+
+    // INIT
+
+    const app = initializeApp(firebaseConfig);
+
+    const analytics = getAnalytics(app);
+
+    const db = getFirestore(app);
+
+    // ELEMENTS
+
+    const historyContainer =
+    document.getElementById('historyContainer');
+
+    const deleteHistoryBtn =
+    document.getElementById('deleteHistoryBtn');
+
+    // DELETE HISTORY
+
+    deleteHistoryBtn.addEventListener('click', async()=>{
+
+      const confirmDelete =
+      confirm('Supprimer tout l’historique des répertoires ?');
+
+      if(!confirmDelete) return;
+
+      const snapshot =
+      await getDocs(collection(db,'historique_repertoires'));
+
+      snapshot.forEach(async(item)=>{
+
+        await deleteDoc(
+          doc(db,'historique_repertoires',item.id)
+        );
+
+      });
+
+    });
+
+    // QUERY HISTORIQUE
+
+    const historyQuery = query(
+
+      collection(db,'historique_repertoires'),
+      orderBy('timestamp','desc')
+
+    );
+
+    // REALTIME FIREBASE
+
+    onSnapshot(historyQuery,(snapshot)=>{
+
+      historyContainer.innerHTML = '';
+
+      // SI VIDE
+
+      if(snapshot.empty){
+
+        historyContainer.innerHTML = `
+
+          <div class="empty-box">
+
+            <i class="fa-solid fa-music"></i>
+
+            <h2>
+              Aucun historique disponible
+            </h2>
+
+            <p>
+              Les répertoires envoyés depuis Repertoire.html
+              apparaîtront ici automatiquement.
+            </p>
+
+          </div>
+
+        `;
+
+        return;
+
+      }
+
+      // AFFICHAGE DES CARTES
+
+      snapshot.forEach((docData)=>{
+
+        const rep = docData.data();
+
+        const dateObj =
+        rep.timestamp?.toDate
+        ? rep.timestamp.toDate()
+        : new Date();
+
+        const heure =
+        dateObj.toLocaleTimeString('fr-FR',{
+
+          hour:'2-digit',
+          minute:'2-digit'
+
+        });
+
+        const card =
+        document.createElement('div');
+
+        card.classList.add('history-card');
+
+        card.innerHTML = `
+
+          <div class="card-top ${rep.type === 'semaine'
+            ? 'week-top'
+            : 'month-top'}">
+
+            <div class="card-title">
+
+              <i class="${rep.type === 'semaine'
+                ? 'fa-regular fa-calendar'
+                : 'fa-regular fa-calendar-days'}"></i>
+
+              ${rep.type === 'semaine'
+                ? 'Répertoire semaine'
+                : 'Répertoire mois'}
+
+            </div>
+
+            <div class="type-badge ${rep.type === 'semaine'
+              ? 'week-badge'
+              : 'month-badge'}">
+
+              ${rep.type === 'semaine'
+                ? 'Semaine'
+                : 'Mois'}
+
+            </div>
+
+          </div>
+
+          <div class="card-body">
+
+            <div class="card-date">
+
+              <i class="fa-regular fa-calendar"></i>
+
+              ${rep.date}
+
+            </div>
+
+            <div class="card-time">
+
+              <i class="fa-regular fa-clock"></i>
+
+              Publié à ${heure}
+
+            </div>
+
+            <div class="content-box">
+
+              ${rep.contenu}
+
+            </div>
+
+          </div>
+
+        `;
+
+        historyContainer.appendChild(card);
+
+      });
+
+    });
+
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,1335 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Evenements - Le ROC</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+
+font-family:'Inter',sans-serif;
+
+background:
+radial-gradient(circle at top right,
+rgba(217,165,45,.12),
+transparent 20%),
+
+linear-gradient(to bottom,
+#04050b,
+#090d18);
+
+color:white;
+
+overflow-x:hidden;
+
+}
+
+a{
+text-decoration:none;
+color:inherit;
+}
+
+button,
+input,
+textarea{
+font-family:'Inter',sans-serif;
+outline:none;
+}
+
+.app{
+
+display:grid;
+grid-template-columns:270px 1fr;
+
+min-height:100vh;
+
+}
+
+/* SIDEBAR */
+
+.sidebar{
+
+background:
+linear-gradient(to bottom,
+#05070d,
+#0b0f1a);
+
+border-right:1px solid rgba(255,255,255,.06);
+
+padding:28px 22px;
+
+display:flex;
+flex-direction:column;
+justify-content:space-between;
+
+}
+
+.logo{
+
+display:flex;
+align-items:center;
+gap:14px;
+
+margin-bottom:40px;
+
+}
+
+.logo-icon{
+
+width:72px;
+height:72px;
+
+border-radius:22px;
+
+background:
+linear-gradient(135deg,
+rgba(217,165,45,.25),
+rgba(217,165,45,.05));
+
+display:flex;
+align-items:center;
+justify-content:center;
+
+font-size:2.3rem;
+
+color:#f5c25b;
+
+box-shadow:0 15px 35px rgba(217,165,45,.12);
+
+}
+
+.logo h1{
+font-size:2.2rem;
+}
+
+.logo span{
+
+font-size:.75rem;
+letter-spacing:2px;
+color:#f5c25b;
+
+}
+
+.menu{
+
+display:flex;
+flex-direction:column;
+gap:14px;
+
+}
+
+.menu a{
+
+padding:18px;
+
+border-radius:18px;
+
+display:flex;
+align-items:center;
+gap:14px;
+
+background:rgba(255,255,255,.03);
+
+border:1px solid rgba(255,255,255,.04);
+
+transition:.35s;
+
+}
+
+.menu a:hover{
+
+transform:translateX(4px);
+
+background:rgba(255,255,255,.06);
+
+}
+
+.menu a.active{
+
+background:
+linear-gradient(135deg,
+rgba(217,165,45,.22),
+rgba(217,165,45,.08));
+
+border:1px solid rgba(217,165,45,.25);
+
+color:#f5c25b;
+
+}
+
+.logout-btn{
+
+padding:18px;
+
+border-radius:18px;
+
+display:flex;
+align-items:center;
+gap:14px;
+
+background:rgba(255,255,255,.03);
+
+border:1px solid rgba(255,255,255,.05);
+
+transition:.35s;
+
+}
+
+.logout-btn:hover{
+
+background:rgba(255,255,255,.06);
+
+}
+
+/* MAIN */
+
+.main{
+
+padding:28px;
+
+}
+
+/* HERO */
+
+.hero{
+
+background:
+linear-gradient(to right,
+rgba(8,10,18,.92),
+rgba(8,10,18,.45)),
+
+url('https://images.unsplash.com/photo-1501386761578-eac5c94b800a?q=80&w=1600&auto=format&fit=crop') center/cover;
+
+border-radius:35px;
+
+padding:30px;
+
+border:1px solid rgba(255,255,255,.06);
+
+margin-bottom:28px;
+
+display:flex;
+justify-content:space-between;
+align-items:flex-start;
+
+gap:20px;
+
+}
+
+.hero-top{
+
+display:flex;
+align-items:center;
+gap:18px;
+
+margin-bottom:18px;
+
+}
+
+.back-btn{
+
+padding:14px 20px;
+
+border-radius:16px;
+
+background:rgba(255,255,255,.05);
+
+border:1px solid rgba(255,255,255,.06);
+
+display:flex;
+align-items:center;
+gap:10px;
+
+transition:.35s;
+
+}
+
+.back-btn:hover{
+
+transform:translateX(-4px);
+
+}
+
+.hero h2{
+
+font-size:3rem;
+
+margin-bottom:10px;
+
+color:#f5c25b;
+
+}
+
+.hero p{
+
+color:#c7cada;
+
+font-size:1.08rem;
+
+}
+
+.planning-btn{
+
+padding:18px 24px;
+
+border-radius:20px;
+
+background:rgba(255,255,255,.04);
+
+border:1px solid rgba(217,165,45,.25);
+
+display:flex;
+align-items:center;
+gap:14px;
+
+transition:.35s;
+
+}
+
+.planning-btn:hover{
+
+transform:translateY(-4px);
+
+}
+
+/* ADD BTN */
+
+.add-btn{
+
+padding:18px 28px;
+
+border-radius:20px;
+
+background:
+linear-gradient(135deg,#d9a52d,#a56f1b);
+
+color:#1f1202;
+
+font-weight:700;
+
+display:inline-flex;
+align-items:center;
+gap:14px;
+
+margin-bottom:24px;
+
+cursor:pointer;
+
+transition:.35s;
+
+border:none;
+
+}
+
+.add-btn:hover{
+
+transform:translateY(-4px);
+
+}
+
+/* FORM */
+
+.form-section{
+
+background:
+linear-gradient(to bottom,
+#0f1320,
+#090d18);
+
+border-radius:30px;
+
+padding:28px;
+
+border:1px solid rgba(217,165,45,.25);
+
+margin-bottom:30px;
+
+display:none;
+
+animation:fadeUp .5s ease;
+
+}
+
+.form-section.show{
+display:block;
+}
+
+.form-title{
+
+font-size:2rem;
+font-weight:700;
+
+margin-bottom:25px;
+
+color:#f5c25b;
+
+}
+
+.form-grid{
+
+display:grid;
+grid-template-columns:320px 1fr;
+
+gap:25px;
+
+margin-bottom:22px;
+
+}
+
+.upload-box{
+
+height:220px;
+
+border-radius:24px;
+
+border:2px dashed rgba(217,165,45,.3);
+
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:center;
+
+gap:14px;
+
+cursor:pointer;
+
+position:relative;
+
+overflow:hidden;
+
+transition:.35s;
+
+}
+
+.upload-box:hover{
+
+background:rgba(217,165,45,.04);
+
+}
+
+.upload-box input{
+
+position:absolute;
+inset:0;
+
+opacity:0;
+
+cursor:pointer;
+
+}
+
+.preview-image{
+
+width:100%;
+height:100%;
+
+object-fit:cover;
+
+}
+
+.fields{
+
+display:flex;
+flex-direction:column;
+gap:18px;
+
+}
+
+.field label{
+
+display:block;
+
+margin-bottom:10px;
+
+font-weight:600;
+
+}
+
+.field input,
+.field textarea{
+
+width:100%;
+
+padding:18px;
+
+border-radius:18px;
+
+background:rgba(255,255,255,.04);
+
+border:1px solid rgba(255,255,255,.06);
+
+color:white;
+
+}
+
+.field textarea{
+
+height:150px;
+
+resize:none;
+
+}
+
+.publish-btn{
+
+margin-top:10px;
+
+padding:18px 28px;
+
+border-radius:18px;
+
+background:
+linear-gradient(135deg,#d9a52d,#a56f1b);
+
+color:#1f1202;
+
+font-weight:700;
+
+border:none;
+
+display:flex;
+align-items:center;
+gap:12px;
+
+cursor:pointer;
+
+margin-left:auto;
+
+transition:.35s;
+
+}
+
+.publish-btn:hover{
+
+transform:translateY(-4px);
+
+}
+
+/* EVENTS */
+
+.section-title{
+
+font-size:2rem;
+font-weight:700;
+
+margin-bottom:20px;
+
+color:#f5c25b;
+
+}
+
+.events-list{
+
+display:flex;
+flex-direction:column;
+gap:18px;
+
+}
+
+.event-card{
+
+background:
+linear-gradient(to bottom,
+#0f1320,
+#090d18);
+
+border-radius:24px;
+
+padding:18px;
+
+border:1px solid rgba(255,255,255,.05);
+
+display:grid;
+grid-template-columns:180px 1fr 120px;
+
+gap:18px;
+
+align-items:center;
+
+animation:fadeUp .5s ease;
+
+}
+
+.event-image{
+
+height:120px;
+
+border-radius:18px;
+
+overflow:hidden;
+
+}
+
+.event-image img{
+
+width:100%;
+height:100%;
+
+object-fit:cover;
+
+display:block;
+
+}
+
+.event-content h3{
+
+font-size:1.7rem;
+
+margin-bottom:10px;
+
+color:#f5c25b;
+
+}
+
+.event-date{
+
+margin-bottom:10px;
+
+color:#c6cada;
+
+}
+
+.event-description{
+
+color:#d2d5e4;
+
+line-height:1.6;
+
+}
+
+.event-actions{
+
+display:flex;
+justify-content:center;
+gap:14px;
+
+}
+
+.action-icon{
+
+width:52px;
+height:52px;
+
+border-radius:16px;
+
+display:flex;
+align-items:center;
+justify-content:center;
+
+font-size:1.2rem;
+
+cursor:pointer;
+
+transition:.35s;
+
+}
+
+.edit-btn{
+
+border:1px solid rgba(217,165,45,.3);
+
+color:#f5c25b;
+
+}
+
+.delete-btn{
+
+border:1px solid rgba(255,93,93,.3);
+
+color:#ff5d5d;
+
+}
+
+.action-icon:hover{
+
+transform:translateY(-4px);
+
+}
+
+/* EMPTY */
+
+.empty-box{
+
+padding:40px;
+
+border-radius:28px;
+
+background:rgba(255,255,255,.04);
+
+border:1px solid rgba(255,255,255,.06);
+
+text-align:center;
+
+}
+
+/* ANIMATION */
+
+@keyframes fadeUp{
+
+from{
+opacity:0;
+transform:translateY(25px);
+}
+
+to{
+opacity:1;
+transform:translateY(0);
+}
+
+}
+
+/* RESPONSIVE */
+
+@media(max-width:1200px){
+
+.app{
+grid-template-columns:1fr;
+}
+
+}
+
+@media(max-width:900px){
+
+.form-grid{
+grid-template-columns:1fr;
+}
+
+.event-card{
+grid-template-columns:1fr;
+}
+
+}
+
+@media(max-width:700px){
+
+.hero{
+flex-direction:column;
+}
+
+.hero h2{
+font-size:2.3rem;
+}
+
+.main{
+padding:18px;
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="app">
+
+<!-- SIDEBAR -->
+
+<aside class="sidebar">
+
+<div>
+
+<div class="logo">
+
+<div class="logo-icon">
+<i class="fa-solid fa-music"></i>
+</div>
+
+<div>
+<h1>Le ROC</h1>
+<span>GROUPE MUSICAL</span>
+</div>
+
+</div>
+
+<div class="menu">
+
+<a href="admin.html">
+<i class="fa-solid fa-table-columns"></i>
+Tableau de bord
+</a>
+
+<a href="Membre.html">
+<i class="fa-solid fa-users"></i>
+Membres
+</a>
+
+<a href="Liste_presence.html">
+<i class="fa-solid fa-clipboard-check"></i>
+Liste de présence
+</a>
+
+<a href="Evenements.html" class="active">
+<i class="fa-solid fa-calendar-days"></i>
+Événements
+</a>
+
+<a href="planning.html">
+<i class="fa-solid fa-calendar"></i>
+Planning
+</a>
+
+<a href="parametres.html">
+<i class="fa-solid fa-gear"></i>
+Paramètres
+</a>
+
+</div>
+
+</div>
+
+<a href="#" class="logout-btn">
+
+<i class="fa-solid fa-right-from-bracket"></i>
+Déconnexion
+
+</a>
+
+</aside>
+
+<!-- MAIN -->
+
+<main class="main">
+
+<!-- HERO -->
+
+<section class="hero">
+
+<div>
+
+<div class="hero-top">
+
+<a href="admin.html" class="back-btn">
+
+<i class="fa-solid fa-arrow-left"></i>
+Retour
+
+</a>
+
+</div>
+
+<h2>
+🎉 Gestion des événements
+</h2>
+
+<p>
+Créez et publiez les événements du groupe Le ROC.
+</p>
+
+</div>
+
+<a href="planning.html" class="planning-btn">
+
+<i class="fa-solid fa-calendar"></i>
+
+<div>
+
+<div style="font-weight:700;">
+Planning
+</div>
+
+<div style="font-size:.92rem;color:#cfd3e4;">
+Voir le planning
+</div>
+
+</div>
+
+</a>
+
+</section>
+
+<!-- ADD BTN -->
+
+<button class="add-btn" id="toggleFormBtn">
+
+<i class="fa-solid fa-plus"></i>
+Ajouter un événement
+
+</button>
+
+<!-- FORM -->
+
+<section class="form-section" id="formSection">
+
+<div class="form-title">
+Ajouter un nouvel événement
+</div>
+
+<div class="form-grid">
+
+<div class="upload-box" id="uploadBox">
+
+<i class="fa-solid fa-cloud-arrow-up" style="font-size:2rem;color:#f5c25b;"></i>
+
+<div>
+Cliquez pour ajouter une image
+</div>
+
+<input type="file" id="imageInput" accept="image/*">
+
+</div>
+
+<div class="fields">
+
+<div class="field">
+
+<label>
+Titre de l’événement
+</label>
+
+<input
+type="text"
+id="titleInput"
+placeholder="Ex: Concert Live"
+>
+
+</div>
+
+<div class="field">
+
+<label>
+Date de l’événement
+</label>
+
+<input
+type="date"
+id="dateInput"
+>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="field">
+
+<label>
+Description de l’événement
+</label>
+
+<textarea
+id="descriptionInput"
+placeholder="Décrivez votre événement..."
+></textarea>
+
+</div>
+
+<button class="publish-btn" id="publishBtn">
+
+<i class="fa-solid fa-paper-plane"></i>
+Publier l’événement
+
+</button>
+
+</section>
+
+<!-- EVENTS -->
+
+<div class="section-title">
+Événements publiés
+</div>
+
+<div class="events-list" id="eventsList"></div>
+
+</main>
+
+</div>
+
+<script type="module">
+
+/* FIREBASE */
+
+import { initializeApp }
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
+import {
+
+getFirestore,
+collection,
+addDoc,
+onSnapshot,
+query,
+orderBy,
+serverTimestamp,
+deleteDoc,
+doc,
+updateDoc
+
+}
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+/* CONFIG */
+
+const firebaseConfig = {
+
+apiKey: "AIzaSyAHyKVYhNuAuK_yFFtGYmbk2gMIRLV-eKs",
+
+authDomain: "leroc-bae84.firebaseapp.com",
+
+projectId: "leroc-bae84",
+
+storageBucket: "leroc-bae84.appspot.com",
+
+messagingSenderId: "603437145590",
+
+appId: "1:603437145590:web:b914e95570402f3fd1fbd7"
+
+};
+
+/* INIT */
+
+const app = initializeApp(firebaseConfig);
+
+const db = getFirestore(app);
+
+/* ELEMENTS */
+
+const toggleFormBtn =
+document.getElementById('toggleFormBtn');
+
+const formSection =
+document.getElementById('formSection');
+
+const uploadBox =
+document.getElementById('uploadBox');
+
+const imageInput =
+document.getElementById('imageInput');
+
+const titleInput =
+document.getElementById('titleInput');
+
+const dateInput =
+document.getElementById('dateInput');
+
+const descriptionInput =
+document.getElementById('descriptionInput');
+
+const publishBtn =
+document.getElementById('publishBtn');
+
+const eventsList =
+document.getElementById('eventsList');
+
+/* DATA */
+
+let imageBase64 = '';
+
+let editId = null;
+
+/* DATE AUTO */
+
+dateInput.value =
+new Date().toISOString().split('T')[0];
+
+/* TOGGLE FORM */
+
+toggleFormBtn.addEventListener('click',()=>{
+
+formSection.classList.toggle('show');
+
+});
+
+/* IMAGE */
+
+imageInput.addEventListener('change',(e)=>{
+
+const file =
+e.target.files[0];
+
+if(!file) return;
+
+const reader =
+new FileReader();
+
+reader.onload = function(event){
+
+imageBase64 =
+event.target.result;
+
+uploadBox.innerHTML = `
+
+<img
+src="${imageBase64}"
+class="preview-image"
+>
+
+<input type="file" id="imageInput" accept="image/*">
+
+`;
+
+};
+
+reader.readAsDataURL(file);
+
+});
+
+/* SAVE */
+
+publishBtn.addEventListener('click',async()=>{
+
+const titre =
+titleInput.value.trim();
+
+const date =
+dateInput.value;
+
+const description =
+descriptionInput.value.trim();
+
+if(
+!titre ||
+!date ||
+!description
+){
+
+alert('Veuillez remplir tous les champs.');
+
+return;
+
+}
+
+const data = {
+
+image:imageBase64,
+titre,
+date,
+description,
+publie:true,
+timestamp:serverTimestamp()
+
+};
+
+if(editId){
+
+await updateDoc(
+
+doc(db,'evenements',editId),
+data
+
+);
+
+editId = null;
+
+}else{
+
+await addDoc(
+
+collection(db,'evenements'),
+data
+
+);
+
+}
+
+/* RESET */
+
+titleInput.value = '';
+descriptionInput.value = '';
+
+dateInput.value =
+new Date().toISOString().split('T')[0];
+
+imageBase64 = '';
+
+uploadBox.innerHTML = `
+
+<i class="fa-solid fa-cloud-arrow-up" style="font-size:2rem;color:#f5c25b;"></i>
+
+<div>
+Cliquez pour ajouter une image
+</div>
+
+<input type="file" id="imageInput" accept="image/*">
+
+`;
+
+formSection.classList.remove('show');
+
+});
+
+/* LOAD EVENTS */
+
+const q = query(
+
+collection(db,'evenements'),
+orderBy('timestamp','desc')
+
+);
+
+onSnapshot(q,(snapshot)=>{
+
+eventsList.innerHTML = '';
+
+if(snapshot.empty){
+
+eventsList.innerHTML = `
+
+<div class="empty-box">
+
+🎉 Aucun événement publié.
+
+</div>
+
+`;
+
+return;
+
+}
+
+snapshot.forEach((docSnap)=>{
+
+const event =
+docSnap.data();
+
+const card =
+document.createElement('div');
+
+card.className =
+'event-card';
+
+card.innerHTML = `
+
+<div class="event-image">
+
+<img src="${
+event.image ||
+'https://images.unsplash.com/photo-1516280440614-37939bbacd81?q=80&w=1200&auto=format&fit=crop'
+}">
+
+</div>
+
+<div class="event-content">
+
+<h3>
+${event.titre}
+</h3>
+
+<div class="event-date">
+
+<i class="fa-regular fa-calendar"></i>
+
+${event.date}
+
+</div>
+
+<div class="event-description">
+
+${event.description}
+
+</div>
+
+</div>
+
+<div class="event-actions">
+
+<div class="action-icon edit-btn">
+
+<i class="fa-solid fa-pen"></i>
+
+</div>
+
+<div class="action-icon delete-btn">
+
+<i class="fa-solid fa-trash"></i>
+
+</div>
+
+</div>
+
+`;
+
+/* EDIT */
+
+card.querySelector('.edit-btn')
+
+.addEventListener('click',()=>{
+
+formSection.classList.add('show');
+
+editId = docSnap.id;
+
+titleInput.value =
+event.titre;
+
+dateInput.value =
+event.date;
+
+descriptionInput.value =
+event.description;
+
+imageBase64 =
+event.image || '';
+
+if(event.image){
+
+uploadBox.innerHTML = `
+
+<img
+src="${event.image}"
+class="preview-image"
+>
+
+<input type="file" id="imageInput" accept="image/*">
+
+`;
+
+}
+
+window.scrollTo({
+
+top:0,
+behavior:'smooth'
+
+});
+
+});
+
+/* DELETE */
+
+card.querySelector('.delete-btn')
+
+.addEventListener('click',async()=>{
+
+const confirmDelete =
+confirm('Supprimer cet événement ?');
+
+if(!confirmDelete) return;
+
+await deleteDoc(
+
+doc(db,'evenements',docSnap.id)
+
+);
+
+});
+
+eventsList.appendChild(card);
+
+});
+
+});
+
+</script>
+
+</body>
+</html>

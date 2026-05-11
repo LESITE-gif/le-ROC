@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Liste des présences - Le ROC</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+
+font-family:'Inter',sans-serif;
+
+background:
+radial-gradient(circle at top right,
+rgba(217,165,45,.12),
+transparent 20%),
+
+linear-gradient(to bottom,
+#04050b,
+#090d18);
+
+color:white;
+
+overflow-x:hidden;
+
+}
+
+.navbar{
+
+display:flex;
+justify-content:space-between;
+align-items:center;
+
+padding:20px 35px;
+
+background:rgba(5,8,15,.88);
+
+backdrop-filter:blur(12px);
+
+border-bottom:1px solid rgba(255,255,255,.06);
+
+position:sticky;
+top:0;
+z-index:999;
+
+}
+
+.logo{
+
+display:flex;
+align-items:center;
+gap:14px;
+
+}
+
+.logo-icon{
+
+width:58px;
+height:58px;
+
+border-radius:18px;
+
+display:flex;
+align-items:center;
+justify-content:center;
+
+background:
+linear-gradient(135deg,
+rgba(217,165,45,.25),
+rgba(217,165,45,.05));
+
+font-size:2rem;
+
+color:#f5c25b;
+
+}
+
+.logo h1{
+font-size:2rem;
+}
+
+.logo span{
+font-size:.75rem;
+letter-spacing:2px;
+color:#f5c25b;
+}
+
+.nav-links{
+
+display:flex;
+align-items:center;
+gap:16px;
+
+flex-wrap:wrap;
+
+}
+
+.nav-links a{
+
+text-decoration:none;
+color:white;
+
+padding:14px 22px;
+
+border-radius:16px;
+
+background:rgba(255,255,255,.04);
+
+border:1px solid rgba(255,255,255,.05);
+
+display:flex;
+align-items:center;
+gap:10px;
+
+transition:.35s;
+
+}
+
+.nav-links a:hover{
+transform:translateY(-3px);
+background:rgba(255,255,255,.08);
+}
+
+.nav-links a.active{
+
+background:
+linear-gradient(135deg,#d9a52d,#a56f1b);
+
+color:#1d1302;
+
+font-weight:700;
+
+}
+
+.main{
+padding:30px;
+}
+
+.hero{
+
+background:
+linear-gradient(to right,
+rgba(8,10,18,.92),
+rgba(8,10,18,.45)),
+
+url('https://images.unsplash.com/photo-1501386761578-eac5c94b800a?q=80&w=1600&auto=format&fit=crop') center/cover;
+
+border-radius:35px;
+
+padding:35px;
+
+display:flex;
+justify-content:space-between;
+align-items:center;
+
+gap:30px;
+
+margin-bottom:28px;
+
+border:1px solid rgba(255,255,255,.06);
+
+overflow:hidden;
+
+}
+
+.hero-left{
+display:flex;
+align-items:center;
+gap:25px;
+}
+
+.hero-icon{
+
+width:100px;
+height:100px;
+
+border-radius:30px;
+
+background:
+linear-gradient(135deg,
+rgba(217,165,45,.25),
+rgba(217,165,45,.08));
+
+display:flex;
+align-items:center;
+justify-content:center;
+
+font-size:3rem;
+
+color:#f5c25b;
+
+box-shadow:0 20px 40px rgba(217,165,45,.15);
+
+}
+
+.hero h2{
+font-size:3rem;
+margin-bottom:12px;
+}
+
+.hero p{
+color:#c6cada;
+font-size:1.08rem;
+}
+
+.back-btn{
+
+margin-top:22px;
+
+display:inline-flex;
+align-items:center;
+gap:12px;
+
+padding:14px 22px;
+
+border-radius:16px;
+
+background:rgba(255,255,255,.05);
+
+border:1px solid rgba(255,255,255,.06);
+
+text-decoration:none;
+color:white;
+
+transition:.35s;
+
+font-weight:600;
+
+}
+
+.back-btn:hover{
+
+transform:translateX(-4px);
+
+background:rgba(255,255,255,.08);
+
+}
+
+.list-container{
+
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+
+gap:24px;
+
+margin-top:30px;
+
+}
+
+.presence-card{
+
+background:
+linear-gradient(to bottom,
+#0f1320,
+#090d18);
+
+border-radius:28px;
+
+padding:25px;
+
+border:1px solid rgba(255,255,255,.05);
+
+box-shadow:0 15px 35px rgba(0,0,0,.25);
+
+animation:fadeUp .5s ease;
+
+}
+
+.presence-date{
+
+font-size:1.3rem;
+font-weight:700;
+
+margin-bottom:18px;
+
+color:#f5c25b;
+
+}
+
+.stats{
+
+display:flex;
+justify-content:space-between;
+
+margin-bottom:22px;
+
+gap:15px;
+
+}
+
+.stat{
+
+flex:1;
+
+padding:14px;
+
+border-radius:18px;
+
+background:rgba(255,255,255,.04);
+
+text-align:center;
+
+}
+
+.stat h3{
+font-size:1.8rem;
+margin-top:8px;
+}
+
+.present{
+color:#72d66a;
+}
+
+.absent{
+color:#ff5d5d;
+}
+
+.members-list{
+margin-top:18px;
+}
+
+.member-line{
+
+display:flex;
+align-items:center;
+justify-content:space-between;
+
+gap:15px;
+
+padding:12px 14px;
+
+border-radius:14px;
+
+background:rgba(255,255,255,.03);
+
+margin-bottom:12px;
+
+}
+
+.badge{
+
+padding:8px 12px;
+
+border-radius:12px;
+
+font-size:.9rem;
+font-weight:700;
+
+}
+
+.badge.present{
+background:rgba(114,214,106,.15);
+}
+
+.badge.absent{
+background:rgba(255,93,93,.15);
+}
+
+.empty-box{
+
+padding:40px;
+
+border-radius:28px;
+
+background:rgba(255,255,255,.04);
+
+border:1px solid rgba(255,255,255,.06);
+
+text-align:center;
+
+}
+
+@keyframes fadeUp{
+
+from{
+opacity:0;
+transform:translateY(25px);
+}
+
+to{
+opacity:1;
+transform:translateY(0);
+}
+
+}
+
+@media(max-width:800px){
+
+.navbar{
+flex-direction:column;
+gap:18px;
+padding:20px;
+}
+
+.hero{
+flex-direction:column;
+align-items:flex-start;
+}
+
+.hero h2{
+font-size:2.3rem;
+}
+
+}
+
+@media(max-width:600px){
+
+.main{
+padding:18px;
+}
+
+.hero{
+padding:25px;
+}
+
+.hero-left{
+flex-direction:column;
+align-items:flex-start;
+}
+
+.hero-icon{
+width:80px;
+height:80px;
+font-size:2.2rem;
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<nav class="navbar">
+
+<div class="logo">
+
+<div class="logo-icon">
+<i class="fa-solid fa-music"></i>
+</div>
+
+<div>
+<h1>Le ROC</h1>
+<span>GROUPE MUSICAL</span>
+</div>
+
+</div>
+
+<div class="nav-links">
+
+<a href="accueil.html">
+<i class="fa-solid fa-house"></i>
+Accueil
+</a>
+
+<a href="evenements_user.html">
+<i class="fa-solid fa-music"></i>
+Événements
+</a>
+
+<a href="Membre-user.html">
+<i class="fa-solid fa-users"></i>
+Membres
+</a>
+
+<a href="liste_presence_user.html" class="active">
+<i class="fa-solid fa-clipboard-check"></i>
+Présences
+</a>
+
+<a href="contact.html">
+<i class="fa-regular fa-envelope"></i>
+Contact
+</a>
+
+</div>
+
+</nav>
+
+<main class="main">
+
+<section class="hero">
+
+<div class="hero-left">
+
+<div class="hero-icon">
+<i class="fa-solid fa-clipboard-check"></i>
+</div>
+
+<div>
+
+<h2>
+Listes de présence
+</h2>
+
+<p>
+Consultez les présences officielles du groupe Le ROC.
+</p>
+
+<a href="accueil.html" class="back-btn">
+
+<i class="fa-solid fa-arrow-left"></i>
+Retour
+
+</a>
+
+</div>
+
+</div>
+
+</section>
+
+<div class="list-container" id="listContainer"></div>
+
+</main>
+
+<script type="module">
+
+import { initializeApp }
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
+import {
+
+getFirestore,
+collection,
+query,
+orderBy,
+onSnapshot
+
+}
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+const firebaseConfig = {
+
+apiKey: "AIzaSyAHyKVYhNuAuK_yFFtGYmbk2gMIRLV-eKs",
+
+authDomain: "leroc-bae84.firebaseapp.com",
+
+projectId: "leroc-bae84",
+
+storageBucket: "leroc-bae84.appspot.com",
+
+messagingSenderId: "603437145590",
+
+appId: "1:603437145590:web:b914e95570402f3fd1fbd7"
+
+};
+
+const app = initializeApp(firebaseConfig);
+
+const db = getFirestore(app);
+
+const listContainer =
+document.getElementById('listContainer');
+
+const q = query(
+
+collection(db,'presences'),
+orderBy('timestamp','desc')
+
+);
+
+onSnapshot(q,(snapshot)=>{
+
+listContainer.innerHTML = '';
+
+if(snapshot.empty){
+
+listContainer.innerHTML = `
+
+<div class="empty-box">
+
+<h2>
+Aucune liste disponible.
+</h2>
+
+</div>
+
+`;
+
+return;
+
+}
+
+snapshot.forEach((doc)=>{
+
+const data = doc.data();
+
+const card =
+document.createElement('div');
+
+card.className = 'presence-card';
+
+const presents = data.presents || [];
+const absents = data.absents || [];
+
+card.innerHTML = `
+
+<div class="presence-date">
+📅 ${data.date || 'Date inconnue'}
+</div>
+
+<div class="stats">
+
+<div class="stat">
+<div>Total</div>
+<h3>${presents.length + absents.length}</h3>
+</div>
+
+<div class="stat">
+<div>Présents</div>
+<h3 class="present">${presents.length}</h3>
+</div>
+
+<div class="stat">
+<div>Absents</div>
+<h3 class="absent">${absents.length}</h3>
+</div>
+
+</div>
+
+<div class="members-list">
+
+${presents.map(member => `
+
+<div class="member-line">
+<span>${member}</span>
+<span class="badge present">Présent</span>
+</div>
+
+`).join('')}
+
+${absents.map(member => `
+
+<div class="member-line">
+<span>${member}</span>
+<span class="badge absent">Absent</span>
+</div>
+
+`).join('')}
+
+</div>
+
+`;
+
+listContainer.appendChild(card);
+
+});
+
+});
+
+</script>
+
+</body>
+</html>
+```

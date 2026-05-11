@@ -1,0 +1,1083 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin - Vases d’Honneur</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Cinzel:wght@400;600;700&family=Great+Vibes&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+  <style>
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+    }
+
+    :root{
+      --bg:#020817;
+      --bg2:#07132B;
+      --card:#071938;
+      --gold:#E5B53B;
+      --gold2:#F7C84B;
+      --white:#F8FAFC;
+      --border:rgba(229,181,59,0.28);
+    }
+
+    body{
+      font-family:'Inter',sans-serif;
+      background:
+      radial-gradient(circle at top right, rgba(229,181,59,0.12), transparent 20%),
+      linear-gradient(to bottom,#020817,#031126);
+      color:var(--white);
+      overflow-x:hidden;
+    }
+
+    a{
+      text-decoration:none;
+      color:inherit;
+    }
+
+    .dashboard{
+      display:grid;
+      grid-template-columns:280px 1fr;
+      min-height:100vh;
+    }
+
+    /* SIDEBAR */
+
+    .sidebar{
+      background:
+      linear-gradient(to bottom,#03112B,#020817);
+      border-right:1px solid rgba(255,255,255,0.06);
+      padding:30px 24px;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+      position:sticky;
+      top:0;
+      height:100vh;
+    }
+
+    .logo{
+      margin-bottom:40px;
+    }
+
+    .logo-mark{
+      font-family:'Great Vibes',cursive;
+      color:var(--gold2);
+      font-size:5rem;
+      line-height:1;
+    }
+
+    .logo-title{
+      font-size:2rem;
+      font-weight:800;
+      line-height:1;
+    }
+
+    .logo-title span{
+      display:block;
+      font-size:1rem;
+      font-weight:400;
+      margin-top:5px;
+    }
+
+    .logo-admin{
+      color:var(--gold2);
+      margin-top:20px;
+      letter-spacing:2px;
+      text-transform:uppercase;
+      font-size:0.95rem;
+    }
+
+    .menu{
+      display:flex;
+      flex-direction:column;
+      gap:14px;
+    }
+
+    .menu a{
+      padding:18px 18px;
+      border-radius:16px;
+      display:flex;
+      align-items:center;
+      gap:15px;
+      font-size:1.05rem;
+      transition:.35s;
+      border:1px solid transparent;
+    }
+
+    .menu a:hover,
+    .menu a.active{
+      background:linear-gradient(135deg,rgba(229,181,59,0.22),rgba(229,181,59,0.08));
+      border-color:var(--border);
+      transform:translateX(4px);
+    }
+
+    .menu i{
+      color:var(--gold2);
+      width:22px;
+      text-align:center;
+    }
+
+    .sidebar-bottom{
+      margin-top:40px;
+    }
+
+    .verse-card{
+      background:rgba(6,20,45,0.8);
+      border:1px solid var(--border);
+      border-radius:24px;
+      padding:30px;
+      text-align:center;
+      line-height:1.8;
+      box-shadow:0 0 25px rgba(0,0,0,0.35);
+    }
+
+    .verse-card i{
+      color:var(--gold2);
+      font-size:2rem;
+      margin-bottom:20px;
+    }
+
+    .verse-card span{
+      display:block;
+      margin-top:20px;
+      color:var(--gold2);
+      font-weight:700;
+    }
+
+    /* MAIN */
+
+    .main{
+      padding:24px;
+    }
+
+    .topbar{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:18px 28px;
+      border-radius:22px;
+      background:rgba(5,15,35,0.82);
+      border:1px solid rgba(255,255,255,0.06);
+      backdrop-filter:blur(10px);
+      margin-bottom:24px;
+    }
+
+    .topbar-left{
+      display:flex;
+      align-items:center;
+      gap:14px;
+      font-size:1.25rem;
+      font-weight:600;
+    }
+
+    .topbar-left i{
+      color:var(--gold2);
+    }
+
+    .topbar-right{
+      display:flex;
+      align-items:center;
+      gap:35px;
+    }
+
+    .topbar-link{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      color:#d8e0ec;
+    }
+
+    .topbar-link i{
+      color:var(--gold2);
+    }
+
+    .avatar{
+      width:50px;
+      height:50px;
+      border-radius:50%;
+      border:1px solid var(--border);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      color:var(--gold2);
+      font-weight:700;
+      font-size:1.3rem;
+    }
+
+    /* HERO */
+
+    .hero{
+      position:relative;
+      overflow:hidden;
+      border-radius:30px;
+      min-height:340px;
+      padding:60px;
+      display:flex;
+      justify-content:space-between;
+      gap:40px;
+      align-items:flex-start;
+      margin-bottom:28px;
+      border:1px solid var(--border);
+
+      background:
+      linear-gradient(to right, rgba(2,10,28,0.94), rgba(4,16,42,0.65)),
+      url('https://images.unsplash.com/photo-1504052434569-70ad5836ab65?q=80&w=1600&auto=format&fit=crop') center/cover;
+    }
+
+    .hero::before{
+      content:'';
+      position:absolute;
+      inset:0;
+      background:
+      radial-gradient(circle at top right, rgba(229,181,59,0.25), transparent 25%);
+    }
+
+    .hero-content{
+      position:relative;
+      z-index:2;
+      max-width:700px;
+    }
+
+    .hero h1{
+      font-size:5rem;
+      line-height:1;
+      font-family:'Cinzel',serif;
+      margin-bottom:24px;
+    }
+
+    .hero h1 span{
+      color:var(--gold2);
+    }
+
+    .hero p{
+      font-size:1.4rem;
+      line-height:1.8;
+      color:#dce4ef;
+      max-width:650px;
+    }
+
+    .hero-line{
+      width:120px;
+      height:4px;
+      border-radius:20px;
+      background:var(--gold2);
+      margin-top:35px;
+    }
+
+    .hero-verse{
+      position:relative;
+      z-index:2;
+      width:360px;
+      background:rgba(2,10,28,0.78);
+      border:1px solid var(--border);
+      border-radius:28px;
+      padding:35px;
+      backdrop-filter:blur(10px);
+    }
+
+    .hero-verse i{
+      color:var(--gold2);
+      font-size:2rem;
+      margin-bottom:20px;
+    }
+
+    .hero-verse p{
+      line-height:1.9;
+      font-size:1.15rem;
+      margin-bottom:20px;
+    }
+
+    .hero-verse span{
+      color:var(--gold2);
+      font-weight:700;
+      font-size:1.3rem;
+    }
+
+    .cards-grid{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:24px;
+      margin-bottom:28px;
+    }
+
+    .card{
+      background:
+      linear-gradient(to bottom, rgba(7,25,56,0.92), rgba(4,14,34,0.98));
+      border:1px solid var(--border);
+      border-radius:28px;
+      padding:38px 30px;
+      transition:.4s;
+      position:relative;
+      overflow:hidden;
+    }
+
+    .card:hover{
+      transform:translateY(-8px);
+      box-shadow:0 0 35px rgba(229,181,59,0.18);
+    }
+
+    .card::before{
+      content:'';
+      position:absolute;
+      top:-120px;
+      right:-120px;
+      width:220px;
+      height:220px;
+      background:radial-gradient(circle, rgba(229,181,59,0.16), transparent 70%);
+    }
+
+    .card-icon{
+      width:110px;
+      height:110px;
+      border-radius:50%;
+      border:1px solid var(--border);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      margin:auto;
+      margin-bottom:28px;
+      position:relative;
+      z-index:2;
+    }
+
+    .card-icon i{
+      font-size:3rem;
+      color:var(--gold2);
+    }
+
+    .card h3{
+      text-align:center;
+      font-size:2rem;
+      font-family:'Cinzel',serif;
+      margin-bottom:18px;
+      position:relative;
+      z-index:2;
+    }
+
+    .card p{
+      text-align:center;
+      line-height:1.8;
+      color:#d9e1ec;
+      margin-bottom:30px;
+      position:relative;
+      z-index:2;
+    }
+
+    .card-btn{
+      width:fit-content;
+      margin:auto;
+      display:flex;
+      align-items:center;
+      gap:14px;
+      padding:14px 30px;
+      border-radius:16px;
+      border:1px solid var(--border);
+      color:var(--gold2);
+      transition:.35s;
+      position:relative;
+      z-index:2;
+    }
+
+    .card-btn:hover{
+      background:rgba(229,181,59,0.12);
+      transform:translateY(-3px);
+    }
+
+    .bottom-grid{
+      display:grid;
+      grid-template-columns:1.2fr .8fr;
+      gap:24px;
+    }
+
+    .activities,
+    .reminder{
+      background:
+      linear-gradient(to bottom, rgba(7,25,56,0.92), rgba(4,14,34,0.98));
+      border:1px solid var(--border);
+      border-radius:28px;
+      padding:34px;
+      position:relative;
+      overflow:hidden;
+    }
+
+    .section-header{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      margin-bottom:28px;
+    }
+
+    .section-title{
+      font-size:2rem;
+      font-family:'Cinzel',serif;
+    }
+
+    .view-all{
+      border:1px solid var(--border);
+      padding:12px 22px;
+      border-radius:14px;
+      color:var(--gold2);
+      transition:.3s;
+    }
+
+    .view-all:hover{
+      background:rgba(229,181,59,0.1);
+    }
+
+    #activitiesList{
+      display:flex;
+      flex-direction:column;
+      gap:18px;
+    }
+
+    .activity-item{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:20px;
+      padding:16px 0;
+      border-bottom:1px solid rgba(255,255,255,0.06);
+      animation:activityFade .6s ease;
+    }
+
+    @keyframes activityFade{
+      from{
+        opacity:0;
+        transform:translateY(14px);
+      }
+      to{
+        opacity:1;
+        transform:translateY(0);
+      }
+    }
+
+    .activity-left{
+      display:flex;
+      align-items:center;
+      gap:16px;
+    }
+
+    .activity-icon{
+      width:42px;
+      height:42px;
+      border-radius:50%;
+      border:1px solid var(--border);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      color:var(--gold2);
+      flex-shrink:0;
+      box-shadow:0 0 20px rgba(229,181,59,0.12);
+    }
+
+    .activity-content h4{
+      margin-bottom:6px;
+      font-size:1rem;
+      font-weight:600;
+    }
+
+    .activity-content p{
+      color:#d8e0ec;
+      line-height:1.7;
+      font-size:0.95rem;
+    }
+
+    .activity-time{
+      color:#b7c1cf;
+      white-space:nowrap;
+      font-size:0.95rem;
+    }
+
+    .reminder::before{
+      content:'';
+      position:absolute;
+      bottom:-80px;
+      right:-80px;
+      width:260px;
+      height:260px;
+      background:radial-gradient(circle, rgba(229,181,59,0.18), transparent 70%);
+    }
+
+    .reminder h3{
+      font-size:2rem;
+      margin-bottom:30px;
+      display:flex;
+      align-items:center;
+      gap:14px;
+      font-family:'Cinzel',serif;
+      position:relative;
+      z-index:2;
+    }
+
+    .reminder h3 i{
+      color:var(--gold2);
+    }
+
+    .reminder p{
+      font-size:1.3rem;
+      line-height:2;
+      color:#dbe3ef;
+      position:relative;
+      z-index:2;
+    }
+
+    .reminder-line{
+      width:220px;
+      height:3px;
+      background:linear-gradient(to right,var(--gold2),transparent);
+      margin-top:40px;
+      border-radius:20px;
+      position:relative;
+      z-index:2;
+    }
+
+    .footer{
+      margin-top:28px;
+      border-radius:22px;
+      border:1px solid rgba(255,255,255,0.06);
+      background:rgba(3,10,25,0.85);
+      padding:20px 28px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:20px;
+      flex-wrap:wrap;
+    }
+
+    .footer-center{
+      display:flex;
+      align-items:center;
+      gap:12px;
+    }
+
+    .footer-center i{
+      color:var(--gold2);
+    }
+
+    .footer-badge{
+      background:linear-gradient(135deg,var(--gold),var(--gold2));
+      color:#111;
+      padding:10px 20px;
+      border-radius:12px;
+      font-weight:700;
+    }
+
+    .back-btn{
+      display:inline-flex;
+      align-items:center;
+      gap:12px;
+      margin-bottom:24px;
+      padding:14px 24px;
+      border-radius:16px;
+      border:1px solid var(--border);
+      background:rgba(7,25,56,0.7);
+      color:var(--gold2);
+      transition:.35s;
+    }
+
+    .back-btn:hover{
+      transform:translateX(-4px);
+      background:rgba(229,181,59,0.1);
+    }
+
+    @media(max-width:1400px){
+
+      .cards-grid{
+        grid-template-columns:repeat(2,1fr);
+      }
+
+    }
+
+    @media(max-width:1200px){
+
+      .dashboard{
+        grid-template-columns:1fr;
+      }
+
+      .sidebar{
+        position:relative;
+        height:auto;
+      }
+
+      .hero{
+        flex-direction:column;
+      }
+
+      .hero-verse{
+        width:100%;
+      }
+
+      .bottom-grid{
+        grid-template-columns:1fr;
+      }
+
+    }
+
+    @media(max-width:768px){
+
+      .cards-grid{
+        grid-template-columns:1fr;
+      }
+
+      .topbar{
+        flex-direction:column;
+        align-items:flex-start;
+        gap:20px;
+      }
+
+      .topbar-right{
+        flex-wrap:wrap;
+        gap:18px;
+      }
+
+      .hero{
+        padding:40px 30px;
+      }
+
+      .hero h1{
+        font-size:3rem;
+      }
+
+      .hero p,
+      .reminder p{
+        font-size:1.05rem;
+      }
+
+      .section-header{
+        flex-direction:column;
+        align-items:flex-start;
+        gap:16px;
+      }
+
+      .activity-item{
+        flex-direction:column;
+        align-items:flex-start;
+      }
+
+    }
+
+  </style>
+</head>
+<body>
+
+  <div class="dashboard">
+
+    <aside class="sidebar">
+
+      <div>
+
+        <div class="logo">
+          <div class="logo-mark">Vh</div>
+
+          <div class="logo-title">
+            VASES
+            <span>D’HONNEUR</span>
+          </div>
+
+          <div class="logo-admin">
+            ESPACE ADMINISTRATEUR
+          </div>
+        </div>
+
+        <div class="menu">
+
+          <a href="bord_html.html" class="active">
+            <i class="fa-solid fa-house"></i>
+            Tableau de bord
+          </a>
+
+          <a href="Repertoire.html">
+            <i class="fa-solid fa-music"></i>
+            Répertoire Musical
+          </a>
+
+          <a href="evenements.html">
+            <i class="fa-regular fa-calendar"></i>
+            Événements
+          </a>
+
+          <a href="Liste_presence.html">
+            <i class="fa-regular fa-circle-check"></i>
+            Présences
+          </a>
+
+          <a href="Membre.html">
+            <i class="fa-regular fa-user"></i>
+            Membres
+          </a>
+
+          <a href="#">
+            <i class="fa-solid fa-gear"></i>
+            Paramètres
+          </a>
+
+          <a href="#">
+            <i class="fa-regular fa-user"></i>
+            Profil
+          </a>
+
+          <a href="#">
+            <i class="fa-solid fa-arrow-right-from-bracket"></i>
+            Déconnexion
+          </a>
+
+        </div>
+
+      </div>
+
+      <div class="sidebar-bottom">
+
+        <div class="verse-card">
+          <i class="fa-solid fa-book-open"></i>
+
+          <p>
+            Que tout se fasse
+            avec bienséance et
+            avec ordre.
+          </p>
+
+          <span>1 Corinthiens 14:40</span>
+        </div>
+
+      </div>
+
+    </aside>
+
+    <main class="main">
+
+      <a href="index.html" class="back-btn">
+        <i class="fa-solid fa-arrow-left"></i>
+        Retour
+      </a>
+
+      <div class="topbar">
+
+        <div class="topbar-left">
+          <i class="fa-solid fa-border-all"></i>
+          Tableau de bord
+        </div>
+
+        <div class="topbar-right">
+
+          <div class="topbar-link">
+            <i class="fa-solid fa-gear"></i>
+            Paramètres
+          </div>
+
+          <div class="topbar-link">
+            <i class="fa-solid fa-arrow-right-from-bracket"></i>
+            Déconnexion
+          </div>
+
+          <div class="avatar">
+            A
+          </div>
+
+        </div>
+
+      </div>
+
+      <section class="hero">
+
+        <div class="hero-content">
+
+          <h1>
+            Bienvenue
+            <span>Responsable !</span>
+          </h1>
+
+          <p>
+            Gérez votre ministère avec excellence,
+            discipline et sagesse pour la gloire de Dieu.
+          </p>
+
+          <div class="hero-line"></div>
+
+        </div>
+
+        <div class="hero-verse">
+          <i class="fa-solid fa-quote-left"></i>
+
+          <p>
+            Servez l’Éternel avec joie;
+            venez devant sa présence
+            avec des acclamations.
+          </p>
+
+          <span>Psaume 100:2</span>
+        </div>
+
+      </section>
+
+      <div class="cards-grid">
+
+        <div class="card">
+
+          <div class="card-icon">
+            <i class="fa-solid fa-music"></i>
+          </div>
+
+          <h3>Répertoire Musical</h3>
+
+          <p>
+            Gérez les chants, partitions
+            et ressources musicales.
+          </p>
+
+          <a href="Repertoire.html" class="card-btn">
+            Accéder
+            <i class="fa-solid fa-arrow-right"></i>
+          </a>
+
+        </div>
+
+        <div class="card">
+
+          <div class="card-icon">
+            <i class="fa-regular fa-calendar"></i>
+          </div>
+
+          <h3>Événements</h3>
+
+          <p>
+            Créez, gérez et suivez tous les
+            événements et programmes.
+          </p>
+
+          <a href="evenements.html" class="card-btn">
+            Accéder
+            <i class="fa-solid fa-arrow-right"></i>
+          </a>
+
+        </div>
+
+        <div class="card">
+
+          <div class="card-icon">
+            <i class="fa-regular fa-circle-check"></i>
+          </div>
+
+          <h3>Présences</h3>
+
+          <p>
+            Suivez les présences des
+            membres aux différentes activités.
+          </p>
+
+          <a href="Liste_presence.html" class="card-btn">
+            Accéder
+            <i class="fa-solid fa-arrow-right"></i>
+          </a>
+
+        </div>
+
+        <div class="card">
+
+          <div class="card-icon">
+            <i class="fa-solid fa-users"></i>
+          </div>
+
+          <h3>Membres</h3>
+
+          <p>
+            Gérez les membres, rôles
+            et informations personnelles.
+          </p>
+
+          <a href="Membre.html" class="card-btn">
+            Accéder
+            <i class="fa-solid fa-arrow-right"></i>
+          </a>
+
+        </div>
+
+      </div>
+
+      <div class="bottom-grid">
+
+        <div class="activities">
+
+          <div class="section-header">
+
+            <h2 class="section-title">
+              Activités récentes
+            </h2>
+
+            <a href="#" class="view-all">
+              Voir tout
+            </a>
+
+          </div>
+
+          <div id="activitiesList"></div>
+
+        </div>
+
+        <div class="reminder">
+
+          <h3>
+            <i class="fa-regular fa-bell"></i>
+            Rappel du jour
+          </h3>
+
+          <p>
+            Organisons-nous avec amour,
+            travaillons avec excellence et
+            servons avec un cœur consacré.
+          </p>
+
+          <div class="reminder-line"></div>
+
+        </div>
+
+      </div>
+
+      <div class="footer">
+
+        <div>
+          Vases d’Honneur © 2024 - Tous droits réservés.
+        </div>
+
+        <div class="footer-center">
+          <i class="fa-regular fa-heart"></i>
+          Pour l’excellence au service de l’adoration.
+        </div>
+
+        <div style="display:flex; align-items:center; gap:20px;">
+
+          <div>
+            Version 1.0.0
+          </div>
+
+          <div class="footer-badge">
+            Admin
+          </div>
+
+        </div>
+
+      </div>
+
+    </main>
+
+  </div>
+
+  <script type="module">
+
+    import {
+      initializeApp
+    } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
+    import {
+      getFirestore,
+      collection,
+      query,
+      orderBy,
+      limit,
+      onSnapshot
+    } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+    const firebaseConfig = {
+      apiKey: "YOUR_API_KEY",
+      authDomain: "YOUR_AUTH_DOMAIN",
+      projectId: "YOUR_PROJECT_ID",
+      storageBucket: "YOUR_STORAGE_BUCKET",
+      messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+      appId: "YOUR_APP_ID"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    const activitiesList = document.getElementById('activitiesList');
+
+    const iconMap = {
+      event:'fa-calendar-days',
+      music:'fa-music',
+      presence:'fa-circle-check',
+      member:'fa-users'
+    };
+
+    function formatDate(timestamp){
+
+      if(!timestamp) return 'Maintenant';
+
+      const date = timestamp.toDate();
+      const now = new Date();
+
+      const diff = Math.floor((now - date) / 1000);
+
+      if(diff < 60) return 'À l’instant';
+      if(diff < 3600) return `Il y a ${Math.floor(diff / 60)} min`;
+      if(diff < 86400) return `Il y a ${Math.floor(diff / 3600)} h`;
+
+      return `Il y a ${Math.floor(diff / 86400)} jour(s)`;
+    }
+
+    const activitiesQuery = query(
+      collection(db,'activities'),
+      orderBy('date','desc'),
+      limit(8)
+    );
+
+    onSnapshot(activitiesQuery,(snapshot)=>{
+
+      activitiesList.innerHTML = '';
+
+      snapshot.forEach((doc)=>{
+
+        const activity = doc.data();
+
+        if(!activity.date) return;
+
+        const activityDate = activity.date.toDate();
+        const now = new Date();
+
+        const diffMinutes =
+        Math.floor((now - activityDate) / 1000 / 60);
+
+        if(diffMinutes > 5) return;
+
+        const div = document.createElement('div');
+        div.classList.add('activity-item');
+
+        div.innerHTML = `
+
+          <div class="activity-left">
+
+            <div class="activity-icon">
+              <i class="fa-solid ${iconMap[activity.type] || 'fa-bolt'}"></i>
+            </div>
+
+            <div class="activity-content">
+              <h4>${activity.title}</h4>
+              <p>${activity.description}</p>
+            </div>
+
+          </div>
+
+          <div class="activity-time">
+            ${formatDate(activity.date)}
+          </div>
+
+        `;
+
+        activitiesList.appendChild(div);
+
+      });
+
+    });
+
+  </script>
+
+</body>
+</html>

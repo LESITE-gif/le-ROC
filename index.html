@@ -1,0 +1,1153 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vases d’Honneur</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Cinzel:wght@400;600;700&family=Great+Vibes&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+  <style>
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+    }
+
+    :root{
+      --bg:#020B1D;
+      --bg2:#071738;
+      --gold:#E5B53B;
+      --gold2:#F7C84B;
+      --white:#F8FAFC;
+      --border:rgba(229,181,59,0.35);
+    }
+
+    body{
+      font-family:'Inter',sans-serif;
+      background:
+      radial-gradient(circle at top right, rgba(229,181,59,0.12), transparent 25%),
+      linear-gradient(to bottom,#03112B,#020817);
+      color:var(--white);
+      overflow-x:hidden;
+    }
+
+    a{
+      text-decoration:none;
+      color:inherit;
+    }
+
+    img{
+      max-width:100%;
+      display:block;
+    }
+
+    .container{
+      width:92%;
+      max-width:1400px;
+      margin:auto;
+    }
+
+    /* NAVBAR */
+
+    .navbar{
+      position:fixed;
+      top:0;
+      left:0;
+      width:100%;
+      z-index:1000;
+      padding:22px 0;
+      transition:.4s;
+    }
+
+    .navbar.scrolled{
+      background:rgba(3,10,25,0.88);
+      backdrop-filter:blur(14px);
+      border-bottom:1px solid rgba(255,255,255,0.05);
+    }
+
+    .nav-content{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+    }
+
+    .logo{
+      display:flex;
+      align-items:center;
+      gap:12px;
+    }
+
+    .logo-mark{
+      font-family:'Great Vibes',cursive;
+      font-size:5rem;
+      color:var(--gold2);
+      line-height:1;
+    }
+
+    .logo-text{
+      font-size:1.8rem;
+      font-weight:700;
+      line-height:1;
+    }
+
+    .logo-text span{
+      display:block;
+      font-size:1rem;
+      font-weight:400;
+      letter-spacing:1px;
+    }
+
+    .nav-links{
+      display:flex;
+      gap:40px;
+    }
+
+    .nav-links a{
+      position:relative;
+      font-weight:500;
+      transition:.3s;
+    }
+
+    .nav-links a:hover{
+      color:var(--gold2);
+    }
+
+    .nav-links a.active::after{
+      content:'';
+      position:absolute;
+      left:0;
+      bottom:-12px;
+      width:100%;
+      height:3px;
+      border-radius:10px;
+      background:var(--gold2);
+    }
+
+    .nav-btn{
+      background:linear-gradient(135deg,var(--gold),var(--gold2));
+      color:#111;
+      padding:16px 26px;
+      border-radius:14px;
+      font-weight:700;
+      transition:.35s;
+      display:flex;
+      align-items:center;
+      gap:12px;
+      box-shadow:0 0 25px rgba(229,181,59,0.25);
+      border:none;
+      cursor:pointer;
+      font-family:'Inter',sans-serif;
+      font-size:1rem;
+    }
+
+    .nav-btn:hover{
+      transform:translateY(-3px);
+      box-shadow:0 0 40px rgba(229,181,59,0.45);
+    }
+
+    /* POPUP PASSWORD */
+
+    .password-modal{
+      position:fixed;
+      inset:0;
+      background:rgba(0,0,0,.7);
+      backdrop-filter:blur(8px);
+      z-index:3000;
+
+      display:none;
+      align-items:center;
+      justify-content:center;
+
+      padding:20px;
+    }
+
+    .password-box{
+      width:100%;
+      max-width:420px;
+
+      background:#071738;
+
+      border:1px solid var(--border);
+
+      border-radius:28px;
+
+      padding:35px;
+
+      animation:fadeUp .35s ease;
+    }
+
+    .password-box h2{
+      font-family:'Cinzel',serif;
+      margin-bottom:15px;
+      color:var(--gold2);
+      text-align:center;
+    }
+
+    .password-box p{
+      text-align:center;
+      color:#d9e1ee;
+      line-height:1.8;
+      margin-bottom:25px;
+    }
+
+    .password-input{
+      width:100%;
+      padding:18px 20px;
+      border-radius:16px;
+      border:1px solid rgba(255,255,255,.12);
+      background:#020B1D;
+      color:white;
+      font-size:1rem;
+      margin-bottom:20px;
+      outline:none;
+    }
+
+    .password-input:focus{
+      border-color:var(--gold2);
+    }
+
+    .password-actions{
+      display:flex;
+      gap:14px;
+    }
+
+    .modal-btn{
+      flex:1;
+      padding:16px;
+      border-radius:16px;
+      font-weight:700;
+      cursor:pointer;
+      border:none;
+      transition:.3s;
+    }
+
+    .confirm-btn{
+      background:linear-gradient(135deg,var(--gold),var(--gold2));
+      color:#111;
+    }
+
+    .cancel-btn{
+      background:#132544;
+      color:white;
+      border:1px solid rgba(255,255,255,.08);
+    }
+
+    .modal-btn:hover{
+      transform:translateY(-3px);
+    }
+
+    .error-text{
+      color:#ff6b6b;
+      text-align:center;
+      margin-top:15px;
+      display:none;
+      font-weight:600;
+    }
+
+    @keyframes fadeUp{
+      from{
+        opacity:0;
+        transform:translateY(20px);
+      }
+      to{
+        opacity:1;
+        transform:translateY(0);
+      }
+    }
+
+    /* HERO */
+
+    .hero{
+      position:relative;
+      min-height:100vh;
+      overflow:hidden;
+      padding-top:130px;
+    }
+
+    .hero-bg{
+      position:absolute;
+      inset:0;
+      background:
+      linear-gradient(to right, rgba(1,9,26,0.97) 30%, rgba(2,13,38,0.72)),
+      url('https://images.unsplash.com/photo-1516280440614-37939bbacd81?q=80&w=1600&auto=format&fit=crop') center/cover;
+      animation:zoomHero 18s ease-in-out infinite alternate;
+    }
+
+    @keyframes zoomHero{
+      from{transform:scale(1)}
+      to{transform:scale(1.06)}
+    }
+
+    .hero-overlay{
+      position:absolute;
+      inset:0;
+      background:
+      radial-gradient(circle at bottom right, rgba(229,181,59,0.18), transparent 25%);
+    }
+
+    .hero-content{
+      position:relative;
+      z-index:5;
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:50px;
+      align-items:center;
+      min-height:85vh;
+    }
+
+    .hero-left{
+      max-width:700px;
+    }
+
+    .hero-title-small{
+      font-family:'Great Vibes',cursive;
+      font-size:5rem;
+      color:var(--gold2);
+      line-height:0.7;
+    }
+
+    .hero-title-big{
+      font-family:'Great Vibes',cursive;
+      font-size:12rem;
+      line-height:0.8;
+      color:var(--gold2);
+      text-shadow:
+      0 0 20px rgba(229,181,59,0.35),
+      0 0 50px rgba(229,181,59,0.25);
+      margin-bottom:30px;
+    }
+
+    .hero-slogan{
+      font-size:3.2rem;
+      font-weight:800;
+      line-height:1.15;
+      text-transform:uppercase;
+      margin-bottom:30px;
+    }
+
+    .hero-slogan span{
+      color:var(--gold2);
+    }
+
+    .hero-line{
+      width:80px;
+      height:4px;
+      background:var(--gold2);
+      border-radius:20px;
+      margin:25px 0;
+    }
+
+    .hero-desc{
+      color:#d8dfeb;
+      font-size:1.2rem;
+      line-height:1.9;
+      max-width:650px;
+      margin-bottom:40px;
+    }
+
+    .hero-buttons{
+      display:flex;
+      gap:20px;
+      flex-wrap:wrap;
+    }
+
+    .btn-gold{
+      background:linear-gradient(135deg,var(--gold),var(--gold2));
+      color:#111;
+      padding:18px 34px;
+      border-radius:18px;
+      font-weight:800;
+      transition:.35s;
+      display:flex;
+      align-items:center;
+      gap:14px;
+      border:none;
+    }
+
+    .btn-gold:hover{
+      transform:translateY(-4px);
+      box-shadow:0 0 35px rgba(229,181,59,0.45);
+    }
+
+    .btn-outline{
+      border:2px solid var(--gold2);
+      padding:18px 34px;
+      border-radius:18px;
+      font-weight:700;
+      display:flex;
+      align-items:center;
+      gap:14px;
+      transition:.35s;
+      backdrop-filter:blur(10px);
+    }
+
+    .btn-outline:hover{
+      background:rgba(229,181,59,0.1);
+      transform:translateY(-4px);
+    }
+
+    .verse-box{
+      position:absolute;
+      right:7%;
+      bottom:120px;
+      width:380px;
+      background:rgba(2,10,28,0.7);
+      border:1px solid var(--border);
+      border-radius:28px;
+      backdrop-filter:blur(10px);
+      padding:35px;
+      z-index:6;
+      box-shadow:0 0 35px rgba(0,0,0,0.45);
+    }
+
+    .verse-box i{
+      color:var(--gold2);
+      font-size:2.2rem;
+      margin-bottom:18px;
+    }
+
+    .verse-box p{
+      line-height:1.7;
+      font-size:1.2rem;
+      margin-bottom:18px;
+    }
+
+    .verse-box span{
+      color:var(--gold2);
+      font-size:1.5rem;
+    }
+
+    .gold-wave{
+      position:absolute;
+      bottom:0;
+      left:0;
+      width:100%;
+      height:220px;
+      background:url('https://www.transparenttextures.com/patterns/asfalt-light.png');
+      opacity:.12;
+      border-top:1px solid rgba(229,181,59,0.25);
+    }
+
+    section{
+      padding:110px 0;
+      position:relative;
+    }
+
+    .section-subtitle{
+      text-align:center;
+      color:var(--gold2);
+      text-transform:uppercase;
+      letter-spacing:2px;
+      margin-bottom:18px;
+      font-weight:700;
+    }
+
+    .section-title{
+      text-align:center;
+      font-size:3.5rem;
+      font-family:'Cinzel',serif;
+      margin-bottom:20px;
+    }
+
+    .section-desc{
+      text-align:center;
+      max-width:900px;
+      margin:auto;
+      line-height:1.9;
+      color:#d9e1ee;
+      font-size:1.15rem;
+    }
+
+    .admin-access{
+      text-align:right;
+      margin-top:30px;
+      color:var(--gold2);
+    }
+
+    .values-grid{
+      margin-top:60px;
+      display:grid;
+      grid-template-columns:repeat(5,1fr);
+      gap:22px;
+    }
+
+    .value-card{
+      background:rgba(6,18,45,0.75);
+      border:1px solid var(--border);
+      border-radius:24px;
+      padding:40px 25px;
+      text-align:center;
+      transition:.4s;
+      backdrop-filter:blur(10px);
+    }
+
+    .value-card:hover{
+      transform:translateY(-10px);
+      box-shadow:0 0 35px rgba(229,181,59,0.18);
+    }
+
+    .value-card i{
+      color:var(--gold2);
+      font-size:3rem;
+      margin-bottom:25px;
+    }
+
+    .value-card h3{
+      font-size:1.6rem;
+      margin-bottom:18px;
+    }
+
+    .value-card p{
+      line-height:1.8;
+      color:#dce3ef;
+    }
+
+    .stats-bar{
+      margin-top:45px;
+      border:1px solid var(--border);
+      border-radius:24px;
+      padding:35px;
+      background:rgba(6,18,45,0.75);
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:20px;
+    }
+
+    .stat-item{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:18px;
+      border-right:1px solid rgba(255,255,255,0.08);
+    }
+
+    .stat-item:last-child{
+      border-right:none;
+    }
+
+    .stat-item i{
+      color:var(--gold2);
+      font-size:3rem;
+    }
+
+    .stat-number{
+      font-size:3rem;
+      font-family:'Cinzel',serif;
+    }
+
+    .stat-label{
+      color:#d8e0ec;
+      margin-top:4px;
+    }
+
+    .features-grid{
+      margin-top:55px;
+      display:grid;
+      grid-template-columns:repeat(5,1fr);
+      gap:18px;
+    }
+
+    .feature-card{
+      border-radius:22px;
+      overflow:hidden;
+      position:relative;
+      min-height:270px;
+      border:1px solid var(--border);
+      transition:.4s;
+    }
+
+    .feature-card img{
+      position:absolute;
+      inset:0;
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      transition:.5s;
+    }
+
+    .feature-overlay{
+      position:absolute;
+      inset:0;
+      background:linear-gradient(to top, rgba(1,10,30,0.98), rgba(1,10,30,0.25));
+      padding:25px;
+      display:flex;
+      flex-direction:column;
+      justify-content:flex-end;
+    }
+
+    .feature-card:hover img{
+      transform:scale(1.08);
+    }
+
+    .feature-card:hover{
+      box-shadow:0 0 35px rgba(229,181,59,0.2);
+    }
+
+    .feature-overlay h3{
+      color:var(--gold2);
+      font-size:1.5rem;
+      margin-bottom:14px;
+    }
+
+    .feature-overlay p{
+      line-height:1.7;
+      color:#dde5f1;
+    }
+
+    .cta-box{
+      margin-top:60px;
+      border-radius:28px;
+      overflow:hidden;
+      border:1px solid var(--border);
+      background:
+      linear-gradient(to right, rgba(5,15,38,0.96), rgba(8,22,60,0.86)),
+      url('https://images.unsplash.com/photo-1504052434569-70ad5836ab65?q=80&w=1600&auto=format&fit=crop') center/cover;
+      padding:55px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:40px;
+    }
+
+    .cta-box h2{
+      font-size:3rem;
+      font-family:'Cinzel',serif;
+      margin-bottom:14px;
+    }
+
+    .cta-box p{
+      color:#d7dfeb;
+      line-height:1.8;
+      font-size:1.1rem;
+    }
+
+    footer{
+      padding:80px 0 30px;
+      border-top:1px solid rgba(255,255,255,0.05);
+    }
+
+    .footer-grid{
+      display:grid;
+      grid-template-columns:1.2fr 1fr 1fr 1fr 1fr;
+      gap:40px;
+      margin-bottom:40px;
+    }
+
+    .footer-title{
+      color:var(--gold2);
+      margin-bottom:22px;
+      font-weight:700;
+      text-transform:uppercase;
+      letter-spacing:1px;
+    }
+
+    .footer-links{
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+    }
+
+    .footer-links a,
+    .footer-links p{
+      color:#d8e0ec;
+      line-height:1.8;
+    }
+
+    .socials{
+      display:flex;
+      gap:14px;
+      margin-top:20px;
+    }
+
+    .socials a{
+      width:42px;
+      height:42px;
+      border-radius:50%;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      background:rgba(229,181,59,0.08);
+      border:1px solid rgba(229,181,59,0.2);
+      transition:.3s;
+    }
+
+    .socials a:hover{
+      background:var(--gold2);
+      color:#111;
+      transform:translateY(-4px);
+    }
+
+    .copyright{
+      text-align:center;
+      color:#d7dfeb;
+      opacity:.8;
+      margin-top:25px;
+    }
+
+    @media(max-width:1200px){
+
+      .values-grid,
+      .features-grid{
+        grid-template-columns:repeat(2,1fr);
+      }
+
+      .footer-grid{
+        grid-template-columns:repeat(2,1fr);
+      }
+
+      .hero-content{
+        grid-template-columns:1fr;
+      }
+
+      .verse-box{
+        position:relative;
+        right:auto;
+        bottom:auto;
+        width:100%;
+        margin-top:40px;
+      }
+
+    }
+
+    @media(max-width:768px){
+
+      .nav-links{
+        display:none;
+      }
+
+      .hero-title-big{
+        font-size:7rem;
+      }
+
+      .hero-slogan{
+        font-size:2rem;
+      }
+
+      .section-title{
+        font-size:2.2rem;
+      }
+
+      .stats-bar,
+      .values-grid,
+      .features-grid,
+      .footer-grid{
+        grid-template-columns:1fr;
+      }
+
+      .stat-item{
+        border-right:none;
+        border-bottom:1px solid rgba(255,255,255,0.08);
+        padding-bottom:20px;
+      }
+
+      .stat-item:last-child{
+        border-bottom:none;
+      }
+
+      .cta-box{
+        flex-direction:column;
+        text-align:center;
+      }
+
+      .hero-buttons{
+        flex-direction:column;
+      }
+
+      .btn-gold,
+      .btn-outline{
+        width:100%;
+        justify-content:center;
+      }
+
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- POPUP PASSWORD -->
+
+  <div class="password-modal" id="passwordModal">
+
+    <div class="password-box">
+
+      <h2>
+        Accès Administrateur
+      </h2>
+
+      <p>
+        Entrez le mot de passe pour accéder à la plateforme.
+      </p>
+
+      <input
+        type="password"
+        id="passwordInput"
+        class="password-input"
+        placeholder="Mot de passe"
+      >
+
+      <div class="password-actions">
+
+        <button class="modal-btn cancel-btn" id="cancelBtn">
+          Annuler
+        </button>
+
+        <button class="modal-btn confirm-btn" id="confirmBtn">
+          Connexion
+        </button>
+
+      </div>
+
+      <div class="error-text" id="errorText">
+        Mot de passe incorrect
+      </div>
+
+    </div>
+
+  </div>
+
+  <nav class="navbar" id="navbar">
+    <div class="container nav-content">
+
+      <div class="logo">
+        <div class="logo-mark">Vh</div>
+
+        <div class="logo-text">
+          VASES
+          <span>D’HONNEUR</span>
+        </div>
+      </div>
+
+      <div class="nav-links">
+        <a href="#" class="active">Accueil</a>
+        <a href="#">À propos</a>
+        <a href="#">Vision</a>
+        <a href="#">Fonctionnalités</a>
+        <a href="#">Événements</a>
+        <a href="#">Contact</a>
+      </div>
+
+      <button class="nav-btn" id="loginBtn">
+        Se connecter
+        <i class="fa-solid fa-user-lock"></i>
+      </button>
+
+    </div>
+  </nav>
+
+  <header class="hero">
+
+    <div class="hero-bg"></div>
+    <div class="hero-overlay"></div>
+
+    <div class="container hero-content">
+
+      <div class="hero-left">
+
+        <div class="hero-title-small">Le</div>
+        <div class="hero-title-big">Roc</div>
+
+        <div class="hero-slogan">
+          Pour partager
+          <span>l’amour de Christ</span>
+          pour changer le monde.
+        </div>
+
+        <div class="hero-line"></div>
+
+        <p class="hero-desc">
+          Une plateforme dédiée aux chantres pour s’organiser,
+          communiquer et grandir ensemble dans l’excellence
+          au service de Dieu.
+        </p>
+
+        <div class="hero-buttons">
+
+          <button class="btn-gold" id="heroLoginBtn">
+            Se connecter
+            <i class="fa-solid fa-user-lock"></i>
+          </button>
+
+          <a href="accueil.html" class="btn-outline">
+            Découvrir la plateforme
+            <i class="fa-regular fa-circle-play"></i>
+          </a>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="verse-box">
+      <i class="fa-solid fa-quote-left"></i>
+
+      <p>
+        Dieu est Esprit,
+        et il faut que ceux qui
+        l’adorent l’adorent en
+        esprit et en vérité.
+      </p>
+
+      <span>Jean 4:24</span>
+    </div>
+
+    <div class="gold-wave"></div>
+
+  </header>
+
+  <section>
+
+    <div class="container">
+
+      <div class="section-subtitle">Notre mission</div>
+
+      <h2 class="section-title">
+        L’excellence au service de l’adoration
+      </h2>
+
+      <p class="section-desc">
+        Vases d’Honneur existe pour équiper chaque chanteur,
+        renforcer l’unité, promouvoir la discipline et impacter
+        des vies à travers une adoration authentique.
+      </p>
+
+      <div class="admin-access">
+        <i class="fa-solid fa-lock"></i>
+        Accès admin
+      </div>
+
+      <div class="values-grid">
+
+        <div class="value-card">
+          <i class="fa-solid fa-users"></i>
+          <h3>UNITÉ</h3>
+          <p>Marcher ensemble dans l’amour et l’harmonie.</p>
+        </div>
+
+        <div class="value-card">
+          <i class="fa-solid fa-shield-halved"></i>
+          <h3>DISCIPLINE</h3>
+          <p>Vivre une organisation qui honore Dieu.</p>
+        </div>
+
+        <div class="value-card">
+          <i class="fa-regular fa-star"></i>
+          <h3>EXCELLENCE</h3>
+          <p>Donner le meilleur pour la gloire de Dieu.</p>
+        </div>
+
+        <div class="value-card">
+          <i class="fa-regular fa-heart"></i>
+          <h3>SERVICE</h3>
+          <p>Servir avec joie, passion et humilité.</p>
+        </div>
+
+        <div class="value-card">
+          <i class="fa-solid fa-crown"></i>
+          <h3>ADORATION</h3>
+          <p>Placer Dieu au centre de tout ce que nous faisons.</p>
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <footer>
+
+    <div class="container">
+
+      <div class="footer-grid">
+
+        <div>
+
+          <div class="logo">
+            <div class="logo-mark">Vh</div>
+
+            <div class="logo-text">
+              VASES
+              <span>D’HONNEUR</span>
+            </div>
+          </div>
+
+          <p style="margin-top:20px; line-height:1.9; color:#d8dfeb;">
+            Mis à part pour Dieu,
+            appelés pour adorer,
+            consacrés pour servir.
+          </p>
+
+          <div class="socials">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
+          </div>
+
+        </div>
+
+        <div>
+          <div class="footer-title">Liens rapides</div>
+
+          <div class="footer-links">
+            <a href="#">Accueil</a>
+            <a href="#">À propos</a>
+            <a href="#">Vision</a>
+            <a href="#">Fonctionnalités</a>
+            <a href="#">Événements</a>
+            <a href="#">Contact</a>
+          </div>
+        </div>
+
+        <div>
+          <div class="footer-title">Plateforme</div>
+
+          <div class="footer-links">
+            <a href="#">Se connecter</a>
+            <a href="#">Inscription</a>
+            <a href="#">Aide</a>
+            <a href="#">Support</a>
+          </div>
+        </div>
+
+        <div>
+          <div class="footer-title">Contact</div>
+
+          <div class="footer-links">
+            <p>+225 07 00 00 00 00</p>
+            <p>contact@vasesdhonneur.com</p>
+            <p>Côte d’Ivoire</p>
+          </div>
+        </div>
+
+        <div>
+          <div class="footer-title">Verset du jour</div>
+
+          <div class="footer-links">
+            <p>
+              “Adorez l’Éternel avec crainte,
+              et réjouissez-vous avec tremblement.”
+            </p>
+
+            <p style="color:var(--gold2); font-weight:700;">
+              — Psaume 2:11
+            </p>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="copyright">
+        © 2024 Vases d’Honneur. Tous droits réservés.
+      </div>
+
+    </div>
+
+  </footer>
+
+  <script>
+
+    const navbar = document.getElementById('navbar');
+
+    window.addEventListener('scroll',()=>{
+
+      if(window.scrollY > 20){
+        navbar.classList.add('scrolled');
+      }else{
+        navbar.classList.remove('scrolled');
+      }
+
+    });
+
+    // PASSWORD LOGIN
+
+    const passwordModal =
+    document.getElementById('passwordModal');
+
+    const loginBtn =
+    document.getElementById('loginBtn');
+
+    const heroLoginBtn =
+    document.getElementById('heroLoginBtn');
+
+    const confirmBtn =
+    document.getElementById('confirmBtn');
+
+    const cancelBtn =
+    document.getElementById('cancelBtn');
+
+    const passwordInput =
+    document.getElementById('passwordInput');
+
+    const errorText =
+    document.getElementById('errorText');
+
+    // OPEN MODAL
+
+    loginBtn.addEventListener('click',()=>{
+
+      passwordModal.style.display = 'flex';
+
+    });
+
+    heroLoginBtn.addEventListener('click',()=>{
+
+      passwordModal.style.display = 'flex';
+
+    });
+
+    // CLOSE MODAL
+
+    cancelBtn.addEventListener('click',()=>{
+
+      passwordModal.style.display = 'none';
+
+      passwordInput.value = '';
+
+      errorText.style.display = 'none';
+
+    });
+
+    // CHECK PASSWORD
+
+    confirmBtn.addEventListener('click',()=>{
+
+      const password =
+      passwordInput.value.trim();
+
+      if(password === '0000'){
+
+        window.location.href =
+        'admin.html';
+
+      }else{
+
+        errorText.style.display = 'block';
+
+      }
+
+    });
+
+    // ENTER KEY
+
+    passwordInput.addEventListener('keydown',(e)=>{
+
+      if(e.key === 'Enter'){
+
+        confirmBtn.click();
+
+      }
+
+    });
+
+  </script>
+
+</body>
+</html>
